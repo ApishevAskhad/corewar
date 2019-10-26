@@ -6,7 +6,7 @@
 #    By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/01 12:49:11 by gloras-t          #+#    #+#              #
-#    Updated: 2019/10/26 21:56:19 by gloras-t         ###   ########.fr        #
+#    Updated: 2019/10/26 22:22:33 by gloras-t         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRC =	ft_printf.c \
 
 OBJ = *.o
 
+ITALIC = \033[3m
 GREEN = \033[0;32m
 YELLOW = \033[1;33m
 EOC = \033[0m
@@ -67,7 +68,7 @@ $(NAME):
 	@make -C ../libft/
 	@gcc $(FLAGS) -c -I $(HEADER) $(SRC)
 	@ar rc $(NAME) $(OBJ) ../libft/*.o
-	@echo "$(GREEN)complete:$(EOC) $(YELLOW)ft_printf$(EOC)"
+	@echo "$(GREEN)complete:$(EOC) $(ITALIC)FT_PRINTF$(EOC)"
 
 test: $(TEST)
 $(TEST):
