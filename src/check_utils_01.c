@@ -6,18 +6,22 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 21:20:58 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/28 21:21:50 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/10/28 23:33:24 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/corewar.h"
 
-int		check_cor_extension(char *file_name)
+/*
+**	not NULL safety
+*/
+int		is_cor_extension(char *file_name)
 {
+	assert(file_name != NULL);
 	char	*eol;
 
 	eol = ft_strchr(file_name, '\0');
-	return (ft_strcmp(COR_EXTENSION, eol - 4));
+	return (!ft_strcmp(COR_EXTENSION, eol - 4));
 }
 
 int		check_octet(char c, UI octet)
@@ -42,8 +46,12 @@ int		check_octet(char c, UI octet)
 	return (1);
 }
 
-int		check_header(char *byte)
+/*
+**	not NULL safety
+*/
+int		has_header(char *byte)
 {
+	assert(byte != NULL);
 	if (check_octet(byte[0], 8)
 	&& check_octet(byte[1], 16)
 	&& check_octet(byte[2], 24)

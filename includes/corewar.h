@@ -6,7 +6,7 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/28 21:22:40 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/10/28 23:32:20 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define COREWAR_H
 
 # include "libft/libft.h"
+# include <assert.h>
 
 # define IND_SIZE			2
 # define REG_SIZE			4
@@ -79,7 +80,7 @@ void						print_bits_char(char number);
 /*
 ** check_utils_01.c
 */
-int							check_cor_extension(char *file_name);
-int							check_header(char *byte);
+int							is_cor_extension(char *file_name);
+int							has_header(char *byte);
 
 #endif

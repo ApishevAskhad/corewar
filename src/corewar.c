@@ -6,7 +6,7 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:43:42 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/28 21:23:08 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/10/28 23:18:45 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	read_file(char *file_name)
 	{
 		ft_bzero(buf, BUFF_SIZE);
 		ret = read(fd, buf, BUFF_SIZE);
-		if (check_header(&buf[0]))
+		if (has_header(&buf[0]))
 			ft_printf("header is here\n");
 	}
 	else
@@ -34,7 +34,7 @@ int		main(int argc, char *argv[])
 {
 	if (argc > 1)
 	{
-		if (!check_cor_extension(argv[1]))
+		if (is_cor_extension(argv[1]))
 		{
 			read_file(argv[1]);
 		}
