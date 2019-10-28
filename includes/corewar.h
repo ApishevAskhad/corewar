@@ -6,7 +6,7 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/26 23:11:22 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/10/28 21:22:40 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,31 @@
 # define COMMENT_LENGTH		2048
 # define COREWAR_EXEC_MAGIC	0xEA83F3
 
-int	ft_printf(const char *restrict format, ...);
+# define COR_EXTENSION		".cor"
+# define UI					unsigned int
+
+typedef struct				s_cor_file
+{
+	UI						magic;
+	char					name[PROG_NAME_LENGTH + 1];
+	UI						code_size;
+	char					comment[COMMENT_LENGTH + 1];
+}							t_cor_file;
+
+int							ft_printf(const char *restrict format, ...);
+
+/*
+** print_utils.c
+*/
+void						print_usage(void);
+void						print_error(char *error_msg);
+void						print_bits_ui(UI number);
+void						print_bits_char(char number);
+
+/*
+** check_utils_01.c
+*/
+int							check_cor_extension(char *file_name);
+int							check_header(char *byte);
 
 #endif

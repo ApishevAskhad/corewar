@@ -6,19 +6,19 @@
 #    By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 20:31:24 by gloras-t          #+#    #+#              #
-#    Updated: 2019/10/26 22:22:38 by gloras-t         ###   ########.fr        #
+#    Updated: 2019/10/28 21:23:28 by gloras-t         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 COREWAR = corewar
 ASM = asm
-SRC = src
-TEST = t
-OBJ = corewar.o
+TEST_VM = t
+OBJ_VM =	print_utils.o \
+			check_utils_01.o
 LIBFT = includes/ft_printf
 LIBFTP = $(LIBFT)/libftp.a
 HEADER = includes/corewar.h
-TEST_HEADER = includes/test_filler.h
+TEST_HEADER = includes/test_corewar.h
 FLAGS = -Wall -Wextra -Werror
 
 ITALIC = \033[3m
@@ -27,18 +27,18 @@ YELLOW = \033[1;33m
 EOC = \033[0m
 
 all: $(COREWAR)
-$(COREWAR): $(LIBFTP) $(OBJ) $(HEADER)
-	@gcc -o $(COREWAR) $(OBJ) -I $(HEADER) -L $(LIBFT)/ -lftp -g
+$(COREWAR): $(LIBFTP) corewar.o $(OBJ_VM) $(HEADER)
+	@gcc -o $(COREWAR) corewar.o $(OBJ_VM) -I $(HEADER) -L $(LIBFT)/ -lftp -g
 	@echo "$(GREEN)complete:$(EOC) $(ITALIC)COREWAR$(EOC)"
 
-test: $(TEST)
-$(TEST): $(LIBFTP) $(T) $(OBJ) $(TEST_HEADER)
-	@gcc -o $(TEST) $(T) $(OBJ) -I $(TEST_HEADER) -L $(LIBFT)/ -lftp -g
+test: $(TEST_VM)
+$(TEST_VM): $(LIBFTP) $(T) $(OBJ_VM) $(TEST_HEADER)
+	@gcc -o $(TEST_VM) $(T) $(OBJ_VM) -I $(TEST_HEADER) -L $(LIBFT)/ -lftp -g
 
 $(LIBFTP):
 	@make -C $(LIBFT)/
 
-%.o: $(SRC)/%.c
+%.o: src/%.c
 	@gcc -c $(FLAGS) -I $(HEADER) $< -o $@ -g
 
 %.o: test/%.c
@@ -50,6 +50,6 @@ clean:
 
 fclean: clean
 	@make -C $(LIBFT)/ fclean
-	@rm -f $(COREWAR) $(TEST)
+	@rm -f $(COREWAR) $(TEST_VM)
 
 re: fclean all

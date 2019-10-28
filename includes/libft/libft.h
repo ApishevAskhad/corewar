@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 22:16:00 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/09/12 22:03:23 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/10/27 16:01:57 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
-# define BUFF_SIZE 10
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <stdio.h>
+
+# define BUFF_SIZE		4096
 # define LL 			long long
 
 typedef struct			s_list

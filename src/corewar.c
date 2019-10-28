@@ -6,14 +6,42 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:43:42 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/26 22:03:24 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/10/28 21:23:08 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/corewar.h"
 
-int	main(void)
+void	read_file(char *file_name)
 {
-	ft_printf("hello world\n");
+	int		fd;
+	int		ret;
+	char	buf[BUFF_SIZE];
+
+	fd = open(file_name, O_RDONLY);
+	if (fd > -1)
+	{
+		ft_bzero(buf, BUFF_SIZE);
+		ret = read(fd, buf, BUFF_SIZE);
+		if (check_header(&buf[0]))
+			ft_printf("header is here\n");
+	}
+	else
+		print_error("file not open");
+}
+
+int		main(int argc, char *argv[])
+{
+	if (argc > 1)
+	{
+		if (!check_cor_extension(argv[1]))
+		{
+			read_file(argv[1]);
+		}
+		else
+			print_error("file extension is not .cor");
+	}
+	else
+		print_usage();
 	return (0);
 }
