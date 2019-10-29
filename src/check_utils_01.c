@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_utils_01.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 21:20:58 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/28 23:33:24 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/10/29 16:24:51 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar.h"
+#include "corewar.h"
 
 /*
 **	not NULL safety

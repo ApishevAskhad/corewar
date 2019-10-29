@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+         #
+#    By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/01 12:49:11 by gloras-t          #+#    #+#              #
-#    Updated: 2019/10/26 22:24:33 by gloras-t         ###   ########.fr        #
+#    Updated: 2019/10/29 19:51:01 by slindgre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,6 @@ NAME = libftp.a
 TEST = t
 
 FLAGS = -Wall -Wextra -Werror
-
-HEADER = header.h
 
 FLOAT = float/
 
@@ -65,15 +63,9 @@ EOC = \033[0m
 all: $(NAME)
 $(NAME):
 	@make -C ../libft/
-	@gcc $(FLAGS) -c -I $(HEADER) $(SRC)
+	@gcc $(FLAGS) -c $(SRC)
 	@ar rc $(NAME) $(OBJ) ../libft/*.o
 	@echo "$(GREEN)complete:$(EOC) $(ITALIC)FT_PRINTF$(EOC)"
-
-test: $(TEST)
-$(TEST):
-	@make -C ../libft/ fclean && make -C юю/libft/
-	@gcc -c -I $(HEADER) main.c $(SRC) -g
-	@gcc -o $(TEST) $(OBJ) -I libft/includes -L libft/ -lft
 
 clean:
 	@make -C ../libft/ clean
