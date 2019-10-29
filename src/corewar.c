@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:43:42 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/29 21:12:05 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/10/29 21:39:31 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,20 @@ t_player	read_file(char *file_name)
 	int			fd;
 	size_t		size;
 	t_player	player;
+	UI			gap;
 
 	size = 4 + PROG_NAME_LENGTH + 8 + COMMENT_LENGTH + CHAMP_MAX_SIZE;
 	fd = open(file_name, O_RDONLY);
 	ft_bzero(&player, sizeof(player));
 	if (fd > -1)
 	{
-		if (sizeof(player.magic) == read(fd, &player.magic, sizeof(player.magic)))
-			read(fd, player.prog_name, sizeof(player.prog_name));
-	}
+		if (sizeof(player.magic) != read(fd, &player.magic, sizeof(player.magic)))
+			print_error("No header in ", file_name);
+		if (sizeof(UI) != read(fd, &gap, sizeof(player.magic)) || gap == 0)
+			print_error("No gap between name ", file_name);
+			
 	else
-		print_error("file not open");
+		print_error("Couldn't open file", file_name);
 	return (player);
 }
 

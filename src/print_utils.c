@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 14:48:39 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/29 16:25:09 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/10/29 21:34:07 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ void	print_usage(void)
 	ft_printf("usage: \n");
 }
 
-void	print_error(char *error_msg)
+void	print_error(char *error_msg, char *name)
 {
-	ft_printf("{red}error:{eoc} %s\n", error_msg);
+	ft_printf("{red}error:{eoc} %s %s\n", error_msg, name);
+	exit(-1);
 }
 
 void	print_bits_ui(UI number)

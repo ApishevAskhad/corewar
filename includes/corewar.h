@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/29 20:23:55 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/10/29 21:37:25 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int							ft_printf(const char *restrict format, ...);
 ** print_utils.c
 */
 void						print_usage(void);
-void						print_error(char *error_msg);
+void						print_error(char *error_msg, char *name);
 void						print_bits_ui(UI     number);
 void						print_bits_char(char number);
 
@@ -46,5 +46,9 @@ void						print_bits_char(char number);
 int							is_cor_extension(char *file_name);
 int							has_header(char *byte);
 
-
+/*
+** clean_utils.c
+*/
+void						error_exit(char *error, t_player *layer);
+void    					_free(void *ptr);
 #endif
