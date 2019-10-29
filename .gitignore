@@ -3,7 +3,6 @@ resources/
 *.dSYM
 *.out
 *gc*
-*test*
 *.o
 t
 corewar
