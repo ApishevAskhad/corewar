@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   print_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 14:48:39 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/28 19:38:44 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/10/29 16:25:09 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar.h"
+#include "corewar.h"
 
 void	print_usage(void)
 {

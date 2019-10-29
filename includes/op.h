@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:44:29 by slindgre          #+#    #+#             */
-/*   Updated: 2019/10/29 16:18:40 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/10/29 20:18:58 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 # define MAX_ARGS_NUMBER		4
 # define MAX_PLAYERS			4
-# define MEM_SIZE				(4*1024)
+# define MEM_SIZE				(4 * 1024)
 # define IDX_MOD				(MEM_SIZE / 8)
 # define CHAMP_MAX_SIZE 		(MEM_SIZE / 6)
 
@@ -59,13 +59,5 @@ typedef char					t_arg_type;
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
-
-typedef struct					s_cor_file
-{
-	unsigned int				magic;
-	char						prog_name[PROG_NAME_LENGTH + 1];
-	unsigned int				prog_size;
-	char						comment[COMMENT_LENGTH + 1];
-}								t_cor_file;
 
 #endif

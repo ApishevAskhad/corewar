@@ -3,35 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:43:42 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/28 23:18:45 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/10/29 21:12:05 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar.h"
+#include "corewar.h"
 
-void	read_file(char *file_name)
+t_player	read_file(char *file_name)
 {
-	int		fd;
-	int		ret;
-	char	buf[BUFF_SIZE];
+	int			fd;
+	size_t		size;
+	t_player	player;
 
+	size = 4 + PROG_NAME_LENGTH + 8 + COMMENT_LENGTH + CHAMP_MAX_SIZE;
 	fd = open(file_name, O_RDONLY);
+	ft_bzero(&player, sizeof(player));
 	if (fd > -1)
 	{
-		ft_bzero(buf, BUFF_SIZE);
-		ret = read(fd, buf, BUFF_SIZE);
-		if (has_header(&buf[0]))
-			ft_printf("header is here\n");
+		if (sizeof(player.magic) == read(fd, &player.magic, sizeof(player.magic)))
+			read(fd, player.prog_name, sizeof(player.prog_name));
 	}
 	else
 		print_error("file not open");
+	return (player);
 }
 
 int		main(int argc, char *argv[])
-{
+{	
 	if (argc > 1)
 	{
 		if (is_cor_extension(argv[1]))
