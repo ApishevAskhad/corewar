@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/29 21:37:25 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/10/31 21:51:51 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 # define COR_EXTENSION		".cor"
 # define UI					uint32_t
+# define UC					unsigned char
+# define DEBUG				1
 
 typedef struct				s_player
 {
@@ -26,8 +28,14 @@ typedef struct				s_player
 	char					prog_name[PROG_NAME_LENGTH + 1];
 	UI      			    prog_size;
 	char					comment[COMMENT_LENGTH + 1];
-	unsigned char			code[CHAMP_MAX_SIZE + 1];
+	UC						code[CHAMP_MAX_SIZE];
 }							t_player;
+
+typedef union 				u_file_cor
+{
+	UC						file_cor[PROG_NAME_LENGTH + COMMENT_LENGTH + CHAMP_MAX_SIZE + 4 * 4];
+	t_player				player;
+}							t_file_cor;
 
 
 int							ft_printf(const char *restrict format, ...);
@@ -39,6 +47,7 @@ void						print_usage(void);
 void						print_error(char *error_msg, char *name);
 void						print_bits_ui(UI     number);
 void						print_bits_char(char number);
+void						print_hexdump(UC *ptr, size_t size);
 
 /*
 ** check_utils_01.c
@@ -49,6 +58,11 @@ int							has_header(char *byte);
 /*
 ** clean_utils.c
 */
-void						error_exit(char *error, t_player *layer);
 void    					_free(void *ptr);
+
+/*
+** create_player.c
+*/
+t_player					create_player(char *file_name);
+
 #endif
