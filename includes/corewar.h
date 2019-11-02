@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/29 20:23:55 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/02 21:22:04 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # define COR_EXTENSION		".cor"
 # define UI					uint32_t
+# define UC					unsigned char
 
 typedef struct				s_player
 {
@@ -39,6 +40,7 @@ void						print_usage(void);
 void						print_error(char *error_msg);
 void						print_bits_ui(UI     number);
 void						print_bits_char(char number);
+void						print_dump(UC *ptr, size_t size);
 
 /*
 ** check_utils_01.c

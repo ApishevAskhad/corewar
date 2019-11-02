@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 14:48:39 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/29 16:25:09 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/02 23:51:44 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,22 @@ void	print_bits_char(char number)
 	{
 		ft_printf("%c", (number & 1) ? '1' : '0');
 		number >>= 1;
+	}
+}
+
+void	print_dump(UC *ptr, size_t size)
+{
+	assert(ptr != NULL);
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (i % 32 == 0)
+			ft_printf("0x%04x :", i);
+		ft_printf(" %02x", (int)ptr[i]);
+		i++;
+		if (i % 32 == 0 || i == size)
+			ft_printf("\n");
 	}
 }
