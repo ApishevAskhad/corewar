@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/31 21:51:51 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/02 21:03:45 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,11 @@
 typedef struct				s_player
 {
 	UI      			    magic;
-	char					prog_name[PROG_NAME_LENGTH + 1];
 	UI      			    prog_size;
-	char					comment[COMMENT_LENGTH + 1];
 	UC						code[CHAMP_MAX_SIZE];
+	char					prog_name[PROG_NAME_LENGTH + 1];
+	char					comment[COMMENT_LENGTH + 1];
 }							t_player;
-
-typedef union 				u_file_cor
-{
-	UC						file_cor[PROG_NAME_LENGTH + COMMENT_LENGTH + CHAMP_MAX_SIZE + 4 * 4];
-	t_player				player;
-}							t_file_cor;
-
 
 int							ft_printf(const char *restrict format, ...);
 
