@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 22:15:59 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/03 17:48:29 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/03 17:59:48 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int			check_file(char *file_name)
 	int	fd;
 
 	if ((fd = open(file_name, O_RDONLY)) < 0)
-		print_error("Couldn't open file", file_name);
+		print_error("Can't read source file ", file_name);
 	return (fd);
 }
 
