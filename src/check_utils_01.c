@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_utils_01.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 21:20:58 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/29 16:24:51 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/02 23:42:13 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@
 int		is_cor_extension(char *file_name)
 {
 	assert(file_name != NULL);
-	char	*eol;
+	size_t	length;
 
-	eol = ft_strchr(file_name, '\0');
-	return (!ft_strcmp(COR_EXTENSION, eol - 4));
+	length = ft_strlen(file_name);
+	if (length >= 4)
+		return (!ft_strcmp(COR_EXTENSION, file_name + length - 4));
+	return (0);
 }
 
 int		check_octet(char c, UI octet)
