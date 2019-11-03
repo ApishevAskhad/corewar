@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar.h"
+#include "corewar.h"
 
 int main()
 {
@@ -37,20 +37,6 @@ int main()
 	assert(!has_header(buf));
 
 	ft_printf("{green}OK{eoc} {yellow}has_header(char *byte);{eoc}\n");
-
-	assert(is_cor_extension("42.cor"));
-	assert(is_cor_extension("a.cor"));
-	assert(!is_cor_extension(""));
-	assert(is_cor_extension(".cor"));
-	assert(is_cor_extension("file.cor"));
-	assert(!is_cor_extension(".co"));
-	assert(!is_cor_extension(".c"));
-	assert(!is_cor_extension("a.cor "));
-	assert(!is_cor_extension("a.core"));
-	assert(!is_cor_extension("cor."));
-	assert(!is_cor_extension("roc."));
-	assert(is_cor_extension(" .cor"));
-	ft_printf("{green}OK{eoc} {yellow}is_cor_extension(char *file_name);{eoc}\n");
 /*
 	print_bits_ui(COREWAR_EXEC_MAGIC);
 	ft_printf("\n");

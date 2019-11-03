@@ -18,10 +18,12 @@
 int		is_cor_extension(char *file_name)
 {
 	assert(file_name != NULL);
-	char	*eol;
+	size_t	length;
 
-	eol = ft_strchr(file_name, '\0');
-	return (!ft_strcmp(COR_EXTENSION, eol - 4));
+	length = ft_strlen(file_name);
+	if (length >= 4)
+		return (!ft_strcmp(COR_EXTENSION, file_name + length - 4));
+	return (0);
 }
 
 /*
