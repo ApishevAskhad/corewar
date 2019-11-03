@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 14:48:39 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/29 16:25:09 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/03 18:10:47 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 void	print_usage(void)
 {
-	ft_printf("usage: \n");
+	ft_printf("Usage: .corewar [-dump nbr_cycles] [-v]  [[-n number] champion1.cor] ...\n");
+    ft_printf("-dump nbr_cycles     : Dumps memory after nbr_cycles cycles then exits\n");
+	ft_printf("-v      				: Visual mode\n");
+	ft_printf("-n					: sets the number of the next player\n");
 }
 
 void	print_error(char *error_msg)
