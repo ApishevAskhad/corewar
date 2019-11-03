@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 14:48:39 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/03 18:10:47 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/03 20:33:41 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 void	print_usage(void)
 {
-	ft_printf("Usage: .corewar [-dump nbr_cycles] [-v]  [[-n number] champion1.cor] ...\n");
-    ft_printf("-dump nbr_cycles     : Dumps memory after nbr_cycles cycles then exits\n");
-	ft_printf("-v      				: Visual mode\n");
-	ft_printf("-n					: sets the number of the next player\n");
+	ft_printf("Usage: ./corewar [-dump N] [-v] [-n N] champion1.cor ...\n");
+	ft_printf("%4c -%-8s: Dumps memory after N cycles then exits\n",
+	0, "dump N");
+	ft_printf("%4c -%-8c: Visual mode\n", 0, 'v');
+	ft_printf("%4c -%-8s: Sets the N number of the next player\n", 0, "n N");
 }
 
 void	print_error(char *error_msg)
