@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/02 21:03:45 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/03 17:53:02 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void    					_free(void *ptr);
 /*
 ** create_player.c
 */
-t_player					create_player(char *file_name);
+t_player					create_player(int fd, char *file_name);
+int							check_file(char *file_name);
 
 #endif
