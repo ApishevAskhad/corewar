@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_utils.c                                      :+:      :+:    :+:   */
+/*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/29 21:15:22 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/04 17:47:59 by slindgre         ###   ########.fr       */
+/*   Created: 2019/11/04 17:43:01 by slindgre          #+#    #+#             */
+/*   Updated: 2019/11/04 17:44:08 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void    _free(void *ptr)
+void    init_game(t_game *game)
 {
-    free(ptr);
-    ptr = NULL;   
+    assert(game != NULL);
+    ft_bzero(game, sizeof(game));
+    game->dump = -1;
 }
