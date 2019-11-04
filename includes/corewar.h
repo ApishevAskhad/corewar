@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/03 21:12:51 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/04 17:56:25 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct				s_player
 typedef struct				s_game
 {
 	t_player				players[MAX_PLAYERS];
+	int						players_nbr;
 	int						dump;
 	int						visual;
 }							t_game;

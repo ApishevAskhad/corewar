@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 18:16:56 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/04 17:33:28 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/04 17:56:07 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	parse_args(int argc, char *argv[], t_game *game)
 	int nbr;
 
 	i = 0;
-	game->dump = -1;
 	while (++i < argc)
 	{
 		if (!ft_strcmp(argv[i], '-v'))
@@ -65,6 +64,7 @@ void	parse_args(int argc, char *argv[], t_game *game)
 			}
 			check_player_number(nbr, *game);
 			game->players[nbr - 1] = create_player(argv[i]);
+			game->players_nbr += 1;
 		}
 	}
 	if (i == 1)
