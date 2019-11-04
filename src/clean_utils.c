@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   clean_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 21:15:22 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/03 00:37:13 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/04 19:30:30 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void    _free(void *ptr)
+void    destroy(void *ptr)
 {
     free(ptr);
     ptr = NULL;   
