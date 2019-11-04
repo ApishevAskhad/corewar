@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/29 20:23:55 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/04 21:09:25 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # define COR_EXTENSION		".cor"
 # define UI					uint32_t
+# define UC					unsigned char
 
 typedef struct				s_player
 {
@@ -29,6 +30,18 @@ typedef struct				s_player
 	unsigned char			code[CHAMP_MAX_SIZE + 1];
 }							t_player;
 
+typedef struct				s_carry
+{
+	int						nbr;
+	int						carry;
+	int						op;
+	int						live;
+	int						timer;
+	int						pos;
+	int						jump;
+	int						r[REG_NUMBER];
+	struct s_carry			*next;
+}							t_carry;
 
 int							ft_printf(const char *restrict format, ...);
 
