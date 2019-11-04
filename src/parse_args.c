@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 18:16:56 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/03 22:28:00 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/04 17:33:28 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		get_free_player_number(t_player *players)
 {
+	assert(players != NULL);
 	int i;
 
 	i = 0;
@@ -42,6 +43,7 @@ void	check_player_number(int nbr, t_game game)
 
 void	parse_args(int argc, char *argv[], t_game *game)
 {
+	assert(game != NULL);
 	int i;
 	int nbr;
 
