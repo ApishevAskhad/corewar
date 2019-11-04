@@ -6,7 +6,7 @@
 #    By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 20:31:24 by gloras-t          #+#    #+#              #
-#    Updated: 2019/10/29 21:12:52 by slindgre         ###   ########.fr        #
+#    Updated: 2019/11/04 18:34:27 by slindgre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ COREWAR 	= corewar
 ASM 		= asm
 TEST_VM 	= t
 OBJ_VM 		=	print_utils.o \
-				check_utils_01.o
+				check_utils_01.o \
+				place_players.o
 INCLUDES	= includes
 LIBFT 		= $(INCLUDES)/ft_printf
 LIBFTP 		= $(LIBFT)/libftp.a
