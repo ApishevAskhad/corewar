@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_utils_01.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 21:20:58 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/29 22:56:01 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/04 19:50:21 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,20 @@ int		has_header(char *byte)
 	&& (COREWAR_EXEC_MAGIC & 0xFF) == ((UI)byte[3] & 0xFF))
 		return (1);
 	return (0);
+}
+
+void    check_players_nbrs(t_game game)
+{
+    int i;
+
+    i = 0;
+    if (!game.players_nbr)
+        print_usage();
+    while (i < game.players_nbr)
+    {
+        if (!game.players[i].magic)
+            print_error("Player numbers are not consistent, lost: ",
+            ft_itoa(i + 1));
+        i++;
+    }
 }

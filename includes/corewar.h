@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/04 19:38:46 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/04 19:51:24 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void						print_dump(UC *ptr, size_t size);
 */
 int							is_cor_extension(char *file_name);
 int							has_header(char *byte);
+void    					check_players_nbrs(t_game game);
 
 /*
 ** clean_utils.c
@@ -77,4 +78,5 @@ void						init_game(t_game *game);
 ** place_players.c
 */
 void    					place_players_code(t_game *game);
+
 #endif
