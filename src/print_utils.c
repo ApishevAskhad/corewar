@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 14:48:39 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/31 21:51:23 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/05 18:41:38 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,17 @@
 
 void	print_usage(void)
 {
-	ft_printf("usage: \n");
+	int	space_left;
+	int	space_right;
+
+	space_left = 3;
+	space_right = 8;
+	ft_printf("Usage: ./corewar [-dump N] [-v] [[-n N] champion1.cor] ...\n");
+	ft_printf("%*c -%-*s: Dumps memory after N cycles then exits\n",
+	space_left, ' ', space_right, "dump N");
+	ft_printf("%*c -%-*c: Visual mode\n", space_left, ' ', space_right, 'v');
+	ft_printf("%*c -%-*s: Sets the N number of the next player\n",
+	space_left, ' ', space_right, "n N");
 }
 
 void	print_error(char *error_msg, char *name)

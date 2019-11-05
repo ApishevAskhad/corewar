@@ -6,40 +6,11 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 16:26:01 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/05 18:39:34 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/05 18:41:12 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-
-enum octet
-{
-	FIRST = 0,
-	SECOND = 8,
-	THIRD = 16,
-	FORTH = 24
-};
-
-char	convert_ui_to_char(UI number, UI octet)
-{
-	char	c;
-	size_t	size;
-	UI		tmp;
-	UI		offset;
-
-	c = 0;
-	tmp = 0;
-	offset = octet;
-	size = 8 * sizeof(char);
-	while (size--)
-	{
-		tmp = number & (1 << octet);
-		tmp >>= offset;
-		c |= tmp;
-		octet++;
-	}
-	return c;
-}
 
 int main()
 {
@@ -66,20 +37,6 @@ int main()
 	assert(!has_header(buf));
 
 	ft_printf("{green}OK{eoc} {yellow}has_header(char *byte);{eoc}\n");
-
-	assert(is_cor_extension("42.cor"));
-	assert(is_cor_extension("a.cor"));
-	assert(!is_cor_extension(""));
-	assert(is_cor_extension(".cor"));
-	assert(is_cor_extension("file.cor"));
-	assert(!is_cor_extension(".co"));
-	assert(!is_cor_extension(".c"));
-	assert(!is_cor_extension("a.cor "));
-	assert(!is_cor_extension("a.core"));
-	assert(!is_cor_extension("cor."));
-	assert(!is_cor_extension("roc."));
-	assert(is_cor_extension(" .cor"));
-	ft_printf("{green}OK{eoc} {yellow}is_cor_extension(char *file_name);{eoc}\n");
 /*
 	print_bits_ui(COREWAR_EXEC_MAGIC);
 	ft_printf("\n");
