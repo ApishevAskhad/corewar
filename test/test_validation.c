@@ -6,11 +6,11 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 16:26:01 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/29 21:31:28 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/05 18:39:34 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar.h"
+#include "corewar.h"
 
 enum octet
 {

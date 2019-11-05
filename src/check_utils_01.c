@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_utils_01.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 21:20:58 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/29 16:24:51 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/05 18:34:50 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,21 @@ int		is_cor_extension(char *file_name)
 
 	eol = ft_strchr(file_name, '\0');
 	return (!ft_strcmp(COR_EXTENSION, eol - 4));
+}
+
+int		open_file(char *file_name)
+{
+	assert(file_name != NULL);
+	int	fd;
+
+	if (is_cor_extension(file_name))
+	{
+		if ((fd = open(file_name, O_RDONLY)) > 2)
+			return (fd);
+		else
+			print_error("Can't read source file ", file_name);
+	}
+	return (0);
 }
 
 int		check_octet(char c, UI octet)

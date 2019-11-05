@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 22:15:59 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/03 17:59:48 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/05 18:36:05 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,13 @@ UI			swipe_bytes(UI n)
 	return (res);
 }
 
-int			check_file(char *file_name)
-{
-	int	fd;
 
-	if ((fd = open(file_name, O_RDONLY)) < 0)
-		print_error("Can't read source file ", file_name);
-	return (fd);
-}
 
-t_player	create_player(int fd, char *file_name)
+t_player	create_player(int fd)
 {
-	int			fd;
 	t_player	player;
-	UI			gap_1;
+	player.magic = 1;
+	/*UI			gap_1;
 	UI			gap_2;
 
 	ft_bzero(&player, sizeof(player));
@@ -57,7 +50,7 @@ t_player	create_player(int fd, char *file_name)
 	if (gap_1 != 0)
 		print_error("There is no space after champ name in: ", file_name);
 	if (gap_2 != 0)
-		print_error("There is no space after champ comment in: ", file_name);
+		print_error("There is no space after champ comment in: ", file_name);*/
 	close(fd);
 	return (player);
 }

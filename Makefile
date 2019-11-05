@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+         #
+#    By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 20:31:24 by gloras-t          #+#    #+#              #
-#    Updated: 2019/10/29 22:17:04 by slindgre         ###   ########.fr        #
+#    Updated: 2019/11/05 18:13:45 by gloras-t         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ $(COREWAR): $(LIBFTP) corewar.o $(OBJ_VM)
 
 $(TEST_VM): $(OBJ_VM) $(LIBFTP) $(T)
 	@gcc -o $(TEST_VM) $(T) $(OBJ_VM) -I$(INCLUDES) -I$(LIBFTH) -L $(LIBFT)/ -lftp -g
+	@echo "$(GREEN)complete:$(EOC) $(ITALIC)$(T)$(EOC)"
 
 $(LIBFTP):
 	@make -C $(LIBFT)/
