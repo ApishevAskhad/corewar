@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.c                                          :+:      :+:    :+:   */
+/*   test_convert_ui.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/26 21:43:42 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/05 20:03:16 by gloras-t         ###   ########.fr       */
+/*   Created: 2019/11/05 22:54:39 by gloras-t          #+#    #+#             */
+/*   Updated: 2019/11/05 23:05:26 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int		main(int argc, char *argv[])
+int main()
 {
-	if (argc > 1)
-	{
-		if (is_cor_extension(argv[1]))
-			create_player(argv[1]);
-		else
-			print_error("file extension is not .cor: ", argv[1]);
-	}
-	else
-		print_usage();
-	return (0);
+    char	s[4];
+	UI		n;
+	
+    s[0] = 0;
+    s[1] = 0;
+    s[2] = 0;
+    s[3] = 1;
+	n = convert_to_ui(s);
+	ft_printf("%lu\n", n);
+    print_bits_ui(n);
+    return (0);
 }

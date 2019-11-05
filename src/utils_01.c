@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.c                                          :+:      :+:    :+:   */
+/*   utils_01.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/26 21:43:42 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/05 20:03:16 by gloras-t         ###   ########.fr       */
+/*   Created: 2019/11/05 22:48:41 by gloras-t          #+#    #+#             */
+/*   Updated: 2019/11/05 23:06:17 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int		main(int argc, char *argv[])
+UI	convert_to_ui(char *byte)
 {
-	if (argc > 1)
-	{
-		if (is_cor_extension(argv[1]))
-			create_player(argv[1]);
-		else
-			print_error("file extension is not .cor: ", argv[1]);
-	}
-	else
-		print_usage();
-	return (0);
+	UI	n;
+
+	n = 0;
+	n |= (UI)byte[0] << 24;
+	n |= (UI)byte[1] << 16;
+	n |= (UI)byte[2] << 8;
+	n |= (UI)byte[3];
+	return (n);
 }

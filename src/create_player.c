@@ -6,51 +6,67 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 22:15:59 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/05 18:36:05 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/05 23:12:08 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-UI			swipe_bytes(UI n) 
+void		read_file(char *file_name, char *buf)
 {
-	UI	res;
+	int		fd;
+	int		ret;
 
-	res = 0;
-	res = (n & 0x000000ff) << 24;
-	res += (n & 0x0000ff00) << 8;
-	res += (n & 0x00ff0000) >> 8;
-	res += (n & 0xff000000) >> 24;
-	return (res);
+	if ((fd = open(file_name, O_RDONLY)) > 2)
+	{
+		ret = read(fd, buf, MIN_FILE_SIZE + CHAMP_MAX_SIZE + 1);
+		if (ret < MIN_FILE_SIZE)
+			print_error("not enough data in file ", file_name);
+		if (ret > (MIN_FILE_SIZE + CHAMP_MAX_SIZE))
+			print_error("champion's execution code is too large ", file_name);
+		close(fd);
+	}
+	else
+		print_error("can't read source file ", file_name);
 }
 
+void		validate_player(char *file_name, t_player *player, char *buf)
+{
+	if (has_header(buf))
+	{
+		buf += 4;
+		ft_memcpy(player->prog_name, buf, PROG_NAME_LENGTH);
+		buf += PROG_NAME_LENGTH;
+		if (has_gap(buf))
+		{
+			buf += 4;
+			player->prog_size = convert_to_ui(buf);
+			buf += 4;
+			ft_memcpy(player->comment, buf, COMMENT_LENGTH);
+			buf += COMMENT_LENGTH;
+			if (has_gap(buf))
+			{
+				buf += 4;
+				ft_memcpy(player->code, buf, player->prog_size);
+			}
+			else
+				print_error("no second gap in ", file_name);
+		}
+		else
+			print_error("no first gap in ", file_name);
+	}
+	else
+		print_error("no magic header in ", file_name);
+}
 
-
-t_player	create_player(int fd)
+t_player	create_player(char *file_name)
 {
 	t_player	player;
-	player.magic = 1;
-	/*UI			gap_1;
-	UI			gap_2;
+	char		buf[MIN_FILE_SIZE + CHAMP_MAX_SIZE];
 
+	ft_bzero(buf, MIN_FILE_SIZE + CHAMP_MAX_SIZE);
+	read_file(file_name, buf);
 	ft_bzero(&player, sizeof(player));
-	if (sizeof(UI) != read(fd, &player.magic, sizeof(UI)) ||
-		PROG_NAME_LENGTH != read(fd, &player.prog_name, PROG_NAME_LENGTH) ||
-		sizeof(UI) != read(fd, &gap_1, sizeof(UI)) ||
-		sizeof(UI) != read(fd, &player.prog_size, sizeof(UI)) ||
-		COMMENT_LENGTH != read(fd, &player.comment, COMMENT_LENGTH) ||
-		sizeof(UI) != read(fd, &gap_2, sizeof(UI)))
-		print_error("Not enough data in ", file_name);
-	player.magic = swipe_bytes(player.magic);
-	player.prog_size = swipe_bytes(player.prog_size);
-	if (player.prog_size > CHAMP_MAX_SIZE)
-		print_error("Champ code is bigger than CHAMP_MAX_SIZE: ", file_name);
-	else if (player.prog_size != read(fd, &player.code, player.prog_size + 1))
-		print_error("Size of champ code isn't correctly specified in ", file_name);
-	if (gap_1 != 0)
-		print_error("There is no space after champ name in: ", file_name);
-	if (gap_2 != 0)
-		print_error("There is no space after champ comment in: ", file_name);*/
-	close(fd);
+	validate_player(file_name, &player, buf);
 	return (player);
 }

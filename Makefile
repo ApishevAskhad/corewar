@@ -6,7 +6,7 @@
 #    By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 20:31:24 by gloras-t          #+#    #+#              #
-#    Updated: 2019/11/05 18:13:45 by gloras-t         ###   ########.fr        #
+#    Updated: 2019/11/05 22:55:49 by gloras-t         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ TEST_VM 	= t
 OBJ_VM 		=	print_utils.o \
 				check_utils_01.o \
 				create_player.o \
-				clean_utils.o
+				clean_utils.o \
+				utils_01.o
 INCLUDES	= includes
 LIBFT 		= $(INCLUDES)/ft_printf
 LIBFTP 		= $(LIBFT)/libftp.a

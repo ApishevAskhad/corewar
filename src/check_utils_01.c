@@ -6,7 +6,7 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 21:20:58 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/05 18:42:33 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/05 22:45:57 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,21 @@ int		is_cor_extension(char *file_name)
 	return (0);
 }
 
-int		open_file(char *file_name)
+/*
+**	not NULL safety
+*/
+int		has_gap(char *byte)
 {
-	assert(file_name != NULL);
-	int	fd;
-
-	if (is_cor_extension(file_name))
-	{
-		if ((fd = open(file_name, O_RDONLY)) > 2)
-			return (fd);
-		else
-			print_error("Can't read source file ", file_name);
-	}
+	assert(byte != NULL);
+	if (!byte[0] && !byte[1] && !byte[2] && !byte[3])
+		return (1);
 	return (0);
 }
 
 /*
 **	not NULL safety
 */
-int		has_header(char *byte)
+int			has_header(char *byte)
 {
 	assert(byte != NULL);
 	if (((COREWAR_EXEC_MAGIC & 0xFF000000) >> 24) == ((UI)byte[0] & 0xFF)
