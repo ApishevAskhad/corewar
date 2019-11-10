@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_utils.c                                      :+:      :+:    :+:   */
+/*   test_validate_player.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/29 21:15:22 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/05 18:41:43 by gloras-t         ###   ########.fr       */
+/*   Created: 2019/11/05 23:15:22 by gloras-t          #+#    #+#             */
+/*   Updated: 2019/11/10 23:05:59 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void    destroy(void *ptr)
+int main()
 {
-    free(ptr);
-    ptr = NULL;   
+    int fd;
+
+    char    *line;
+    
+    fd = open("file1", O_CREAT | O_RDWR);
+    ft_printf("%_abc", fd);
+    while (get_next_line(fd, &line))
+    {
+        ft_printf("%s\n", line);
+        free(line);
+    }
+    free(line);
+    return (0);
 }

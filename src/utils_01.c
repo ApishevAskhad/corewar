@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_utils.c                                      :+:      :+:    :+:   */
+/*   utils_01.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/29 21:15:22 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/05 18:41:43 by gloras-t         ###   ########.fr       */
+/*   Created: 2019/11/05 22:48:41 by gloras-t          #+#    #+#             */
+/*   Updated: 2019/11/10 22:59:18 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void    destroy(void *ptr)
+UI	convert_to_ui(UC byte[4])
 {
-    free(ptr);
-    ptr = NULL;   
+	UI	n;
+	UI	*ptr;
+
+	n = 0;
+	ptr = (UI*)byte;
+	n |= (*ptr & 0xFF000000) >> 24;
+	n |= (*ptr & 0x00FF0000) >> 8;
+	n |= (*ptr & 0x0000FF00) << 8;
+	n |= (*ptr & 0x000000FF) << 24;
+	return (n);
 }

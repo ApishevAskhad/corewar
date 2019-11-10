@@ -7,3 +7,4 @@ resources/
 t
 corewar
 asm
+*.a

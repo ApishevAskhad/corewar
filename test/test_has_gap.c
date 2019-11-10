@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_utils.c                                      :+:      :+:    :+:   */
+/*   test_has_gap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/29 21:15:22 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/05 18:41:43 by gloras-t         ###   ########.fr       */
+/*   Created: 2019/11/08 21:09:46 by gloras-t          #+#    #+#             */
+/*   Updated: 2019/11/09 19:41:17 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void    destroy(void *ptr)
+int	main()
 {
-    free(ptr);
-    ptr = NULL;   
+	char	s[4];
+	
+	ft_bzero(s, 4);
+	assert(has_gap(s));
+	
+	s[0] = -127;
+	s[0] ^= 1;
+	assert(!has_gap(s));
+	return (0);
 }
