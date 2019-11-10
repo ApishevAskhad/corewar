@@ -6,7 +6,7 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/05 22:50:11 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/10 23:00:54 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "op.h"
 # include <assert.h>
+# include <limits.h>
 
 # define COR_EXTENSION		".cor"
 # define UI					uint32_t
@@ -25,6 +26,7 @@
 
 typedef struct				s_player
 {
+	UI						magic;
 	UI      			    prog_size;
 	UC						code[CHAMP_MAX_SIZE];
 	char					prog_name[PROG_NAME_LENGTH + 1];
@@ -38,7 +40,7 @@ int							ft_printf(const char *restrict format, ...);
 */
 void						print_usage(void);
 void						print_error(char *error_msg, char *name);
-void						print_bits_ui(UI     number);
+void						print_bits_ui(UI number);
 void						print_bits_char(char number);
 void						print_hexdump(UC *ptr, size_t size);
 
@@ -46,13 +48,11 @@ void						print_hexdump(UC *ptr, size_t size);
 ** check_utils_01.c
 */
 int							is_cor_extension(char *file_name);
-int							has_header(char *byte);
-int							has_gap(char *byte);
 
 /*
 ** clean_utils.c
 */
-void    					_free(void *ptr);
+void    					destroy(void *ptr);
 
 /*
 ** create_player.c
@@ -62,6 +62,6 @@ t_player					create_player(char *file_name);
 /*
 **	utils_01.c
 */
-UI							convert_to_ui(char *byte);
+UI							convert_to_ui(UC byte[4]);
 
 #endif

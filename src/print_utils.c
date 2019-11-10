@@ -6,7 +6,7 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 14:48:39 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/05 18:41:38 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/10 21:48:22 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	print_bits_ui(UI number)
 	size = 8 * sizeof(UI);
 	while (size--)
 	{
-		ft_printf("%c", (number & 1) ? '1' : '0');
-		number >>= 1;
+		ft_printf("%c", (number & (INT32_MAX + 1)) ? '1' : '0');
+		number <<= 1;
 		if (size && !(size % 8))
 			ft_printf(" ");
 	}
@@ -55,8 +55,8 @@ void	print_bits_char(char number)
 	size = 8 * sizeof(char);
 	while (size--)
 	{
-		ft_printf("%c", (number & 1) ? '1' : '0');
-		number >>= 1;
+		ft_printf("%c", (number & (CHAR_MAX + 1)) ? '1' : '0');
+		number <<= 1;
 	}
 }
 

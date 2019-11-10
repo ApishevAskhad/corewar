@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_validation.c                                  :+:      :+:    :+:   */
+/*   test_has_gap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/27 16:26:01 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/10 20:41:25 by gloras-t         ###   ########.fr       */
+/*   Created: 2019/11/08 21:09:46 by gloras-t          #+#    #+#             */
+/*   Updated: 2019/11/09 19:41:17 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int main()
+int	main()
 {
-	print_bits_ui(COREWAR_EXEC_MAGIC);
+	char	s[4];
+	
+	ft_bzero(s, 4);
+	assert(has_gap(s));
+	
+	s[0] = -127;
+	s[0] ^= 1;
+	assert(!has_gap(s));
 	return (0);
 }

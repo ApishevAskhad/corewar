@@ -6,20 +6,22 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 22:48:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/05 23:06:17 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/10 22:59:18 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-UI	convert_to_ui(char *byte)
+UI	convert_to_ui(UC byte[4])
 {
 	UI	n;
+	UI	*ptr;
 
 	n = 0;
-	n |= (UI)byte[0] << 24;
-	n |= (UI)byte[1] << 16;
-	n |= (UI)byte[2] << 8;
-	n |= (UI)byte[3];
+	ptr = (UI*)byte;
+	n |= (*ptr & 0xFF000000) >> 24;
+	n |= (*ptr & 0x00FF0000) >> 8;
+	n |= (*ptr & 0x0000FF00) << 8;
+	n |= (*ptr & 0x000000FF) << 24;
 	return (n);
 }
