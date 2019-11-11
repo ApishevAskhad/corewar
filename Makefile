@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+         #
+#    By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 20:31:24 by gloras-t          #+#    #+#              #
-#    Updated: 2019/11/11 21:13:07 by gloras-t         ###   ########.fr        #
+#    Updated: 2019/11/11 21:27:28 by slindgre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJ_VM 		=	print_utils.o \
 				create_player.o \
 				clean_utils.o \
 				utils_01.o
-OBJ_ASM		=	
+OBJ_ASM		=	foo.o 
 INCLUDES	= includes
 LIBFT 		= $(INCLUDES)/ft_printf
 LIBFTP 		= $(LIBFT)/libftp.a

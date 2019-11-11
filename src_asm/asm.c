@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:55:42 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/11 21:09:37 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/11 21:27:47 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ int	main(int argc, char *argv[])
 {
 	(void)argc;
 	(void)argv;
-	ft_printf("hello world\n");
+	ft_printf("bar: %d\n", bar());
 	return (0);
 }
