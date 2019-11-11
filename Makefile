@@ -6,7 +6,7 @@
 #    By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 20:31:24 by gloras-t          #+#    #+#              #
-#    Updated: 2019/11/09 19:03:33 by gloras-t         ###   ########.fr        #
+#    Updated: 2019/11/11 21:13:07 by gloras-t         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ OBJ_VM 		=	print_utils.o \
 				create_player.o \
 				clean_utils.o \
 				utils_01.o
+OBJ_ASM		=	
 INCLUDES	= includes
 LIBFT 		= $(INCLUDES)/ft_printf
 LIBFTP 		= $(LIBFT)/libftp.a
@@ -29,7 +30,12 @@ GREEN 		= \033[0;32m
 YELLOW 		= \033[1;33m
 EOC 		= \033[0m
 
-all: $(COREWAR)
+all: $(COREWAR) $(ASM)
+
+$(ASM): $(LIBFTP) asm.o $(OBJ_ASM)
+	@gcc -o $(ASM) asm.o $(OBJ_ASM) -I $(INCLUDES) -I $(LIBFTH) -L $(LIBFT)/ -lftp -g
+	@echo "$(GREEN)complete:$(EOC) $(ITALIC)ASM$(EOC)"
+
 $(COREWAR): $(LIBFTP) corewar.o $(OBJ_VM)
 	@gcc -o $(COREWAR) corewar.o $(OBJ_VM) -I$(INCLUDES) -I$(LIBFTH) -L $(LIBFT)/ -lftp -g
 	@echo "$(GREEN)complete:$(EOC) $(ITALIC)COREWAR$(EOC)"
@@ -43,8 +49,11 @@ $(LIBFTP):
 
 %.o: test/%.c includes/corewar.h
 	@gcc -c $(FLAGS) -I$(INCLUDES) -I$(LIBFTH) $< -g
-	
-%.o: src/%.c includes/corewar.h
+
+%.o: src_asm/%.c includes/asm.h
+	@gcc -c $(FLAGS) -I $(INCLUDES) -I $(LIBFTH) $< -g
+
+%.o: src_vm/%.c includes/corewar.h
 	@gcc -c $(FLAGS) -I$(INCLUDES) -I$(LIBFTH) $< -g
 
 clean:
@@ -53,6 +62,6 @@ clean:
 
 fclean: clean
 	@make -C $(LIBFT)/ fclean
-	@rm -f $(COREWAR) $(TEST_VM)
+	@rm -f $(COREWAR) $(ASM) $(TEST_VM)
 
 re: fclean all
