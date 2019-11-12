@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   utils_01.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 18:06:51 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/09 20:44:46 by gloras-t         ###   ########.fr       */
+/*   Created: 2019/11/05 22:48:41 by gloras-t          #+#    #+#             */
+/*   Updated: 2019/11/10 22:59:18 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "corewar.h"
 
-char	*ft_strnew(size_t size)
+UI	convert_to_ui(UC byte[4])
 {
-	char	*str;
+	UI	n;
+	UI	*ptr;
 
-	if ((str = (char*)ft_memalloc(size + 1)))
-		return (str);
-	return (NULL);
+	n = 0;
+	ptr = (UI*)byte;
+	n |= (*ptr & 0xFF000000) >> 24;
+	n |= (*ptr & 0x00FF0000) >> 8;
+	n |= (*ptr & 0x0000FF00) << 8;
+	n |= (*ptr & 0x000000FF) << 24;
+	return (n);
 }

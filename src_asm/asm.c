@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   asm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 18:06:51 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/09 20:44:46 by gloras-t         ###   ########.fr       */
+/*   Created: 2019/11/11 20:55:42 by gloras-t          #+#    #+#             */
+/*   Updated: 2019/11/11 21:27:47 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "asm.h"
 
-char	*ft_strnew(size_t size)
+int	main(int argc, char *argv[])
 {
-	char	*str;
-
-	if ((str = (char*)ft_memalloc(size + 1)))
-		return (str);
-	return (NULL);
+	(void)argc;
+	(void)argv;
+	ft_printf("bar: %d\n", bar());
+	return (0);
 }

@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_utils_01.c                                   :+:      :+:    :+:   */
+/*   trash.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/28 21:20:58 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/29 16:24:51 by slindgre         ###   ########.fr       */
+/*   Created: 2019/10/29 22:55:43 by gloras-t          #+#    #+#             */
+/*   Updated: 2019/11/05 18:44:28 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-
-/*
-**	not NULL safety
-*/
-int		is_cor_extension(char *file_name)
-{
-	assert(file_name != NULL);
-	char	*eol;
-
-	eol = ft_strchr(file_name, '\0');
-	return (!ft_strcmp(COR_EXTENSION, eol - 4));
-}
 
 int		check_octet(char c, UI octet)
 {
@@ -46,16 +34,31 @@ int		check_octet(char c, UI octet)
 	return (1);
 }
 
-/*
-**	not NULL safety
-*/
-int		has_header(char *byte)
+enum octet
 {
-	assert(byte != NULL);
-	if (check_octet(byte[0], 8)
-	&& check_octet(byte[1], 16)
-	&& check_octet(byte[2], 24)
-	&& check_octet(byte[3], 32))
-		return (1);
-	return (0);
+	FIRST = 0,
+	SECOND = 8,
+	THIRD = 16,
+	FORTH = 24
+};
+
+char	convert_ui_to_char(UI number, UI octet)
+{
+	char	c;
+	size_t	size;
+	UI		tmp;
+	UI		offset;
+
+	c = 0;
+	tmp = 0;
+	offset = octet;
+	size = 8 * sizeof(char);
+	while (size--)
+	{
+		tmp = number & (1 << octet);
+		tmp >>= offset;
+		c |= tmp;
+		octet++;
+	}
+	return c;
 }

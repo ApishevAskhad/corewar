@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   check_utils_01.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 18:06:51 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/09 20:44:46 by gloras-t         ###   ########.fr       */
+/*   Created: 2019/10/28 21:20:58 by gloras-t          #+#    #+#             */
+/*   Updated: 2019/11/10 23:00:47 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "corewar.h"
 
-char	*ft_strnew(size_t size)
+/*
+**	not NULL safety
+*/
+
+int	is_cor_extension(char *file_name)
 {
-	char	*str;
+	assert(file_name != NULL);
+	size_t	length;
 
-	if ((str = (char*)ft_memalloc(size + 1)))
-		return (str);
-	return (NULL);
+	length = ft_strlen(file_name);
+	if (length >= 4)
+		return (!ft_strcmp(COR_EXTENSION, file_name + length - 4));
+	return (0);
 }
