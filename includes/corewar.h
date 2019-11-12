@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/12 21:53:14 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/12 22:10:30 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "op.h"
 # include <assert.h>
+# include <stdint.h>
 
 # define COR_EXTENSION		".cor"
 # define UI					uint32_t
@@ -62,7 +63,7 @@ int							has_header(char *byte);
 /*
 ** list_utils.c
 */
-t_carry						*new_cary(int nbr);
+t_carry						*new_carry(int nbr);
 void						push_carry(t_carry **head, int nbr);
 t_carry 					*del_carry(t_carry *carry, int nbr);
 

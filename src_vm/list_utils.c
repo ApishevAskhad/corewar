@@ -6,13 +6,13 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 20:27:53 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/12 21:46:24 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/12 22:10:24 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-t_carry	*new_cary(int nbr)
+t_carry	*new_carry(int nbr)
 {
 	t_carry	*carry;
 
@@ -27,7 +27,7 @@ void	push_carry(t_carry **head, int nbr)
 	assert(head != NULL);
 	t_carry *new;
 
-	new = new_node(nbr);
+	new = new_carry(nbr);
 	new->next = *head;
 	*head = new;
 }
