@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_utils.c                                      :+:      :+:    :+:   */
+/*   asm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/29 21:15:22 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/05 18:41:43 by gloras-t         ###   ########.fr       */
+/*   Created: 2019/11/11 20:55:42 by gloras-t          #+#    #+#             */
+/*   Updated: 2019/11/11 21:27:47 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#include "asm.h"
 
-void    destroy(void *ptr)
+int	main(int argc, char *argv[])
 {
-    free(ptr);
-    ptr = NULL;   
+	(void)argc;
+	(void)argv;
+	ft_printf("bar: %d\n", bar());
+	return (0);
 }
