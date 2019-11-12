@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_handlers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 20:16:12 by slindgre          #+#    #+#             */
-/*   Updated: 2019/08/02 23:02:15 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/13 00:25:02 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,6 @@ void	ft_remove_zeros(char *str)
 void	ft_foo_fd(t_format *data, va_list ap)
 {
 	data->fd = va_arg(ap, int);
-}
-
-char	*ft_strrev(char *str, int len)
-{
-	int		i;
-	char	c;
-
-	i = 0;
-	while (i < len--)
-	{
-		c = str[i];
-		str[i] = str[len];
-		str[len] = c;
-		i++;
-	}
-	return (str);
 }
 
 int		ft_count_digit(ULL n, int base)

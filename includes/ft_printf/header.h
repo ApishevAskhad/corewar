@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 13:31:03 by slindgre          #+#    #+#             */
-/*   Updated: 2019/10/08 22:10:53 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/13 00:25:35 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,7 +278,6 @@ void					ft_strtoupper(char *str);
 void					ft_remove_zeros(char *str);
 size_t					ft_wchar_len(wchar_t c);
 size_t					ft_wide_strlen(wchar_t *wstr);
-char					*ft_strrev(char *str, int len);
 void					ft_fage_capitalize(t_format *data);
 
 int						ft_get_color_index(char *fmt);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/12 21:12:10 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/13 01:15:15 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@
 # include "op.h"
 # include <assert.h>
 # include <limits.h>
+# include <stdint.h>
 
 # define COR_EXTENSION		".cor"
 # define UI					uint32_t
 # define UC					unsigned char
-# define DEBUG				0
+# define DEBUG				1
 # define MIN_FILE_SIZE		4 * 4 + PROG_NAME_LENGTH + COMMENT_LENGTH
 
+# define E_USAGE
 typedef struct				s_player
 {
 	UI						magic;
@@ -71,5 +73,10 @@ t_player					create_player(char *file_name);
 **	utils_01.c
 */
 UI							convert_to_ui(UC byte[4]);
+
+/*
+**	parse_args.c
+*/
+void						parse_args(int argc, char *argv[], t_game *game);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 14:48:39 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/10 21:48:22 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/13 00:17:32 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	print_bits_ui(UI number)
 	size = 8 * sizeof(UI);
 	while (size--)
 	{
-		ft_printf("%c", (number & (INT32_MAX + 1)) ? '1' : '0');
+		ft_printf("%c", (number & (0x80000000)) ? '1' : '0');
 		number <<= 1;
 		if (size && !(size % 8))
 			ft_printf(" ");
