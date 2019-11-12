@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/04 17:46:56 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/12 21:25:22 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 # include "libft.h"
 # include "op.h"
 # include <assert.h>
+# include <limits.h>
 
 # define COR_EXTENSION		".cor"
 # define UI					uint32_t
 # define UC					unsigned char
-# define DEBUG				1
+# define DEBUG				0
+# define MIN_FILE_SIZE		4 * 4 + PROG_NAME_LENGTH + COMMENT_LENGTH
 
 typedef struct				s_player
 {
@@ -54,22 +56,26 @@ void						print_hexdump(UC *ptr, size_t size);
 ** check_utils_01.c
 */
 int							is_cor_extension(char *file_name);
-int							has_header(char *byte);
 
 /*
 ** clean_utils.c
 */
-void						_free(void *ptr);
+void						destroy(void *ptr);
 
 /*
 ** create_player.c
 */
-t_player					create_player(int fd, char *file_name);
+t_player					create_player(char *file_name);
 int							check_file(char *file_name);
 
 /*
 ** init_game.c
 */
 void						init_game(t_game *game);
+
+/*
+**	utils_01.c
+*/
+UI							convert_to_ui(UC byte[4]);
 
 #endif

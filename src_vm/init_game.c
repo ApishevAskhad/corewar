@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_usage.c                                       :+:      :+:    :+:   */
+/*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/27 14:54:51 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/02 23:45:52 by gloras-t         ###   ########.fr       */
+/*   Created: 2019/11/04 17:43:01 by slindgre          #+#    #+#             */
+/*   Updated: 2019/11/12 21:35:41 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int	main()
+void	init_game(t_game *game)
 {
-	print_usage();
-	return (0);
+	assert(game != NULL);
+	ft_bzero(game, sizeof(game));
+	game->dump = -1;
 }

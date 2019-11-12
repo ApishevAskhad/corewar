@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   test_bar.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/04 17:43:01 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/04 17:44:08 by slindgre         ###   ########.fr       */
+/*   Created: 2019/11/12 20:21:05 by gloras-t          #+#    #+#             */
+/*   Updated: 2019/11/12 20:22:12 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#include "asm.h"
 
-void    init_game(t_game *game)
+int main()
 {
-    assert(game != NULL);
-    ft_bzero(game, sizeof(game));
-    game->dump = -1;
+	assert(!bar());
+	return (0);
 }

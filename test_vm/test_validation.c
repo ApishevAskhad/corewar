@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.c                                          :+:      :+:    :+:   */
+/*   test_validation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/26 21:43:42 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/04 17:42:40 by slindgre         ###   ########.fr       */
+/*   Created: 2019/10/27 16:26:01 by gloras-t          #+#    #+#             */
+/*   Updated: 2019/11/10 20:41:25 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int		main(int argc, char *argv[])
-{	
-	t_game	game;
-
-	init_game(&game);
+int main()
+{
+	print_bits_ui(COREWAR_EXEC_MAGIC);
 	return (0);
 }

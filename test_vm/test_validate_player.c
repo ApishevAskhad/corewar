@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   test_validate_player.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 18:06:51 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/09 20:44:46 by gloras-t         ###   ########.fr       */
+/*   Created: 2019/11/05 23:15:22 by gloras-t          #+#    #+#             */
+/*   Updated: 2019/11/10 23:05:59 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "corewar.h"
 
-char	*ft_strnew(size_t size)
+int main()
 {
-	char	*str;
+    int fd;
 
-	if ((str = (char*)ft_memalloc(size + 1)))
-		return (str);
-	return (NULL);
+    char    *line;
+    
+    fd = open("file1", O_CREAT | O_RDWR);
+    ft_printf("%_abc", fd);
+    while (get_next_line(fd, &line))
+    {
+        ft_printf("%s\n", line);
+        free(line);
+    }
+    free(line);
+    return (0);
 }
