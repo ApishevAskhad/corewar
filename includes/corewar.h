@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/04 21:09:25 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/12 21:53:14 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,11 @@ void						print_bits_char(char number);
 int							is_cor_extension(char *file_name);
 int							has_header(char *byte);
 
+/*
+** list_utils.c
+*/
+t_carry						*new_cary(int nbr);
+void						push_carry(t_carry **head, int nbr);
+t_carry 					*del_carry(t_carry *carry, int nbr);
 
 #endif

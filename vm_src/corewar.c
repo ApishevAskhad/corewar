@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:43:42 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/29 21:12:05 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/12 21:46:19 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_player	read_file(char *file_name)
 }
 
 int		main(int argc, char *argv[])
-{	
+{
 	if (argc > 1)
 	{
 		if (is_cor_extension(argv[1]))
