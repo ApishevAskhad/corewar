@@ -6,7 +6,7 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/10 23:00:54 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/12 20:29:00 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 typedef struct				s_player
 {
 	UI						magic;
-	UI      			    prog_size;
+	UI						prog_size;
 	UC						code[CHAMP_MAX_SIZE];
 	char					prog_name[PROG_NAME_LENGTH + 1];
 	char					comment[COMMENT_LENGTH + 1];
@@ -52,7 +52,7 @@ int							is_cor_extension(char *file_name);
 /*
 ** clean_utils.c
 */
-void    					destroy(void *ptr);
+void						destroy(void *ptr);
 
 /*
 ** create_player.c
