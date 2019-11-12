@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   test_validation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 18:06:51 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/09 20:44:46 by gloras-t         ###   ########.fr       */
+/*   Created: 2019/10/27 16:26:01 by gloras-t          #+#    #+#             */
+/*   Updated: 2019/11/10 20:41:25 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "corewar.h"
 
-char	*ft_strnew(size_t size)
+int main()
 {
-	char	*str;
-
-	if ((str = (char*)ft_memalloc(size + 1)))
-		return (str);
-	return (NULL);
+	print_bits_ui(COREWAR_EXEC_MAGIC);
+	return (0);
 }

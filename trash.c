@@ -6,9 +6,11 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 22:55:43 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/29 22:57:09 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/05 18:44:28 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "corewar.h"
 
 int		check_octet(char c, UI octet)
 {
