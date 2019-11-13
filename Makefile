@@ -6,7 +6,7 @@
 #    By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 20:31:24 by gloras-t          #+#    #+#              #
-#    Updated: 2019/11/12 21:45:08 by gloras-t         ###   ########.fr        #
+#    Updated: 2019/11/13 23:16:56 by gloras-t         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ OBJ_VM 		=	$(addprefix $(OBJ_VM_DIR)/, print_utils.o \
 				check_utils_01.o \
 				create_player.o \
 				clean_utils.o \
-				utils_01.o)
+				utils_01.o \
+				place_players.o)
 OBJ_ASM		=	$(addprefix $(OBJ_ASM_DIR)/, foo.o)
 				
 INCLUDES	=	includes

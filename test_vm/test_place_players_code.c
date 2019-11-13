@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_place_players_code.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 18:16:56 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/04 18:49:46 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/13 23:17:13 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int	main()
         i++;
     }
     place_players_code(&game);
-    print_dump(game.mem, MEM_SIZE);
+    print_hexdump(game.mem, MEM_SIZE);
     return (0);
 }

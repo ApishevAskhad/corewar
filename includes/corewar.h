@@ -6,7 +6,7 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/12 21:46:01 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/13 23:16:33 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,5 @@ void						init_game(t_game *game);
 ** place_players.c
 */
 void    					place_players_code(t_game *game);
+
 #endif
