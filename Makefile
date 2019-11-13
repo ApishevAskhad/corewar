@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+         #
+#    By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 20:31:24 by gloras-t          #+#    #+#              #
-#    Updated: 2019/11/13 00:22:05 by slindgre         ###   ########.fr        #
+#    Updated: 2019/11/13 23:19:16 by gloras-t         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ OBJ_VM 		=	$(addprefix $(OBJ_VM_DIR)/, print_utils.o \
 				create_player.o \
 				clean_utils.o \
 				utils_01.o \
-				parse_args.o)
+				place_players.o)
 OBJ_ASM		=	$(addprefix $(OBJ_ASM_DIR)/, foo.o)
 
 INCLUDES	=	includes

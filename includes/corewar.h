@@ -6,7 +6,7 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/13 23:09:33 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/13 23:19:00 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,15 @@ t_player					create_player(char *file_name);
 UI							convert_to_ui(UC byte[4]);
 
 /*
-**	parse_args.c
+** init_game.c
 */
+void						init_game(t_game *game);
+
+/*
+** place_players.c
+*/
+void    					place_players_code(t_game *game);
+
 void						parse_args(int argc, char *argv[], t_game *game);
 int							get_free_player_number(t_player *players);
 int							is_player_number_correct(int nbr, t_game game);
