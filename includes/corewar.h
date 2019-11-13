@@ -6,7 +6,7 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/13 21:55:17 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/13 23:09:33 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,16 @@ typedef struct				s_player
 
 typedef struct				s_game
 {
-	t_player				players[MAX_PLAYERS];
 	int						players_nbr;
 	int						dump;
 	int						visual;
+	int						alive;
+	int						cycles;
+	int						lives;
+	int						cycle_to_die;
+	int						checkin_nbr;
+	t_player				players[MAX_PLAYERS];
+	UC						mem[MEM_SIZE];
 }							t_game;
 
 int							ft_printf(const char *restrict format, ...);
