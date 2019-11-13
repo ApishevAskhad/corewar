@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 14:48:39 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/13 00:17:32 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/13 21:57:27 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print_usage(void)
 
 void	print_error(char *error_msg, char *name)
 {
-	ft_printf("{red}error:{eoc} %s%s\n", error_msg, name);
+	ft_printf("{red}error:{eoc} %s %s\n", error_msg, name);
 	if (DEBUG == 0)
 		exit(1);
 }
