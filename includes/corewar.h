@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/12 21:25:22 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/13 22:09:47 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,16 @@ typedef struct				s_player
 
 typedef struct				s_game
 {
-	t_player				players[MAX_PLAYERS];
-	UC						mem[MEM_SIZE];
+	int						players_nbr;
 	int						dump;
 	int						visual;
+	int						alive;
+	int						cycles;
+	int						lives;
+	int						cycle_to_die;
+	int						checkin_nbr;
+	t_player				players[MAX_PLAYERS];
+	UC						mem[MEM_SIZE];
 }							t_game;
 
 int							ft_printf(const char *restrict format, ...);
@@ -66,12 +72,6 @@ void						destroy(void *ptr);
 ** create_player.c
 */
 t_player					create_player(char *file_name);
-int							check_file(char *file_name);
-
-/*
-** init_game.c
-*/
-void						init_game(t_game *game);
 
 /*
 **	utils_01.c
