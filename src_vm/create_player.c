@@ -6,7 +6,7 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 22:15:59 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/10 23:21:58 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/12 21:37:14 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@ void		read_file(char *file_name, UC *buf)
 	{
 		ret = read(fd, buf, MIN_FILE_SIZE + CHAMP_MAX_SIZE + 1);
 		if (ret < MIN_FILE_SIZE)
-			print_error("not enough data in file ", file_name);		
+			print_error("not enough data in file ", file_name);
 		if (ret > (MIN_FILE_SIZE + CHAMP_MAX_SIZE))
 			print_error("champion's execution code is too large ", file_name);
-		if ((MIN_FILE_SIZE + convert_to_ui(buf + (4 + PROG_NAME_LENGTH + 4))) != ret)
-			print_error("code size doesn't fit with actual exec code size in ", file_name);
+		if ((MIN_FILE_SIZE + convert_to_ui(buf + (4 + PROG_NAME_LENGTH + 4)))
+		!= ret)
+			print_error("code size doesn't fit with actual exec code size in ",
+			file_name);
 		close(fd);
 	}
 	else

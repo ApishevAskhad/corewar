@@ -6,7 +6,7 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/13 23:16:33 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/13 23:19:00 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
 # include "op.h"
 # include <assert.h>
 # include <limits.h>
+# include <stdint.h>
 
 # define COR_EXTENSION		".cor"
 # define UI					uint32_t
 # define UC					unsigned char
-# define DEBUG				0
+# define DEBUG				1
+# define OFF				-1
 # define MIN_FILE_SIZE		4 * 4 + PROG_NAME_LENGTH + COMMENT_LENGTH
 
 typedef struct				s_player
@@ -35,11 +37,16 @@ typedef struct				s_player
 
 typedef struct				s_game
 {
-	t_player				players[MAX_PLAYERS];
 	int						players_nbr;
-	UC						mem[MEM_SIZE];
 	int						dump;
 	int						visual;
+	int						alive;
+	int						cycles;
+	int						lives;
+	int						cycle_to_die;
+	int						checkin_nbr;
+	t_player				players[MAX_PLAYERS];
+	UC						mem[MEM_SIZE];
 }							t_game;
 
 int							ft_printf(const char *restrict format, ...);
@@ -82,5 +89,9 @@ void						init_game(t_game *game);
 ** place_players.c
 */
 void    					place_players_code(t_game *game);
+
+void						parse_args(int argc, char *argv[], t_game *game);
+int							get_free_player_number(t_player *players);
+int							is_player_number_correct(int nbr, t_game game);
 
 #endif
