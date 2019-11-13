@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/13 22:09:47 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/13 23:09:33 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
 # include "op.h"
 # include <assert.h>
 # include <limits.h>
+# include <stdint.h>
 
 # define COR_EXTENSION		".cor"
 # define UI					uint32_t
 # define UC					unsigned char
-# define DEBUG				0
+# define DEBUG				1
+# define OFF				-1
 # define MIN_FILE_SIZE		4 * 4 + PROG_NAME_LENGTH + COMMENT_LENGTH
 
 typedef struct				s_player
@@ -77,5 +79,12 @@ t_player					create_player(char *file_name);
 **	utils_01.c
 */
 UI							convert_to_ui(UC byte[4]);
+
+/*
+**	parse_args.c
+*/
+void						parse_args(int argc, char *argv[], t_game *game);
+int							get_free_player_number(t_player *players);
+int							is_player_number_correct(int nbr, t_game game);
 
 #endif
