@@ -6,55 +6,125 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/10/26 23:11:22 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/14 21:44:05 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COREWAR_H
 # define COREWAR_H
 
-# include "libft/libft.h"
+# include "libft.h"
+# include "op.h"
+# include <assert.h>
+# include <limits.h>
+# include <stdint.h>
 
-# define IND_SIZE			2
-# define REG_SIZE			4
-# define DIR_SIZE			REG_SIZE
+# define COR_EXTENSION		".cor"
+# define UI					uint32_t
+# define UC					unsigned char
+# define DEBUG				1
+# define OFF				-1
+# define MIN_FILE_SIZE		4 * 4 + PROG_NAME_LENGTH + COMMENT_LENGTH
 
-# define REG_CODE			1
-# define DIR_CODE			2
-# define IND_CODE			3
+typedef struct				s_player
+{
+	UI						magic;
+	UI						prog_size;
+	UC						code[CHAMP_MAX_SIZE];
+	char					prog_name[PROG_NAME_LENGTH + 1];
+	char					comment[COMMENT_LENGTH + 1];
+}							t_player;
 
-# define MAX_ARGS_NUMBER	4
-# define MAX_PLAYERS		4
-# define MEM_SIZE			(4 * 1024)
-# define IDX_MOD			(MEM_SIZE / 8)
-# define CHAMP_MAX_SIZE		(MEM_SIZE / 6)
+typedef struct				s_game
+{
+	int						players_nbr;
+	int						dump;
+	int						visual;
+	int						alive;
+	int						cycles;
+	int						lives;
+	int						cycle_to_die;
+	int						checkin_nbr;
+	t_player				players[MAX_PLAYERS];
+	UC						mem[MEM_SIZE];
+}							t_game;
 
-# define COMMENT_CHAR		'#'
-# define LABEL_CHAR			':'
-# define DIRECT_CHAR		'%'
-# define SEPARATOR_CHAR		','
+typedef struct				s_carry
+{
+	int						nbr;
+	int						carry;
+	int						op;
+	int						live;
+	int						timer;
+	int						pos;
+	int						jump;
+	int						r[REG_NUMBER];
+	struct s_carry			*next;
+}							t_carry;
 
-# define LABEL_CHARS		"abcdefghijklmnopqrstuvwxyz_0123456789"
+int							ft_printf(const char *restrict format, ...);
 
-# define NAME_CMD_STRING	".name"
-# define COMMENT_CMD_STRING	".comment"
+/*
+** print_utils.c
+*/
+void						print_usage(void);
+void						print_error(char *error_msg, char *name);
+void						print_bits_ui(UI number);
+void						print_bits_char(char number);
+void						print_hexdump(UC *ptr, size_t size);
+void						print_catty_list(t_carry *head);
 
-# define REG_NUMBER			16
+/*
+** check_utils_01.c
+*/
+int							is_cor_extension(char *file_name);
+void    					check_players_nbrs(t_game game);
 
-# define CYCLE_TO_DIE		1536
-# define CYCLE_DELTA		50
-# define NBR_LIVE			21
-# define MAX_CHECKS			10
+/*
+** list_utils.c
+*/
+t_carry						*new_carry(int nbr);
+int							push_carry(t_carry **head, int nbr);
+t_carry 					*del_carry(t_carry *carry, int nbr);
 
-# define T_REG				1
-# define T_DIR				2
-# define T_IND				4
-# define T_LAB				8
+/*
+** clean_utils.c
+*/
+void						destroy(void *ptr);
 
-# define PROG_NAME_LENGTH	128
-# define COMMENT_LENGTH		2048
-# define COREWAR_EXEC_MAGIC	0xEA83F3
+/*
+** create_player.c
+*/
+t_player					create_player(char *file_name);
+int							check_file(char *file_name);
 
-int	ft_printf(const char *restrict format, ...);
+/*
+** init_game.c
+*/
+void						init_game(t_game *game);
+
+/*
+** place_players.c
+*/
+void    					place_players_code(t_game *game);
+
+/*
+** utils_01.c
+*/
+UI							convert_to_ui(UC byte[4]);
+
+/*
+** init_game.c
+*/
+void						init_game(t_game *game);
+
+/*
+** place_players.c
+*/
+void    					place_players_code(t_game *game);
+
+void						parse_args(int argc, char *argv[], t_game *game);
+int							get_free_player_number(t_player *players);
+int							is_player_number_correct(int nbr, t_game game);
 
 #endif

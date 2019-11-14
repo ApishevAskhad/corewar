@@ -3,3 +3,9 @@ resources/
 *.dSYM
 *.out
 *gc*
+*.o
+t
+corewar
+asm
+*.a
+.DS_Store
