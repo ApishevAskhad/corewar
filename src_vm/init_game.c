@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.c                                              :+:      :+:    :+:   */
+/*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/11 20:55:42 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/14 22:31:14 by gloras-t         ###   ########.fr       */
+/*   Created: 2019/11/04 17:43:01 by slindgre          #+#    #+#             */
+/*   Updated: 2019/11/13 23:09:24 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "corewar.h"
 
-int	main(int argc, char *argv[])
+void	init_game(t_game *game)
 {
-	if (argc > 1)
-	{
-		(void)argv;
-	}
-	else
-		print_usage(argv[0]);
-	return (0);
+	assert(game != NULL);
+	ft_bzero(game, sizeof(game));
+	game->dump = OFF;
+	game->cycle_to_die = CYCLE_TO_DIE;
 }

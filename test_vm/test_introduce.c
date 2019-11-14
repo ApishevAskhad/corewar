@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_has_gap.c                                     :+:      :+:    :+:   */
+/*   test_introduce.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/08 21:09:46 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/09 19:41:17 by gloras-t         ###   ########.fr       */
+/*   Created: 2019/11/13 19:03:59 by slindgre          #+#    #+#             */
+/*   Updated: 2019/11/13 20:38:54 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int	main()
+/*
+* Run test_introduce.sh
+*/
+
+int main(int ac, char **av)
 {
-	char	s[4];
-	
-	ft_bzero(s, 4);
-	assert(has_gap(s));
-	
-	s[0] = -127;
-	s[0] ^= 1;
-	assert(!has_gap(s));
-	return (0);
+    t_game  game;
+
+    int i = 1;
+    game.players_nbr = ac - 1;
+    while (i < ac)
+    {
+        game.players[i - 1] = create_player(av[i]);
+        i++;
+    }
+    introduce_players(game);
+    return (0);
 }
