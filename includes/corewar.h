@@ -6,7 +6,7 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/13 23:19:00 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/14 20:50:15 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void						print_hexdump(UC *ptr, size_t size);
 ** check_utils_01.c
 */
 int							is_cor_extension(char *file_name);
+void    					check_players_nbrs(t_game game);
 
 /*
 ** clean_utils.c
@@ -74,9 +75,20 @@ void						destroy(void *ptr);
 ** create_player.c
 */
 t_player					create_player(char *file_name);
+int							check_file(char *file_name);
 
 /*
-**	utils_01.c
+** init_game.c
+*/
+void						init_game(t_game *game);
+
+/*
+** place_players.c
+*/
+void    					place_players_code(t_game *game);
+
+/*
+** utils_01.c
 */
 UI							convert_to_ui(UC byte[4]);
 
