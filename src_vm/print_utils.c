@@ -6,7 +6,7 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 14:48:39 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/13 21:57:27 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/14 21:44:17 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,14 @@ void	print_hexdump(UC *ptr, size_t size)
 			ft_printf("\n");
 		else if (i % 2 == 0)
 			ft_printf(" ");
+	}
+}
+
+void	print_catty_list(t_carry *head)
+{
+	while (head)
+	{
+		ft_printf("carry number: %d\n", head->nbr);
+		head = head->next;
 	}
 }
