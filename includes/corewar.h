@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/12 22:40:15 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/14 21:40:25 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void						print_error(char *error_msg, char *name);
 void						print_bits_ui(UI number);
 void						print_bits_char(char number);
 void						print_hexdump(UC *ptr, size_t size);
+void						print_catty_list(t_carry *head);
 
 /*
 ** check_utils_01.c
@@ -67,7 +68,7 @@ int							is_cor_extension(char *file_name);
 ** list_utils.c
 */
 t_carry						*new_carry(int nbr);
-void						push_carry(t_carry **head, int nbr);
+int							push_carry(t_carry **head, int nbr);
 t_carry 					*del_carry(t_carry *carry, int nbr);
 
 /*
