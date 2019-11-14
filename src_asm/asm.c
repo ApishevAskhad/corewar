@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:55:42 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/11 21:27:47 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/14 19:11:57 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 int	main(int argc, char *argv[])
 {
-	(void)argc;
-	(void)argv;
-	ft_printf("bar: %d\n", bar());
+	if (argc > 1)
+	{
+		(void)argv;
+	}
+	else
+		print_usage(argv[0]);
 	return (0);
 }
