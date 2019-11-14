@@ -119,6 +119,11 @@ UI							convert_to_ui(UC byte[4]);
 void						init_game(t_game *game);
 
 /*
+** introduce_player.c
+*/
+void    					introduce_players(t_game game);
+
+/*
 ** place_players.c
 */
 void    					place_players_code(t_game *game);
