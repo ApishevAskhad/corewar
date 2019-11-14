@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_utils.c                                      :+:      :+:    :+:   */
+/*   test_is_player_number_correct.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/29 21:15:22 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/12 21:38:27 by gloras-t         ###   ########.fr       */
+/*   Created: 2019/11/13 21:54:38 by gloras-t          #+#    #+#             */
+/*   Updated: 2019/11/13 22:27:13 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	destroy(void *ptr)
+int	main()
 {
-	free(ptr);
-	ptr = NULL;
+	t_game	game;
+
+	ft_bzero(&game, sizeof(t_game));
+	assert(is_player_number_correct(1, game));
+	assert(!is_player_number_correct(5, game));
+
+	game.players[0].magic = COREWAR_EXEC_MAGIC;
+	assert(!is_player_number_correct(1, game));
+	assert(!is_player_number_correct(-1, game));
+	assert(is_player_number_correct(2, game));
+	return (0);
 }
