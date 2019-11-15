@@ -24,7 +24,8 @@ OBJ_VM 		=	$(addprefix $(OBJ_VM_DIR)/, print_utils.o \
 				utils_01.o \
 				introduce_players.o \
 				place_players.o \
-				parse_args.o)
+				parse_args.o \
+				list_utils.o)
 OBJ_ASM		=	$(addprefix $(OBJ_ASM_DIR)/, printer.o)
 
 INCLUDES	=	includes
