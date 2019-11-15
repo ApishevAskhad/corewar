@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   test_is_player_number_correct.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 18:06:51 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/09 20:44:46 by gloras-t         ###   ########.fr       */
+/*   Created: 2019/11/13 21:54:38 by gloras-t          #+#    #+#             */
+/*   Updated: 2019/11/13 22:27:13 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "corewar.h"
 
-char	*ft_strnew(size_t size)
+int	main()
 {
-	char	*str;
+	t_game	game;
 
-	if ((str = (char*)ft_memalloc(size + 1)))
-		return (str);
-	return (NULL);
+	ft_bzero(&game, sizeof(t_game));
+	assert(is_player_number_correct(1, game));
+	assert(!is_player_number_correct(5, game));
+
+	game.players[0].magic = COREWAR_EXEC_MAGIC;
+	assert(!is_player_number_correct(1, game));
+	assert(!is_player_number_correct(-1, game));
+	assert(is_player_number_correct(2, game));
+	return (0);
 }

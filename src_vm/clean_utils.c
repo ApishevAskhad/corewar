@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   clean_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 18:06:51 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/09 20:44:46 by gloras-t         ###   ########.fr       */
+/*   Created: 2019/10/29 21:15:22 by slindgre          #+#    #+#             */
+/*   Updated: 2019/11/12 21:38:27 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "corewar.h"
 
-char	*ft_strnew(size_t size)
+void	destroy(void *ptr)
 {
-	char	*str;
-
-	if ((str = (char*)ft_memalloc(size + 1)))
-		return (str);
-	return (NULL);
+	free(ptr);
+	ptr = NULL;
 }

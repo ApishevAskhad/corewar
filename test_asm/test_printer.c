@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_utils.c                                      :+:      :+:    :+:   */
+/*   test_printer.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/29 21:15:22 by slindgre          #+#    #+#             */
-/*   Updated: 2019/10/29 21:44:52 by slindgre         ###   ########.fr       */
+/*   Created: 2019/11/12 20:21:05 by gloras-t          #+#    #+#             */
+/*   Updated: 2019/11/14 22:32:49 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#include "asm.h"
 
-void    _free(void *ptr)
+int main()
 {
-    free(ptr);
-    ptr = NULL;   
+	print_usage("./asm");
+	return (0);
 }

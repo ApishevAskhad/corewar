@@ -1,50 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_utils.c                                      :+:      :+:    :+:   */
+/*   introduce_players.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/27 14:48:39 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/02 23:51:44 by slindgre         ###   ########.fr       */
+/*   Created: 2019/11/13 18:47:44 by slindgre          #+#    #+#             */
+/*   Updated: 2019/11/15 22:43:52 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	print_usage(void)
+void	introduce_players(t_game game)
 {
-	ft_printf("usage: \n");
-}
+	int			i;
+	t_player	p;
 
-void	print_error(char *error_msg)
-{
-	ft_printf("{red}error:{eoc} %s\n", error_msg);
-}
-
-void	print_bits_ui(UI number)
-{
-	size_t	size;
-
-	size = 8 * sizeof(UI);
-	while (size--)
+	i = 0;
+	ft_printf("Introducing contestants...\n");
+	while (i < game.players_nbr)
 	{
-		ft_printf("%c", (number & 1) ? '1' : '0');
-		number >>= 1;
-		if (size && !(size % 8))
-			ft_printf(" ");
-	}
-}
-
-void	print_bits_char(char number)
-{
-	size_t	size;
-
-	size = 8 * sizeof(char);
-	while (size--)
-	{
-		ft_printf("%c", (number & 1) ? '1' : '0');
-		number >>= 1;
+		p = game.players[i];
+		ft_printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n",
+					i + 1, p.prog_size, p.prog_name, p.comment);
+		i++;
 	}
 }
 
