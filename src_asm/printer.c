@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_bar.c                                         :+:      :+:    :+:   */
+/*   printer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/12 20:21:05 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/12 20:22:12 by gloras-t         ###   ########.fr       */
+/*   Created: 2019/11/14 19:08:08 by dtimeon           #+#    #+#             */
+/*   Updated: 2019/11/15 18:33:32 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int main()
+void	print_usage(char *program_path)
 {
-	assert(!bar());
-	return (0);
+	ft_printf("Usage: %s [-a] [source.s binary.cor ... ]\n", program_path);
+	ft_printf("\t-a : Instead of creating a .cor/.s file, outputs a stripped ");
+	ft_printf("and annotated version of the code to the standard output\n");
 }

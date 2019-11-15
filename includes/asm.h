@@ -6,7 +6,7 @@
 /*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:56:19 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/12 20:22:00 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/14 22:29:32 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "libft.h"
 # include <assert.h>
 
-int	ft_printf(const char *restrict format, ...);
-int bar(void);
+int		ft_printf(const char *restrict format, ...);
+void	print_usage(char *program_path);
 
 #endif

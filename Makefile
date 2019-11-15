@@ -6,7 +6,7 @@
 #    By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 20:31:24 by gloras-t          #+#    #+#              #
-#    Updated: 2019/11/14 22:49:21 by gloras-t         ###   ########.fr        #
+#    Updated: 2019/11/14 22:30:23 by gloras-t         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OBJ_VM 		=	$(addprefix $(OBJ_VM_DIR)/, print_utils.o \
 				place_players.o \
 				parse_args.o \
 				list_utils.o)
-OBJ_ASM		=	$(addprefix $(OBJ_ASM_DIR)/, foo.o)
+OBJ_ASM		=	$(addprefix $(OBJ_ASM_DIR)/, printer.o)
 
 INCLUDES	=	includes
 LIBFT 		=	$(INCLUDES)/ft_printf
