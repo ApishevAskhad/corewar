@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/15 23:13:05 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/15 22:43:39 by gloras-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void						print_usage(void);
 void						print_error(int error, char *name);
 void						print_bits_ui(UI number);
 void						print_bits_char(char number);
+void						print_dump(UC *ptr, size_t size);
 void						print_hexdump(UC *ptr, size_t size);
 void						print_catty_list(t_carry *head);
 
