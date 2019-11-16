@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:43:42 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/15 23:11:27 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/16 22:19:30 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 int		main(int argc, char *argv[])
 {
-	if (argc > 1)
-	{
-		if (is_cor_extension(argv[1]))
-			create_player(argv[1]);
-	}
-	else
-		print_usage();
+	t_game	game;
+	
+	init_game(&game);
+	parse_args(argc, argv, &game);
+	introduce_players(game);
+	place_players_code(&game);
+	if (game.dump >= 0)
+		print_dump(game.mem, MEM_SIZE);
 	return (0);
 }

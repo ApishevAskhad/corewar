@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/15 22:43:39 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/16 23:49:08 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ enum e_errors {
 	ERR_NO_GAP_1,
 	ERR_NO_GAP_2,
 	ERR_BIG_PL_NBR,
-	ERR_WRONG_PL_NBR,
+	ERR_NEGATIVE_PL_NBR,
 	ERR_TAKEN_PL_NBR,
-	ERR_PL_NBRS_SEQUENCE
+	ERR_PL_NBRS_SEQUENCE,
+	ERR_DUMP
 };
  
 typedef struct				s_player

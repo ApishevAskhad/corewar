@@ -1,0 +1,6 @@
+resources/champs/Gagnant.cor -n 1 resources/champs/Gagnant.cor
+-n 1 resources/champs/Gagnant.cor -n 1 resources/champs/Gagnant.cor
+resources/champs/Gagnant.cor resources/champs/Gagnant.cor -n 1 resources/champs/Gagnant.cor
+resources/champs/Gagnant.cor resources/champs/Gagnant.cor -n 2 resources/champs/Gagnant.cor
+resources/champs/Gagnant.cor resources/champs/Gagnant.cor resources/champs/Gagnant.cor -n 3 resources/champs/Gagnant.cor
+resources/champs/Gagnant.cor resources/champs/Gagnant.cor resources/champs/Gagnant.cor -n 2 resources/champs/Gagnant.cor

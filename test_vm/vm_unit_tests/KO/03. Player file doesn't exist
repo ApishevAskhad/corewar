@@ -1,0 +1,51 @@
+.cor
+-dump 1 .cor
+-dump 1 -v .cor
+-dump 1 -n 1 .cor
+-dump 1 -v -n 1 .cor
+-v .cor
+-v -dump 1 .cor
+-v -n 1 .cor
+-v -dump 1 -n 1 .cor
+.cor -v 
+-dump 1 .cor -v 
+-n 1 .cor -v
+-dump 1 -n 1 .cor -v
+.cor -dump 1
+-dump 1 .cor -dump 1
+-n 1 .cor -dump 1
+-dump 1 -n 1 .cor -dump 1
+Player.cor
+-dump 1 Player.cor
+-dump 1 -v Player.cor
+-dump 1 -n 1 Player.cor
+-dump 1 -v -n 1 Player.cor
+-v Player.cor
+-v -dump 1 Player.cor
+-v -n 1 Player.cor
+-v -dump 1 -n 1 Player.cor
+Player.cor -v 
+-dump 1 Player.cor -v 
+-n 1 Player.cor -v
+-dump 1 -n 1 Player.cor -v
+Player.cor -dump 1
+-dump 1 Player.cor -dump 1
+-n 1 Player.cor -dump 1
+-dump 1 -n 1 Player.cor -dump 1
+resources/champs/Gagnant.cor Player.cor
+resources/champs/Gagnant.cor -dump 1 Player.cor
+resources/champs/Gagnant.cor -dump 1 -v Player.cor
+resources/champs/Gagnant.cor -dump 1 -n 2 Player.cor
+resources/champs/Gagnant.cor -dump 1 -v -n 2 Player.cor
+resources/champs/Gagnant.cor -v Player.cor
+resources/champs/Gagnant.cor -v -dump 1 Player.cor
+resources/champs/Gagnant.cor -v -n 2 Player.cor
+resources/champs/Gagnant.cor -v -dump 1 -n 2 Player.cor
+resources/champs/Gagnant.cor Player.cor -v 
+resources/champs/Gagnant.cor -dump 1 Player.cor -v 
+resources/champs/Gagnant.cor -n 2 Player.cor -v
+resources/champs/Gagnant.cor -dump 1 -n 2 Player.cor -v
+resources/champs/Gagnant.cor Player.cor -dump 1
+resources/champs/Gagnant.cor -dump 1 Player.cor -dump 1
+resources/champs/Gagnant.cor -n 2 Player.cor -dump 1
+resources/champs/Gagnant.cor -dump 1 -n 2 Player.cor -dump 1

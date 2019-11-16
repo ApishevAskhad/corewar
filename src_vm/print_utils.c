@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 14:48:39 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/15 23:06:15 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/16 22:06:36 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	print_error(int error, char *name)
 		"Player number bigger than MAX_PLAYERS:",
 		"Player number should be real, got:",
 		"Player with this number already exists, got:",
-		"Player numbers are not consistent, lost: "
+		"Player numbers are not consistent, lost: ",
+		"Dump"
 	};
 
 	ft_printf("{red}error:{eoc} %s %s\n", error_msg[error], name);
