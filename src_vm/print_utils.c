@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 14:48:39 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/14 21:44:17 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/15 23:06:15 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,31 @@ void	print_usage(void)
 	ft_printf("%*c -%-*c: Visual mode\n", space_left, ' ', space_right, 'v');
 	ft_printf("%*c -%-*s: Sets the N number of the next player\n",
 	space_left, ' ', space_right, "n N");
+	exit(ERR_USAGE);
 }
 
-void	print_error(char *error_msg, char *name)
+void	print_error(int error, char *name)
 {
-	ft_printf("{red}error:{eoc} %s %s\n", error_msg, name);
+	char *error_msg[] = {
+    	"Success",
+		"Usage",
+		"file extension is not .cor:",
+    	"can't read source file",
+		"not enough data in file",
+		"champion's execution code is too large",
+		"code size doesn't fit with actual exec code size in",
+		"no magic header in",
+		"no first gap in",
+		"no second gap in",
+		"Player number bigger than MAX_PLAYERS:",
+		"Player number should be real, got:",
+		"Player with this number already exists, got:",
+		"Player numbers are not consistent, lost: "
+	};
+
+	ft_printf("{red}error:{eoc} %s %s\n", error_msg[error], name);
 	if (DEBUG == 0)
-		exit(1);
+		exit(error);
 }
 
 void	print_bits_ui(UI number)

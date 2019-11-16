@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 18:16:56 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/13 22:38:49 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/15 23:01:58 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ int		is_player_number_correct(int nbr, t_game game)
 	str = ft_itoa(nbr);
 	no_error = 0;
 	if (nbr > MAX_PLAYERS)
-		print_error("Player number bigger than MAX_PLAYERS:", str);
+		print_error(ERR_BIG_PL_NBR, str);
 	else if (nbr < 1)
-		print_error("Player number should be real, got:", str);
+		print_error(ERR_WRONG_PL_NBR, str);
 	else if (game.players[nbr - 1].magic)
-		print_error("Player with this number already exists, got:", str);
+		print_error(ERR_TAKEN_PL_NBR, str);
 	else
 		no_error = 1;
 	free(str);

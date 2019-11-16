@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
 /*   Updated: 2019/11/15 22:43:39 by gloras-t         ###   ########.fr       */
@@ -22,10 +22,27 @@
 # define COR_EXTENSION		".cor"
 # define UI					uint32_t
 # define UC					unsigned char
-# define DEBUG				1
+# define DEBUG				0
 # define OFF				-1
 # define MIN_FILE_SIZE		4 * 4 + PROG_NAME_LENGTH + COMMENT_LENGTH
 
+enum e_errors {
+    ERR_SUCCESS,
+	ERR_USAGE,
+	ERR_NO_COR,
+    ERR_FILE_OPEN,
+	ERR_SMALL_FILE,
+	ERR_LARGE_EXEC_CODE,
+	ERR_WRONG_EXEC_CODE,
+	ERR_NO_MAGIC,
+	ERR_NO_GAP_1,
+	ERR_NO_GAP_2,
+	ERR_BIG_PL_NBR,
+	ERR_WRONG_PL_NBR,
+	ERR_TAKEN_PL_NBR,
+	ERR_PL_NBRS_SEQUENCE
+};
+ 
 typedef struct				s_player
 {
 	UI						magic;
@@ -68,7 +85,7 @@ int							ft_printf(const char *restrict format, ...);
 ** print_utils.c
 */
 void						print_usage(void);
-void						print_error(char *error_msg, char *name);
+void						print_error(int error, char *name);
 void						print_bits_ui(UI number);
 void						print_bits_char(char number);
 void						print_dump(UC *ptr, size_t size);
