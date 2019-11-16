@@ -4,7 +4,7 @@ RED='\033[0;31m'
 EOC='\033[0m'
 ex="./corewar"
 
-make corewar &> dev null
+make corewar > /dev/null 2>&1
 
 ARGS=""
 out=`${ex} $ARGS`
