@@ -1,0 +1,5 @@
+-n 5 test_players/Player_valid.cor 
+test_players/Player_valid.cor -n 5 test_players/Player_valid.cor
+-n 5 test_players/Player_valid.cor -n 5 test_players/Player_valid.cor
+test_players/Player_valid.cor test_players/Player_valid.cor test_players/Player_valid.cor test_players/Player_valid.cor test_players/Player_valid.cor
+-n 4 test_players/Player_valid.cor -n 3 test_players/Player_valid.cor -n 1 test_players/Player_valid.cor -n 2 test_players/Player_valid.cor test_players/Player_valid.cor

@@ -1,6 +1,0 @@
--n 0 resources/champs/Gagnant.cor
--n -1 resources/champs/Gagnant.cor
--n XXX resources/champs/Gagnant.cor
-resources/champs/Gagnant.cor -n 0 resources/champs/Gagnant.cor
-resources/champs/Gagnant.cor -n -1 resources/champs/Gagnant.cor
-resources/champs/Gagnant.cor -n XXX resources/champs/Gagnant.cor

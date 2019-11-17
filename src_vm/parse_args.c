@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 18:16:56 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/16 23:48:56 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/17 20:27:19 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,5 @@ void	parse_args(int argc, char *argv[], t_game *game)
 	}
 	if (game->players_nbr == 0)
 		print_usage();
+	check_players_nbrs(*game);
 }

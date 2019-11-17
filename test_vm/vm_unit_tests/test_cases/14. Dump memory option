@@ -1,0 +1,24 @@
+-dump 0 test_players/Player_valid.cor
+test_players/Player_valid.cor -dump 0
+-dump 0 test_players/Player_valid.cor -dump 0
+-dump XX test_players/Player_valid.cor
+test_players/Player_valid.cor -dump XX
+-dump XX test_players/Player_valid.cor -dump XX
+-dump 1 test_players/Player_valid.cor
+test_players/Player_valid.cor -dump 1
+-dump 1 test_players/Player_valid.cor -dump 1
+-dump 1 test_players/Player_valid.cor test_players/Player_valid.cor
+test_players/Player_valid.cor -dump 1 test_players/Player_valid.cor
+test_players/Player_valid.cor test_players/Player_valid.cor -dump 1
+test_players/Player_valid.cor -dump 1 test_players/Player_valid.cor -dump 1
+-dump 1 test_players/Player_valid.cor test_players/Player_valid.cor test_players/Player_valid.cor
+test_players/Player_valid.cor -dump 1 test_players/Player_valid.cor test_players/Player_valid.cor
+test_players/Player_valid.cor test_players/Player_valid.cor -dump 1 test_players/Player_valid.cor
+test_players/Player_valid.cor test_players/Player_valid.cor test_players/Player_valid.cor -dump 1
+-dump 1 test_players/Player_valid.cor -dump 1 test_players/Player_valid.cor -dump 1 test_players/Player_valid.cor
+-dump 1 test_players/Player_valid.cor test_players/Player_valid.cor test_players/Player_valid.cor test_players/Player_valid.cor
+test_players/Player_valid.cor -dump 1 test_players/Player_valid.cor test_players/Player_valid.cor test_players/Player_valid.cor
+test_players/Player_valid.cor test_players/Player_valid.cor -dump 1 test_players/Player_valid.cor test_players/Player_valid.cor
+test_players/Player_valid.cor test_players/Player_valid.cor test_players/Player_valid.cor -dump 1 test_players/Player_valid.cor
+test_players/Player_valid.cor test_players/Player_valid.cor test_players/Player_valid.cor test_players/Player_valid.cor -dump 1
+-dump 1 test_players/Player_valid.cor -dump 1 test_players/Player_valid.cor -dump 1 test_players/Player_valid.cor -dump 1 test_players/Player_valid.cor

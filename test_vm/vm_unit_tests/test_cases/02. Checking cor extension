@@ -78,17 +78,17 @@ champ. -v
 -n 1 .co -v
 -n 1 .c -v
 -n 1 . -v
-resources/champs/Gagnant.cor champ
-resources/champs/Gagnant.cor champcor
-resources/champs/Gagnant.cor cor
-resources/champs/Gagnant.cor champ.corcor
-resources/champs/Gagnant.cor champ.co
-resources/champs/Gagnant.cor champ.c
-resources/champs/Gagnant.cor champ.
-resources/champs/Gagnant.cor .corcor
-resources/champs/Gagnant.cor .co
-resources/champs/Gagnant.cor .c
-resources/champs/Gagnant.cor .
+test_players/Player_valid.cor champ
+test_players/Player_valid.cor champcor
+test_players/Player_valid.cor cor
+test_players/Player_valid.cor champ.corcor
+test_players/Player_valid.cor champ.co
+test_players/Player_valid.cor champ.c
+test_players/Player_valid.cor champ.
+test_players/Player_valid.cor .corcor
+test_players/Player_valid.cor .co
+test_players/Player_valid.cor .c
+test_players/Player_valid.cor .
 -v -dump 1 -n 1 champ
 -v -dump 1 -n 1 champcor
 -v -dump 1 -n 1 cor
