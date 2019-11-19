@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:55:42 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/19 23:47:33 by dtimeon          ###   ########.fr       */
+/*   Updated: 2019/11/20 00:46:40 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void			translate_file(char *filename, short int options)
 	int			fd;
 
 	fd = open_file(filename);
-	if (fd > 0)
+	if (fd >= 0)
 	{
 		(void)options;
 	}
