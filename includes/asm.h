@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:56:19 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/20 00:17:25 by dtimeon          ###   ########.fr       */
+/*   Updated: 2019/11/20 18:42:20 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # define ANNOTATION_OPTION 'a'
 # define ANNOTATION_OPTION_CODE 1
 
-# define SOURCE_EXTENSION ".cor"
-# define BINARY_EXTENSION ".s"
+# define SOURCE_EXTENSION ".s"
+# define BINARY_EXTENSION ".cor"
 
 int			ft_printf(const char *restrict format, ...);
 
