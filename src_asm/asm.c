@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:55:42 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/20 00:46:40 by dtimeon          ###   ########.fr       */
+/*   Updated: 2019/11/21 22:19:25 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,16 @@ int				main(int argc, char *argv[])
 	int			i;
 	short int	options;
 
-	i = 0;
+	i = 1;
 	if (argc > 1)
 	{
 		options = read_options(argv[1]);
 		if (options)
 			i++;
-		if (argc == i + 1)
+		if (argc == i)
 			print_error(NULL, "No files. Specify filename after options");
-		while (++i < argc)
-			translate_file(argv[i], options);
+		while (i < argc)
+			translate_file(argv[i++], options);
 	}
 	else
 		print_usage(argv[0]);
