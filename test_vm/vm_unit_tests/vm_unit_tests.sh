@@ -1,9 +1,10 @@
 #!/bin/bash
 
-# Path to your 'corewar' executable. Example: "vm/corewar"
+# Specify all pathes from 'corewar' directory
+# Path to your 'corewar' executable. Example: "./corewar"
 vm="./../../corewar"
 
-# Path to reference 'corewar' executable. Example: "resources/corewar"
+# Path to reference 'corewar' executable. Example: "./resources/corewar"
 ref_vm="./../../resources/corewar"
 
 # Path to folder with test cases"
@@ -20,7 +21,7 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 EOC='\033[0m'
 
-echo "${YELLOW}Exit code tests:${EOC}"
+printf "${YELLOW}Exit code tests:${EOC}"
 for file in $cases
 do
     file_name="${file##*/}"
@@ -47,7 +48,7 @@ done
 
 ARGS=("$player_1" "$player_1 $player_2" "$player_2 $player_1 $player_2" "$player_2 $player_1 $player_2 $player_1")
 
-echo "\n${YELLOW}Introducing tests:${EOC}\n"
+printf "\n${YELLOW}Introducing tests:${EOC}\n"
 ERROR=0
 head=2
 for ARG in "${ARGS[@]}"
@@ -57,9 +58,9 @@ do
     if [ "$out_1" != "$out_2" ]
     then
         printf "${RED}[KO]${EOC} ${vm} $ARG\n"
-        echo "Your output:\n$out_1"
-        echo "-------------"
-        echo "Reference output:\n$out_2"
+        printf "Your output:\n$out_1\n"
+        printf "_________________\n"
+        printf "Reference output:\n$out_2\n"
         ERROR=1
     fi
     head=$((head+1))

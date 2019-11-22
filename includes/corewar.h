@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/16 23:49:08 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/21 15:10:00 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ enum e_errors {
 	ERR_PL_NBRS_SEQUENCE,
 	ERR_DUMP
 };
- 
+
 typedef struct				s_player
 {
 	UI						magic;
