@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 22:15:59 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/15 22:57:28 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/16 22:52:00 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,10 @@ t_player	create_player(char *file_name)
 	t_player	player;
 	UC			buf[MIN_FILE_SIZE + CHAMP_MAX_SIZE];
 
+	is_cor_extension(file_name);
 	ft_bzero(buf, MIN_FILE_SIZE + CHAMP_MAX_SIZE);
 	read_file(file_name, buf);
-	ft_bzero(&player, sizeof(player));
+	ft_bzero(&player, sizeof(t_player));
 	validate_player(file_name, &player, buf);
 	return (player);
 }

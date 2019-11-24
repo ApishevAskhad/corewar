@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   introduce_players.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:47:44 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/15 22:43:52 by gloras-t         ###   ########.fr       */
+/*   Updated: 2019/11/16 22:05:41 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,5 @@ void	print_dump(UC *ptr, size_t size)
 		if (i % 32 == 0 || i == size)
 			ft_printf("\n");
 	}
+	exit(ERR_DUMP);
 }

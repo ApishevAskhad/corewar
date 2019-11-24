@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 21:20:58 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/15 23:03:16 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/17 20:27:27 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void    check_players_nbrs(t_game game)
     int i;
 
     i = 0;
-    if (!game.players_nbr)
-        print_usage();
     while (i < game.players_nbr)
     {
         if (!game.players[i].magic)

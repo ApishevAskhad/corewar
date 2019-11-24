@@ -1,0 +1,9 @@
+
+-dump 0
+-dump 1
+-v
+-dump 1 -v
+-v -dump 1
+-dump -v
+-dump XXX
+-v -dump XXX

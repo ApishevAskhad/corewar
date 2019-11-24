@@ -25,7 +25,9 @@ OBJ_VM 		=	$(addprefix $(OBJ_VM_DIR)/, print_utils.o \
 				introduce_players.o \
 				place_players.o \
 				parse_args.o \
-				list_utils.o)
+				list_utils.o \
+				init_game.o )
+
 OBJ_ASM		=	$(addprefix $(OBJ_ASM_DIR)/, printer.o \
 				file_validation.o \
 				options_handling.o)
