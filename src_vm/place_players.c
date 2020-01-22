@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 18:08:15 by slindgre          #+#    #+#             */
-/*   Updated: 2020/01/17 23:13:06 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/01/22 22:01:28 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void    place_players_code(t_game *game, t_carry **carry)
     {
         start = game->mem + i * MEM_SIZE / n;
         ft_memcpy(start, game->players[i].code, CHAMP_MAX_SIZE);
-        push_carry(carry, i + 1, i * MEM_SIZE / n);
+        push_carry(carry, -i - 1, i * MEM_SIZE / n);
         i++;
     }
 }

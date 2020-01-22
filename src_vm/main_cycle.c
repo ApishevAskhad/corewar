@@ -6,23 +6,24 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 19:52:39 by slindgre          #+#    #+#             */
-/*   Updated: 2020/01/17 23:18:40 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/01/22 22:15:34 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void    execute_carry(t_carry *carry)
+void    execute_carry(t_game *game, t_carry *carry)
 {
     (void)carry;
+    (void)game;
         
 }
 
-void    execute_carries(t_carry *carry)
+void    execute_carries(t_game *game, t_carry *carry)
 {
     while (carry)
     {
-        execute_carry(carry);
+        execute_carry(game, carry);
         carry = carry->next;
     }
 }
@@ -54,17 +55,17 @@ void main_cycle(t_game *game, t_carry *carry)
     while (carry)
     {
         game->cycles += 1;
-        execute_carries(carry);
-        if (game->cycles % game->cycle_to_die == 0)
+        execute_carries(game, carry);
+        if (game->cycle_to_die <= 0 || game->cycles % game->cycle_to_die == 0)
         {
+            game->checkin_nbr += 1;
             check_lives(game, &carry);
             if (game->lives >= NBR_LIVE || game->checkin_nbr == MAX_CHECKS)
             {
                 game->cycle_to_die -= CYCLE_DELTA;
                 game->checkin_nbr = 0;
-            }
-            else 
-                game->checkin_nbr += 1;
+            } 
+            game->lives = 0;
         }
         if (game->cycles == game->dump)
 		    print_dump(game->mem, MEM_SIZE);   
