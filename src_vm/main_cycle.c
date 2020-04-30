@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 19:52:39 by slindgre          #+#    #+#             */
-/*   Updated: 2020/04/30 21:44:42 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/04/30 22:34:13 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	main_cycle(t_game *game, t_carry *carry)
 {
 	assert(game != NULL);
 	assert(carry != NULL);
-	game->alive = game->players_nbr - 0;
+	game->alive = game->players_nbr;
 	while (carry)
 	{
 		game->cycles += 1;
