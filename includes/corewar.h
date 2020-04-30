@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/21 15:10:00 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/01 00:48:20 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@
 # define MIN_FILE_SIZE		4 * 4 + PROG_NAME_LENGTH + COMMENT_LENGTH
 
 enum e_errors {
-    ERR_SUCCESS,
+	ERR_SUCCESS,
 	ERR_USAGE,
 	ERR_NO_COR,
-    ERR_FILE_OPEN,
+	ERR_FILE_OPEN,
 	ERR_SMALL_FILE,
 	ERR_LARGE_EXEC_CODE,
 	ERR_WRONG_EXEC_CODE,
@@ -97,14 +97,14 @@ void						print_catty_list(t_carry *head);
 ** check_utils_01.c
 */
 int							is_cor_extension(char *file_name);
-void    					check_players_nbrs(t_game game);
+void						check_players_nbrs(t_game game);
 
 /*
 ** list_utils.c
 */
 t_carry						*new_carry(int nbr);
 int							push_carry(t_carry **head, int nbr);
-t_carry 					*del_carry(t_carry *carry, int nbr);
+t_carry						*del_carry(t_carry *carry, int nbr);
 
 /*
 ** clean_utils.c
@@ -125,7 +125,7 @@ void						init_game(t_game *game);
 /*
 ** place_players.c
 */
-void    					place_players_code(t_game *game);
+void						place_players_code(t_game *game);
 
 /*
 ** utils_01.c
@@ -140,12 +140,13 @@ void						init_game(t_game *game);
 /*
 ** introduce_player.c
 */
-void    					introduce_players(t_game game);
+void						introduce_players(t_game game);
+void						introduce_winner(t_game game);
 
 /*
 ** place_players.c
 */
-void    					place_players_code(t_game *game);
+void						place_players_code(t_game *game);
 
 void						parse_args(int argc, char *argv[], t_game *game);
 int							get_free_player_number(t_player *players);
