@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+         #
+#    By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 20:31:24 by gloras-t          #+#    #+#              #
-#    Updated: 2019/11/19 23:34:00 by dtimeon          ###   ########.fr        #
+#    Updated: 2020/05/02 01:09:13 by slindgre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ OBJ_VM 		=	$(addprefix $(OBJ_VM_DIR)/, print_utils.o \
 				place_players.o \
 				parse_args.o \
 				list_utils.o \
+				carry_utils.o \
 				init_game.o )
 
 OBJ_ASM		=	$(addprefix $(OBJ_ASM_DIR)/, printer.o \
@@ -60,8 +61,8 @@ $(COREWAR): $(OBJ_VM_DIR) $(LIBFTP) $(OBJ_VM_DIR)/corewar.o $(OBJ_VM)
 	@echo "$(GREEN)complete:$(EOC) $(ITALIC)COREWAR$(EOC)"
 
 $(TEST_VM): $(OBJ_VM_DIR) $(OBJ_VM) $(LIBFTP) $(T)
-	@gcc -o $(TEST_VM) $(T) $(OBJ_VM) -I $(INCLUDES) -I $(LIBFTH) -L $(LIBFT)/ -lftp -g
-	@echo "$(GREEN)complete:$(EOC) $(ITALIC)$(T)$(EOC)"
+	gcc -o $(TEST_VM) $(T) $(OBJ_VM) -I $(INCLUDES) -I $(LIBFTH) -L $(LIBFT)/ -lftp -g
+	echo "$(GREEN)complete:$(EOC) $(ITALIC)$(T)$(EOC)"
 
 $(TEST_ASM): $(OBJ_ASM_DIR) $(OBJ_ASM) $(LIBFTP) $(T)
 	@gcc -o $(TEST_ASM) $(T) $(OBJ_ASM) -I $(INCLUDES) -I $(LIBFTH) -L $(LIBFT)/ -lftp -g
