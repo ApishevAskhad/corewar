@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 21:22:34 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/02 01:05:50 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/02 02:41:59 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ int	check_args_code(UC op_code, UC args_code)
 	return (check_args_code_helper(op_code, args_code));
 }
 
-int check_op_arguments(unsigned char *op_str)
+int check_op_arguments(UC *op_str)
 {
 	assert(op_str != NULL);
 
-	if (!check_op_code(op_str[0]) || !check_args_code(op_str[0], op_str[1]))
+	if (check_op_code(op_str[0]) && check_args_code(op_str[0], op_str[1]))
 	{
-		return (FALSE);
+		return (TRUE);
 	}
-	return (TRUE);
+	return (FALSE);
 }
