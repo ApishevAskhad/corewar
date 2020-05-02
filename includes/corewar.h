@@ -25,6 +25,8 @@
 # define DEBUG				0
 # define OFF				-1
 # define MIN_FILE_SIZE		4 * 4 + PROG_NAME_LENGTH + COMMENT_LENGTH
+# define TRUE				1
+# define FALSE				0
 
 enum e_errors {
 	ERR_SUCCESS,
@@ -151,6 +153,12 @@ void    					place_players_code(t_game *game, t_carry **carry);
 void						parse_args(int argc, char *argv[], t_game *game);
 int							get_free_player_number(t_player *players);
 int							is_player_number_correct(int nbr, t_game game);
+
+/*
+** carry_utils.c
+*/
+int 						check_op_arguments(unsigned char *op_str);
+int							check_op_code(UC code);
 
 /*
 ** main_cycle.c
