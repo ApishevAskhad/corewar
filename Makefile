@@ -6,7 +6,7 @@
 #    By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 20:31:24 by gloras-t          #+#    #+#              #
-#    Updated: 2020/05/02 01:09:13 by slindgre         ###   ########.fr        #
+#    Updated: 2020/01/17 20:52:12 by slindgre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ OBJ_VM 		=	$(addprefix $(OBJ_VM_DIR)/, print_utils.o \
 				parse_args.o \
 				list_utils.o \
 				carry_utils.o \
-				init_game.o )
+				init_game.o \
+				main_cycle.o)
 
 OBJ_ASM		=	$(addprefix $(OBJ_ASM_DIR)/, printer.o \
 				file_validation.o \

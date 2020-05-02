@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   place_players.c                                    :+:      :+:    :+:   */
+/*   test_introduce_winner_format.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/04 18:08:15 by slindgre          #+#    #+#             */
-/*   Updated: 2020/01/22 22:01:28 by slindgre         ###   ########.fr       */
+/*   Created: 2019/11/13 19:03:59 by slindgre          #+#    #+#             */
+/*   Updated: 2020/05/01 00:50:37 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void    place_players_code(t_game *game, t_carry **carry)
-{
-    assert(game != NULL);
-    
-    int i;
-    int n;
-    UC  *start;
+/*
+* Run test_introduce_winner.sh
+*/
 
-    i = 0;
-    n = game->players_nbr;
-    while (i < n)
-    {
-        start = game->mem + i * MEM_SIZE / n;
-        ft_memcpy(start, game->players[i].code, CHAMP_MAX_SIZE);
-        push_carry(carry, -i - 1, i * MEM_SIZE / n);
-        i++;
-    }
+int main(int ac, char **av)
+{
+	t_game  game;
+
+	int i = 1;
+	game.players_nbr = ac - 1;
+	while (i < ac)
+	{
+		game.players[i - 1] = create_player(av[i]);
+		i++;
+	}
+	introduce_players(game);
+	game.alive = 1;
+	introduce_winner(game);
+	return (0);
 }
