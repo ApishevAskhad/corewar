@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 01:45:26 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/05/11 02:10:18 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/05/12 00:37:27 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static void				read_asm_file(t_file *file)
 		{
 			file->last_line->initial_str = buffer;
 			temp_line = init_line();
+			if (!temp_line)
+				exit_with_allocation_error(file->filename);
 			file->last_line->next = temp_line;
 			file->last_line = temp_line;
 		}
