@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:55:42 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/11/21 22:19:25 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/05/11 19:28:17 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,23 @@ int				open_file(char *filename)
 	return (-1);
 }
 
-void			translate_file(char *filename, short int options)
+void			process_file(char *filename, short int options)
 {
 	int			fd;
+	t_file      *file;
 
 	fd = open_file(filename);
 	if (fd >= 0)
 	{
-		(void)options;
+		file = read_file(fd, filename);
+		parse_file(file);
+		if (file->is_correct)
+			translate_file(file, options);
+		else
+			print_file_validation_error(file);
 	}
+	delete_file(&file);
+	close(fd);
 }
 
 int				main(int argc, char *argv[])
@@ -47,7 +55,7 @@ int				main(int argc, char *argv[])
 		if (argc == i)
 			print_error(NULL, "No files. Specify filename after options");
 		while (i < argc)
-			translate_file(argv[i++], options);
+			process_file(argv[i++], options);
 	}
 	else
 		print_usage(argv[0]);
