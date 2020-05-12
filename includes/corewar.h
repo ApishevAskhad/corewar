@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: status <status@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/01/17 23:10:20 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/12 23:42:45 by status           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,10 +124,6 @@ int							check_file(char *file_name);
 */
 void						init_game(t_game *game);
 
-/*
-** place_players.c
-*/
-void						place_players_code(t_game *game);
 
 /*
 ** utils_01.c
@@ -150,6 +146,9 @@ void						introduce_winner(t_game game);
 */
 void    					place_players_code(t_game *game, t_carry **carry);
 
+/*
+** parse_args.c
+*/
 void						parse_args(int argc, char *argv[], t_game *game);
 int							get_free_player_number(t_player *players);
 int							is_player_number_correct(int nbr, t_game game);
