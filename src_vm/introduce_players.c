@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:47:44 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/16 22:05:41 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/01 00:52:18 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,22 @@ void	introduce_players(t_game game)
 	}
 }
 
+void	introduce_winner(t_game game)
+{
+	int			i;
+	t_player	p;
+
+	assert(game.alive > 0);
+	i = game.alive;
+	p = game.players[i - 1];
+	ft_printf("Contestant %d, \"%s\", has won !", i, p.prog_name);
+}
+
 void	print_dump(UC *ptr, size_t size)
 {
-	assert(ptr != NULL);
 	size_t	i;
 
+	assert(ptr != NULL);
 	i = 0;
 	while (i < size)
 	{
