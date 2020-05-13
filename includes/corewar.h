@@ -6,7 +6,7 @@
 /*   By: status <status@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/12 23:42:45 by status           ###   ########.fr       */
+/*   Updated: 2020/05/13 04:43:46 by status           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,10 @@ typedef struct				s_game
 	int						lives;
 	int						cycle_to_die;
 	int						checkin_nbr;
+	int						timers[16];
+	int						args_sizes[16];
+	int						dir_sizes[16];
+	void					*operations[16];
 	t_player				players[MAX_PLAYERS];
 	UC						mem[MEM_SIZE];
 }							t_game;
@@ -78,9 +82,12 @@ typedef struct				s_carry
 	int						timer;
 	int						pos;
 	int						jump;
+	int						args[3];
 	int						r[REG_NUMBER];
 	struct s_carry			*next;
 }							t_carry;
+
+typedef	void				(*t_handler)(t_game*, t_carry*);
 
 int							ft_printf(const char *restrict format, ...);
 
@@ -156,11 +163,15 @@ int							is_player_number_correct(int nbr, t_game game);
 /*
 ** carry_utils.c
 */
-int 						check_op_arguments(unsigned char *op_str);
+int							check_args_code(UC op_code, UC args_code);
 int							check_op_code(UC code);
+int							set_carry_args(t_game *game, t_carry *carry);
 
 /*
 ** main_cycle.c
 */
 void						main_cycle(t_game *game, t_carry *carry);
+
+
+void						op_live(t_game *game, t_carry *carry);
 #endif

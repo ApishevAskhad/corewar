@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   introduce_players.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: status <status@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:47:44 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/01 00:52:18 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/13 05:23:04 by status           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	introduce_winner(t_game game)
 	assert(game.alive > 0);
 	i = game.alive;
 	p = game.players[i - 1];
-	ft_printf("Contestant %d, \"%s\", has won !", i, p.prog_name);
+	ft_printf("Contestant %d, \"%s\", has won !\n", i, p.prog_name);
 }
 
 void	print_dump(UC *ptr, size_t size)

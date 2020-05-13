@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: status <status@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:43:42 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/01/17 21:02:21 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/13 05:22:31 by status           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int		main(int argc, char *argv[])
 	introduce_players(game);
 	place_players_code(&game, &carry);
 	main_cycle(&game, carry);
+	introduce_winner(game);
 	
 	return (0);
 }

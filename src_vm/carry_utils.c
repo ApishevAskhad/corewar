@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   carry_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: status <status@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 21:22:34 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/02 02:41:59 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/13 05:00:58 by status           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 int	check_op_code(UC op_code)
 {
 	if (0 < op_code && op_code <= 16)
+		return (TRUE);
+	return (FALSE);
+}
+
+int	check_reg_number(UC reg_num)
+{
+	if (0 < reg_num && reg_num <= REG_NUMBER)
 		return (TRUE);
 	return (FALSE);
 }
@@ -61,13 +68,37 @@ int	check_args_code(UC op_code, UC args_code)
 	return (check_args_code_helper(op_code, args_code));
 }
 
-int check_op_arguments(UC *op_str)
+int	set_carry_args(t_game *game, t_carry *carry)
 {
-	assert(op_str != NULL);
+	int i;
+	int res;
+	UC 	args_code;
+	UC 	arg_code;
 
-	if (check_op_code(op_str[0]) && check_args_code(op_str[0], op_str[1]))
+	args_code = game->mem[(carry->pos + 1) % MEM_SIZE];
+	i = game->args_sizes[carry->op - 1];
+	res = TRUE;
+	carry->jump = 2;
+	if (carry->op == 1 || carry->op == 9 || carry->op == 12 || carry->op == 15)
 	{
-		return (TRUE);
+		carry->jump -= 1;
+		args_code = 0x80;
 	}
-	return (FALSE);
+	while (i > 0)
+	{
+		arg_code = (args_code >> (i * 2)) & 3;
+		carry->args[3 - i] = game->mem[(carry->pos + carry->jump) % MEM_SIZE];
+		if (arg_code == REG_CODE)
+		{
+			if (check_reg_number(carry->args[3 - i]) == FALSE)
+				res = FALSE;
+			carry->jump += REG_SIZE;
+		}
+		if (arg_code == IND_CODE)
+			carry->jump += IND_SIZE;
+		if (arg_code == DIR_CODE)
+			carry->jump += game->dir_sizes[carry->op - 1];
+		i--;
+	}
+	return (res);
 }
