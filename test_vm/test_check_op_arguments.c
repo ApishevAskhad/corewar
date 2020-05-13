@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 22:17:35 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/02 02:47:32 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/13 06:08:54 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,20 @@ int main()
 			op_args[1] = j;
 			if (op_args[0] == 1 || op_args[0] == 9 || op_args[0] == 12 || op_args[0] == 15
 			|| in_arr(op_args, valid)) {
-				if (check_op_arguments(op_args) == FALSE) {
+				if (check_args_code(op_args[0], op_args[1]) == FALSE) {
 					ft_printf("{red}KO{eoc} op_code=%08b args_codes=%08b should be valid\n", op_args[0], op_args[1]);
 				}
-				assert(check_op_arguments(op_args) == TRUE);
+				assert(check_args_code(op_args[0], op_args[1]) == TRUE);
 			} else {
-				if (check_op_arguments(op_args) == TRUE) {
+				if (check_args_code(op_args[0], op_args[1]) == TRUE) {
 					ft_printf("{red}KO{eoc} op_code=%08b args_codes=%08b should be invalid\n", op_args[0], op_args[1]);
 				}
-				assert(check_op_arguments(op_args) == FALSE);
+				assert(check_args_code(op_args[0], op_args[1]) == FALSE);
 			}
 			j++;
 		}
 		i++;
 	}
-	ft_printf("{green}OK{eoc} {yellow}check_op_arguments(unsigned char *op_str);{eoc}\n");
+	ft_printf("{green}OK{eoc} {yellow}check_args_code(UC op_code, UC args_code);{eoc}\n");
 	return (0);
 }
