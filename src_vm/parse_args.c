@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 18:16:56 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/17 20:27:19 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/13 19:48:22 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		get_free_player_number(t_player *players)
 {
-	assert(players != NULL);
 	int i;
 
+	assert(players != NULL);
 	i = 0;
 	while (players[i++].magic && i <= MAX_PLAYERS)
 		;
@@ -59,9 +59,9 @@ void	set_player(t_game *game, int argc, char *argv[], int *i)
 
 void	parse_args(int argc, char *argv[], t_game *game)
 {
-	assert(game != NULL);
 	int i;
 
+	assert(game != NULL);
 	i = 0;
 	while (++i < argc)
 	{

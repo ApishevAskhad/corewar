@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 19:52:39 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/13 06:02:21 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/13 19:47:59 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,32 +27,32 @@ void	execute_carry(t_game *game, t_carry *carry)
 	func(game, carry);
 }
 
-void	execute_carries(t_game *game, t_carry *c)
+void	execute_carries(t_game *game, t_carry *carry)
 {
-	while (c)
+	while (carry)
 	{
-		if (c->timer == 0)
+		if (carry->timer == 0)
 		{
-			c->op = game->mem[c->pos];
-			if (check_op_code(game->mem[c->pos])) {
-				c->timer = game->timers[c->op - 1];
-			}
+			carry->op = game->mem[carry->pos];
+			if (check_op_code(game->mem[carry->pos]))
+				carry->timer = game->timers[carry->op - 1];
 		}
-		if (c->timer > 0)
-			c->timer -= 1;
-		if (c->timer == 0)
+		if (carry->timer > 0)
+			carry->timer -= 1;
+		if (carry->timer == 0)
 		{
-			if (check_op_code(c->op))
+			if (check_op_code(carry->op))
 			{
-				if (set_carry_args(game, c) &&
-				check_args_code(c->op, game->mem[(c->pos + 1) % MEM_SIZE]))
-					execute_carry(game, c);
-				c->pos = (c->pos + c->jump) % MEM_SIZE;
+				if (set_carry_args(game, carry) &&
+				check_args_code(carry->op,
+				game->mem[(carry->pos + 1) % MEM_SIZE]))
+					execute_carry(game, carry);
+				carry->pos = (carry->pos + carry->jump) % MEM_SIZE;
 			}
 			else
-				c->pos += 1;
+				carry->pos += 1;
 		}
-		c = c->next;
+		carry = carry->next;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 22:17:35 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/13 06:08:54 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/13 19:15:32 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,6 @@ int main()
 		}
 		i++;
 	}
-	ft_printf("{green}OK{eoc} {yellow}check_args_code(UC op_code, UC args_code);{eoc}\n");
+	ft_printf("{green}OK{eoc} {yellow}check_args_code(UC op_code, UC args_code);{eoc}\n", 1);
 	return (0);
 }

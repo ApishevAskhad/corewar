@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/13 06:11:50 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/13 20:11:59 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,33 @@
 # define COR_EXTENSION		".cor"
 # define UI					uint32_t
 # define UC					unsigned char
-# define DEBUG				0
+# define DEBUG				1
 # define OFF				-1
 # define MIN_FILE_SIZE		4 * 4 + PROG_NAME_LENGTH + COMMENT_LENGTH
 # define TRUE				1
 # define FALSE				0
+
+# define ARGS_SIZE			3
+# define OPS_SIZE			16
+
+enum e_operations {
+	OP_LV = 1,
+	OP_LD,
+	OP_ST,
+	OP_ADD,
+	OP_SUB,
+	OP_AND,
+	OP_OR,
+	OP_XOR,
+	OP_ZJMP,
+	OP_LDI,
+	OP_STI,
+	OP_FORK,
+	OP_LLD,
+	OP_LLDI,
+	OP_LFORK,
+	OP_AFF
+};
 
 enum e_errors {
 	ERR_SUCCESS,
@@ -65,10 +87,10 @@ typedef struct				s_game
 	int						lives;
 	int						cycle_to_die;
 	int						checkin_nbr;
-	int						timers[16];
-	int						args_sizes[16];
-	int						dir_sizes[16];
-	void					*operations[16];
+	int						timers[OPS_SIZE];
+	int						args_sizes[OPS_SIZE];
+	int						dir_sizes[OPS_SIZE];
+	void					*operations[OPS_SIZE];
 	t_player				players[MAX_PLAYERS];
 	UC						mem[MEM_SIZE];
 }							t_game;
@@ -82,7 +104,7 @@ typedef struct				s_carry
 	int						timer;
 	int						pos;
 	int						jump;
-	int						args[3];
+	int						args[ARGS_SIZE];
 	int						r[REG_NUMBER];
 	struct s_carry			*next;
 }							t_carry;
