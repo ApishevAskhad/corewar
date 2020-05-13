@@ -6,7 +6,7 @@
 #    By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 20:31:24 by gloras-t          #+#    #+#              #
-#    Updated: 2020/01/17 20:52:12 by slindgre         ###   ########.fr        #
+#    Updated: 2020/05/11 19:35:04 by dtimeon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,14 @@ OBJ_VM 		=	$(addprefix $(OBJ_VM_DIR)/, print_utils.o \
 
 OBJ_ASM		=	$(addprefix $(OBJ_ASM_DIR)/, printer.o \
 				file_validation.o \
-				options_handling.o)
+				options_handling.o\
+				initializing_structs.o \
+				str_utils.o \
+				file_reading.o \
+				file_translation.o \
+				freeing_memory.o \
+				file_parsing.o \
+				error_handling.o)
 
 INCLUDES	=	includes
 LIBFT 		=	$(INCLUDES)/ft_printf
