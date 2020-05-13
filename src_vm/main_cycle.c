@@ -6,24 +6,52 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 19:52:39 by slindgre          #+#    #+#             */
-/*   Updated: 2020/04/30 22:34:13 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/13 19:47:59 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
+void	op_live(t_game *game, t_carry *carry)
+{
+	carry->live += 1;
+	if (carry->args[0] < 0 && -carry->args[0] <= game->players_nbr)
+		game->alive = -carry->args[0];
+}
+
 void	execute_carry(t_game *game, t_carry *carry)
 {
-	(void)carry;
-	(void)game;
+	t_handler	func;
 
+	func = (t_handler)game->operations[carry->op - 1];
+	func(game, carry);
 }
 
 void	execute_carries(t_game *game, t_carry *carry)
 {
 	while (carry)
 	{
-		execute_carry(game, carry);
+		if (carry->timer == 0)
+		{
+			carry->op = game->mem[carry->pos];
+			if (check_op_code(game->mem[carry->pos]))
+				carry->timer = game->timers[carry->op - 1];
+		}
+		if (carry->timer > 0)
+			carry->timer -= 1;
+		if (carry->timer == 0)
+		{
+			if (check_op_code(carry->op))
+			{
+				if (set_carry_args(game, carry) &&
+				check_args_code(carry->op,
+				game->mem[(carry->pos + 1) % MEM_SIZE]))
+					execute_carry(game, carry);
+				carry->pos = (carry->pos + carry->jump) % MEM_SIZE;
+			}
+			else
+				carry->pos += 1;
+		}
 		carry = carry->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 20:27:53 by slindgre          #+#    #+#             */
-/*   Updated: 2020/04/30 22:11:48 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/13 19:49:04 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ t_carry	*new_carry(int nbr, int position)
 
 int		push_carry(t_carry **head, int nbr, int position)
 {
-	assert(head != NULL);
 	t_carry *new;
 
+	assert(head != NULL);
 	if (!(new = new_carry(nbr, position)))
 		return (0);
 	new->next = *head;

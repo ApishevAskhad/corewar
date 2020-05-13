@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 18:16:56 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/16 22:51:20 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/13 20:15:46 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,18 @@
 int	main()
 {
     t_game game;
-    int i = 0;
+    t_carry *carry;
 
+	carry = NULL;
     ft_bzero(&game, sizeof(t_game));
+    int i = 0;
     game.players_nbr = 3;
     while (i < game.players_nbr)
     {
         ft_memset(game.players[i].code, i * 10 + 200, CHAMP_MAX_SIZE);
         i++;
     }
-    place_players_code(&game);
+    place_players_code(&game, &carry);
     print_hexdump(game.mem, MEM_SIZE);
     return (0);
 }

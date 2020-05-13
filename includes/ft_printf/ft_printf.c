@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 21:38:11 by gloras-t          #+#    #+#             */
-/*   Updated: 2019/08/03 00:10:53 by gloras-t         ###   ########.fr       */
+/*   Updated: 2020/05/13 19:13:59 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int			ft_parse_color(const char *fmt, t_line **line)
 {
 	char	*s;
 	int		index;
+	int		len;
 	char	*colors[COLOR_NUMBER];
 
 	if (*fmt == '{')
@@ -69,8 +70,9 @@ int			ft_parse_color(const char *fmt, t_line **line)
 			colors[5] = COLOR_CYAN;
 			colors[6] = COLOR_EOC;
 			ft_update_line_color(*line, colors[index]);
+			len = ft_strlen(s);
 			free(s);
-			return (ft_strlen(s));
+			return (len);
 		}
 	}
 	return (0);
