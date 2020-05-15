@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 01:45:26 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/05/12 00:37:27 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/05/16 01:03:16 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,14 @@ static void				read_asm_file(t_file *file)
 {
 	char				*buffer;
 	t_line				*temp_line;
+	unsigned int		line_num;
 
+	line_num = 1;
 	while ((get_next_line(file->fd, &buffer) > 0))
 	{
+		if (file->last_line->initial_str)
+		 	ft_strdel(&file->last_line->initial_str);
+		file->last_line->num = line_num++;
 		if (is_not_blank_str(buffer) && is_not_comment(buffer))
 		{
 			file->last_line->initial_str = buffer;

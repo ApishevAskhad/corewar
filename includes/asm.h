@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:56:19 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/11 02:43:41 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/05/16 00:55:18 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct					s_arg
 typedef struct					s_line
 {
 	char						*initial_str;
+	unsigned int				num;
 	t_op						*op_data;
 	t_arg						args[3];
 	int							pos;
