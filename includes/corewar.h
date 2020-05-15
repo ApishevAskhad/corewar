@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/13 20:11:59 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/15 03:37:18 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define COR_EXTENSION		".cor"
 # define UI					uint32_t
 # define UC					unsigned char
-# define DEBUG				1
+# define DEBUG				0
 # define OFF				-1
 # define MIN_FILE_SIZE		4 * 4 + PROG_NAME_LENGTH + COMMENT_LENGTH
 # define TRUE				1
@@ -77,6 +77,20 @@ typedef struct				s_player
 	char					comment[COMMENT_LENGTH + 1];
 }							t_player;
 
+typedef struct				s_carry
+{
+	int						carry;
+	int						op;
+	int						live;
+	int						timer;
+	int						pos;
+	int						jump;
+	int						args[ARGS_SIZE];
+	int						arg_types[ARGS_SIZE];
+	int						r[REG_NUMBER];
+	struct s_carry			*next;
+}							t_carry;
+
 typedef struct				s_game
 {
 	int						players_nbr;
@@ -93,21 +107,8 @@ typedef struct				s_game
 	void					*operations[OPS_SIZE];
 	t_player				players[MAX_PLAYERS];
 	UC						mem[MEM_SIZE];
+	t_carry					*carries;
 }							t_game;
-
-typedef struct				s_carry
-{
-	int						nbr;
-	int						carry;
-	int						op;
-	int						live;
-	int						timer;
-	int						pos;
-	int						jump;
-	int						args[ARGS_SIZE];
-	int						r[REG_NUMBER];
-	struct s_carry			*next;
-}							t_carry;
 
 typedef	void				(*t_handler)(t_game*, t_carry*);
 
@@ -185,15 +186,51 @@ int							is_player_number_correct(int nbr, t_game game);
 /*
 ** carry_utils.c
 */
-int							check_args_code(UC op_code, UC args_code);
+int							check_args_code(t_carry *carry, UC op_code, UC args_code);
 int							check_op_code(UC code);
 int							set_carry_args(t_game *game, t_carry *carry);
 
 /*
 ** main_cycle.c
 */
-void						main_cycle(t_game *game, t_carry *carry);
+void						main_cycle(t_game *game);
 
+/*
+** operations_utils.c
+*/
+void						write_4bytes_to_mem(t_game *game, int pos, int src);
+int							read_n_bytes_from_mem(t_game *game, int pos, int n);
 
+/*
+** operations_1.c
+*/
 void						op_live(t_game *game, t_carry *carry);
+void						op_ld(t_game *game, t_carry *carry);
+void						op_st(t_game *game, t_carry *carry);
+void						op_add(t_game *game, t_carry *carry);
+
+/*
+** operations_2.c
+*/
+void						op_sub(t_game *game, t_carry *carry);
+void						op_and(t_game *game, t_carry *carry);
+void						op_or(t_game *game, t_carry *carry);
+void						op_xor(t_game *game, t_carry *carry);
+
+/*
+** operations_3.c
+*/
+void						op_zjmp(t_game *game, t_carry *carry);
+void						op_ldi(t_game *game, t_carry *carry);
+void						op_sti(t_game *game, t_carry *carry);
+void						op_fork(t_game *game, t_carry *carry);
+
+/*
+** operations_4.c
+*/
+void						op_lld(t_game *game, t_carry *carry);
+void						op_lldi(t_game *game, t_carry *carry);
+void						op_lfork(t_game *game, t_carry *carry);
+void						op_aff(t_game *game, t_carry *carry);
+
 #endif

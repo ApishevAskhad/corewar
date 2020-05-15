@@ -6,18 +6,11 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 19:52:39 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/13 19:47:59 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/15 02:42:02 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-
-void	op_live(t_game *game, t_carry *carry)
-{
-	carry->live += 1;
-	if (carry->args[0] < 0 && -carry->args[0] <= game->players_nbr)
-		game->alive = -carry->args[0];
-}
 
 void	execute_carry(t_game *game, t_carry *carry)
 {
@@ -44,7 +37,7 @@ void	execute_carries(t_game *game, t_carry *carry)
 			if (check_op_code(carry->op))
 			{
 				if (set_carry_args(game, carry) &&
-				check_args_code(carry->op,
+				check_args_code(carry, carry->op,
 				game->mem[(carry->pos + 1) % MEM_SIZE]))
 					execute_carry(game, carry);
 				carry->pos = (carry->pos + carry->jump) % MEM_SIZE;
@@ -68,7 +61,7 @@ void	check_lives(t_game *game, t_carry **carry)
 		head = head->next;
 		if (temp->live)
 		{
-			game->lives += temp->live;
+			game->lives += 1;
 			temp->live = 0;
 		}
 		else
@@ -76,19 +69,19 @@ void	check_lives(t_game *game, t_carry **carry)
 	}
 }
 
-void	main_cycle(t_game *game, t_carry *carry)
+void	main_cycle(t_game *game)
 {
 	assert(game != NULL);
-	assert(carry != NULL);
+	assert(game->carries != NULL);
 	game->alive = game->players_nbr;
-	while (carry)
+	while (game->carries)
 	{
 		game->cycles += 1;
-		execute_carries(game, carry);
+		execute_carries(game, game->carries);
 		if (game->cycle_to_die <= 0 || game->cycles % game->cycle_to_die == 0)
 		{
 			game->checkin_nbr += 1;
-			check_lives(game, &carry);
+			check_lives(game, &(game->carries));
 			if (game->lives >= NBR_LIVE || game->checkin_nbr == MAX_CHECKS)
 			{
 				game->cycle_to_die -= CYCLE_DELTA;

@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 14:48:39 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/13 20:18:57 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/15 03:32:19 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,13 @@ void	print_hexdump(UC *ptr, size_t size)
 
 void	print_catty_list(t_carry *head)
 {
+	int	i;
+	
+	i = 0;
 	while (head)
 	{
-		ft_printf("carry number: %d\n", head->nbr);
+		ft_printf("carry[%d].pos : %d\n", i, head->pos);
 		head = head->next;
+		i++;
 	}
 }

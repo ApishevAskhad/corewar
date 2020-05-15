@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 18:08:15 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/13 19:49:37 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/15 00:23:13 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	place_players_code(t_game *game, t_carry **carry)
 {
-	int i;
-	int n;
-	UC  *start;
+	int				i;
+	int				n;
+	unsigned char	*start;
 
 	assert(game != NULL);
 	i = 0;
