@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/16 01:53:27 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/16 19:47:00 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct				s_player
 
 typedef struct				s_carry
 {
+	int						id;
 	int						carry;
 	int						op;
 	int						live;
@@ -97,6 +98,7 @@ typedef struct				s_game
 	int						dump;
 	int						d;
 	int						aff;
+	int						v;
 	int						visual;
 	int						alive;
 	int						cycles;
@@ -127,6 +129,10 @@ void						print_dump(UC *ptr, size_t size);
 void						print_hexdump(UC *ptr, size_t size);
 void						print_carry_list(t_carry *head);
 void						print_dump_canon(UC *ptr, size_t size);
+void						print_verbose(t_game *game, t_carry *carry);
+void						print_verbose_cycle(t_game *game);
+void						print_verbose_cycle_to_die(t_game *game);
+void						print_verbose_death(t_game *game, t_carry *carry);
 
 /*
 ** check_utils_01.c

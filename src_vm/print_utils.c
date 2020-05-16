@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 14:48:39 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/15 05:02:20 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/16 19:48:34 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,49 @@ void	print_carry_list(t_carry *head)
 		ft_printf("carry[%d].pos : %d\n", i, head->pos);
 		head = head->next;
 		i++;
+	}
+}
+
+void	print_verbose(t_game *game, t_carry *carry)
+{
+	int	to;
+	int	i;
+
+	to = (MEM_SIZE + carry->pos + carry->jump) % MEM_SIZE;
+	if (game->v && carry->jump != 0)
+	{
+		ft_printf("ADV %d (0x%04x -> 0x%04x) ", carry->jump, carry->pos, to);
+		i = 0;
+		while (i < carry->jump)
+		{
+			to = (MEM_SIZE + carry->pos + i) % MEM_SIZE;
+			ft_printf("%02x ", (int)game->mem[to]);
+			i++;
+		}
+		ft_printf("\n");
+	}
+}
+
+void	print_verbose_cycle(t_game *game)
+{
+	if (game->v)
+	{
+		ft_printf("It is now cycle %d\n", game->cycles);
+	}
+}
+
+void	print_verbose_cycle_to_die(t_game *game)
+{
+	if (game->v)
+	{
+		ft_printf("Cycle to die is now %d\n", game->cycle_to_die);
+	}
+}
+
+void	print_verbose_death(t_game *game, t_carry *carry)
+{
+	if (game->v)
+	{
+		ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n", carry->id, game->cycles - carry->live, game->cycle_to_die);
 	}
 }

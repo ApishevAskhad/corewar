@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 01:50:15 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/16 02:35:36 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/16 22:37:07 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ void	op_zjmp(t_game *game, t_carry *carry)
 	{
 		carry->pos = (MEM_SIZE + carry->pos + (carry->args[0] % IDX_MOD)) % MEM_SIZE;
 		carry->jump = 0;
+	}
+	if (game->v)
+	{
+		ft_printf("P %4d | zjmp %d %s\n",
+		carry->id, carry->args[0], (carry->carry) ? "OK" : "FAILED");
 	}
 }
 
@@ -40,6 +45,13 @@ void	op_ldi(t_game *game, t_carry *carry)
 	}
 	pos = MEM_SIZE + carry->pos + ((arg1 + arg2) % IDX_MOD);
 	carry->r[carry->args[2] - 1] = read_n_bytes_from_mem(game, pos, REG_SIZE);
+	if (game->v)
+	{
+		ft_printf("P %4d | ldi %d %d r%d\n",
+		carry->id, arg1, arg2, carry->args[2]);
+		ft_printf("       | -> load from %d + %d = %d (with pc and mod %d)\n",
+		arg1, arg2, arg1 + arg2, carry->pos + (arg1 + arg2) % IDX_MOD);
+	}
 }
 
 void	op_sti(t_game *game, t_carry *carry)
@@ -63,16 +75,30 @@ void	op_sti(t_game *game, t_carry *carry)
 	}
 	pos = MEM_SIZE + carry->pos + ((arg2 + arg3) % IDX_MOD);
 	write_4bytes_to_mem(game, pos, arg1);
+	if (game->v)
+	{
+		ft_printf("P %4d | sti r%d %d %d\n",
+		carry->id, carry->args[0], arg2, arg3);
+		ft_printf("       | -> store to %d + %d = %d (with pc and mod %d)\n",
+		arg2, arg3, arg2 + arg3, carry->pos + ((arg2 + arg3) % IDX_MOD));
+	}
 }
 
 void	op_fork(t_game *game, t_carry *carry)
 {
 	t_carry *new;
+	int		addr;
 
-	new = new_carry(0, MEM_SIZE + carry->pos + (carry->args[0] % IDX_MOD));
+	addr = carry->pos + (carry->args[0] % IDX_MOD);
+	new = new_carry(0, addr);
 	new->carry = carry->carry;
 	new->live = carry->live;
 	ft_memcpy(new->r, carry->r, REG_SIZE * REG_NUMBER);
 	new->next = game->carries;
 	game->carries = new;
+	if (game->v)
+	{
+		ft_printf("P %4d | fork %d (%d)\n",
+		carry->id, carry->args[0], addr);
+	}
 }

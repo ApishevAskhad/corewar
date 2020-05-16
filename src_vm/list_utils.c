@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 20:27:53 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/13 19:49:04 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/16 22:07:39 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 t_carry	*new_carry(int nbr, int position)
 {
-	t_carry	*carry;
+	t_carry		*carry;
+	static int	id;
 
 	if (!(carry = ft_memalloc(sizeof(t_carry))))
 		return (NULL);
+	carry->id = ++id;
 	carry->r[0] = nbr;
-	carry->pos = position % MEM_SIZE;
+	carry->pos = (MEM_SIZE + position) % MEM_SIZE;
 	return (carry);
 }
 

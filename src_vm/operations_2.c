@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 01:50:10 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/16 02:37:28 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/16 22:31:12 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ void	op_sub(t_game *game, t_carry *carry)
 		carry->carry = 0;
 		if (res == 0)
 			carry->carry = 1;
+	}
+	if (game->v)
+	{
+		ft_printf("P %4d | sub r%d r%d r%d\n",
+		carry->id, carry->args[0], carry->args[1], carry->args[2]);
 	}
 }
 
@@ -54,6 +59,11 @@ void	op_and(t_game *game, t_carry *carry)
 	carry->carry = 0;
 	if (res == 0)
 		carry->carry = 1;
+	if (game->v)
+	{
+		ft_printf("P %4d | and %d %d r%d\n",
+		carry->id, arg1, arg2, carry->args[2]);
+	}
 }
 
 void	op_or(t_game *game, t_carry *carry)
@@ -84,6 +94,11 @@ void	op_or(t_game *game, t_carry *carry)
 	carry->carry = 0;
 	if (res == 0)
 		carry->carry = 1;
+	if (game->v)
+	{
+		ft_printf("P %4d | or %d %d r%d\n",
+		carry->id, arg1, arg2, carry->args[2]);
+	}
 }
 
 void	op_xor(t_game *game, t_carry *carry)
@@ -114,4 +129,9 @@ void	op_xor(t_game *game, t_carry *carry)
 	carry->carry = 0;
 	if (res == 0)
 		carry->carry = 1;
+	if (game->v)
+	{
+		ft_printf("P %4d | xor %d %d r%d\n",
+		carry->id, arg1, arg2, carry->args[2]);
+	}
 }

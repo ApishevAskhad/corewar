@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 19:52:39 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/16 03:13:34 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/16 19:46:49 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,15 @@ void	execute_carries(t_game *game, t_carry *carry)
 				check_args_code(carry, carry->op,
 				game->mem[(carry->pos + 1) % MEM_SIZE]))
 					execute_carry(game, carry);
-				carry->pos = (MEM_SIZE + carry->pos + carry->jump) % MEM_SIZE;
 			}
 			else
-				carry->pos = (carry->pos + 1) % MEM_SIZE;
-				carry->jump = 0;
-				ft_bzero(carry->arg_types, ARGS_SIZE);
+			{
+				carry->jump = 1;
+			}
+			print_verbose(game, carry);
+			carry->pos = (MEM_SIZE + carry->pos + carry->jump) % MEM_SIZE;
+			carry->jump = 0;
+			ft_bzero(carry->arg_types, ARGS_SIZE);
 		}
 		carry = carry->next;
 	}
@@ -63,6 +66,7 @@ void	check_lives(t_game *game, t_carry **carry)
 		head = head->next;
 		if (game->cycles - temp->live >= game->cycle_to_die || game->cycle_to_die <= 0)
 		{
+			print_verbose_death(game, temp);
 			*carry = del_carry(*carry, temp);
 		}			
 	}
@@ -76,8 +80,9 @@ void	main_cycle(t_game *game)
 	while (game->carries)
 	{
 		game->cycles += 1;
-		if (game->cycles == 14781)
+		if (game->cycles == 2021)
 			assert(game != NULL);
+		print_verbose_cycle(game);
 		execute_carries(game, game->carries);
 		if (game->cycle_to_die <= 0 || game->cycles % game->cycle_to_die == 0)
 		{
@@ -85,6 +90,7 @@ void	main_cycle(t_game *game)
 			check_lives(game, &(game->carries));
 			if (game->lives >= NBR_LIVE || game->checkin_nbr == MAX_CHECKS)
 			{
+				print_verbose_cycle_to_die(game);
 				game->cycle_to_die -= CYCLE_DELTA;
 				game->checkin_nbr = 0;
 			}

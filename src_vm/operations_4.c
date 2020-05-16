@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 01:50:02 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/16 02:39:01 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/16 22:36:49 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void	op_lld(t_game *game, t_carry *carry)
     carry->carry = 0;
 	if (res == 0)
 		carry->carry = 1;
+	if (game->v)
+	{
+		ft_printf("P %4d | lld %d r%d\n",
+		carry->id, res, carry->args[1]);
+	}
 }
 
 void	op_lldi(t_game *game, t_carry *carry)
@@ -56,18 +61,32 @@ void	op_lldi(t_game *game, t_carry *carry)
     carry->carry = 0;
 	if (res == 0)
 		carry->carry = 1;
+	if (game->v)
+	{
+		ft_printf("P %4d | lldi %d %d r%d\n",
+		carry->id, arg1, arg2, carry->args[2]);
+		ft_printf("       | load from %d + %d = %d (with pc %d)\n",
+		arg1, arg2, arg1 + arg2, carry->pos + arg1 + arg2);
+	}
 }
 
 void	op_lfork(t_game *game, t_carry *carry)
 {
 	t_carry *new;
+	int		addr;
 
-	new = new_carry(0, (MEM_SIZE + carry->pos + carry->args[0]) % MEM_SIZE);
+	addr = carry->pos + carry->args[0];
+	new = new_carry(0, addr);
 	new->carry = carry->carry;
 	new->live = carry->live;
 	ft_memcpy(new->r, carry->r, REG_SIZE * REG_NUMBER);
 	new->next = game->carries;
 	game->carries = new;
+	if (game->v)
+	{
+		ft_printf("P %4d | lfork %d (%d)\n",
+		carry->id, carry->args[0], addr);
+	}
 }
 
 void	op_aff(t_game *game, t_carry *carry)

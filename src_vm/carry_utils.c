@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 21:22:34 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/15 09:41:58 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/16 04:52:39 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	set_carry_args(t_game *game, t_carry *carry)
 		}
 		if (arg_code == IND_CODE)
 		{
-			carry->args[i] = read_n_bytes_from_mem(game, pos, IND_SIZE);
+			carry->args[i] = read_2_bytes_from_mem(game, pos);
 			carry->jump += IND_SIZE;
 		}
 		if (arg_code == DIR_CODE)
