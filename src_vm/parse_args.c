@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 18:16:56 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/13 19:48:22 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/16 01:53:46 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ void	parse_args(int argc, char *argv[], t_game *game)
 			game->visual = 1;
 		else if (!ft_strcmp(argv[i], "-dump") && i + 1 < argc)
 			game->dump = ft_atoi(argv[++i]);
+		else if (!ft_strcmp(argv[i], "-d") && i + 1 < argc)
+			game->d = ft_atoi(argv[++i]);
+		else if (!ft_strcmp(argv[i], "-a"))
+			game->aff = TRUE;
 		else
 			set_player(game, argc, argv, &i);
 	}

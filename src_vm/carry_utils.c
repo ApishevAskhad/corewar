@@ -6,20 +6,20 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 21:22:34 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/15 04:00:45 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/15 09:41:58 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int	check_op_code(UC op_code)
+int	check_op_code(int op_code)
 {
 	if (0 < op_code && op_code <= OPS_SIZE)
 		return (TRUE);
 	return (FALSE);
 }
 
-int	check_reg_number(UC reg_num)
+int	check_reg_number(int reg_num)
 {
 	if (0 < reg_num && reg_num <= REG_NUMBER)
 		return (TRUE);
@@ -83,7 +83,6 @@ int	set_carry_args(t_game *game, t_carry *carry)
 	UC	arg_code;
 
 	args_code = game->mem[(carry->pos + 1) % MEM_SIZE];
-	i = game->args_sizes[carry->op - 1];
 	res = TRUE;
 	carry->jump = 2;
 	if (carry->op == OP_LV || carry->op == OP_ZJMP || carry->op == OP_FORK ||
@@ -96,13 +95,13 @@ int	set_carry_args(t_game *game, t_carry *carry)
 	while (i < game->args_sizes[carry->op - 1])
 	{
 		arg_code = (args_code >> (CHAR_BIT - (i + 1) * 2)) & 3;
-		pos = (carry->pos + carry->jump) % MEM_SIZE;
+		pos = (MEM_SIZE + carry->pos + carry->jump) % MEM_SIZE;
 		if (arg_code == REG_CODE)
 		{
-			carry->args[i] = read_n_bytes_from_mem(game, pos, REG_SIZE);
+			carry->args[i] = read_n_bytes_from_mem(game, pos, 1);
 			if (check_reg_number(carry->args[i]) == FALSE)
 				res = FALSE;
-			carry->jump += REG_SIZE;
+			carry->jump += 1;
 		}
 		if (arg_code == IND_CODE)
 		{
@@ -111,7 +110,9 @@ int	set_carry_args(t_game *game, t_carry *carry)
 		}
 		if (arg_code == DIR_CODE)
 		{
-			carry->args[i] = read_n_bytes_from_mem(game, pos, game->dir_sizes[carry->op - 1]);
+			carry->args[i] = read_2_bytes_from_mem(game, pos);
+			if (game->dir_sizes[carry->op - 1] == DIR_SIZE)
+				carry->args[i] = read_n_bytes_from_mem(game, pos, DIR_SIZE);
 			carry->jump += game->dir_sizes[carry->op - 1];
 		}
 		i++;

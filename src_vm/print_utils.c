@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 14:48:39 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/15 03:32:19 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/15 05:02:20 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	print_hexdump(UC *ptr, size_t size)
 	}
 }
 
-void	print_catty_list(t_carry *head)
+void	print_carry_list(t_carry *head)
 {
 	int	i;
 	

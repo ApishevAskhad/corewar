@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 19:52:39 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/15 02:42:02 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/16 03:13:34 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	execute_carries(t_game *game, t_carry *carry)
 	{
 		if (carry->timer == 0)
 		{
-			carry->op = game->mem[carry->pos];
-			if (check_op_code(game->mem[carry->pos]))
+			carry->op = game->mem[carry->pos % MEM_SIZE];
+			if (check_op_code(game->mem[carry->pos % MEM_SIZE]))
 				carry->timer = game->timers[carry->op - 1];
 		}
 		if (carry->timer > 0)
@@ -40,10 +40,12 @@ void	execute_carries(t_game *game, t_carry *carry)
 				check_args_code(carry, carry->op,
 				game->mem[(carry->pos + 1) % MEM_SIZE]))
 					execute_carry(game, carry);
-				carry->pos = (carry->pos + carry->jump) % MEM_SIZE;
+				carry->pos = (MEM_SIZE + carry->pos + carry->jump) % MEM_SIZE;
 			}
 			else
-				carry->pos += 1;
+				carry->pos = (carry->pos + 1) % MEM_SIZE;
+				carry->jump = 0;
+				ft_bzero(carry->arg_types, ARGS_SIZE);
 		}
 		carry = carry->next;
 	}
@@ -59,13 +61,10 @@ void	check_lives(t_game *game, t_carry **carry)
 	{
 		temp = head;
 		head = head->next;
-		if (temp->live)
+		if (game->cycles - temp->live >= game->cycle_to_die || game->cycle_to_die <= 0)
 		{
-			game->lives += 1;
-			temp->live = 0;
-		}
-		else
 			*carry = del_carry(*carry, temp);
+		}			
 	}
 }
 
@@ -77,6 +76,8 @@ void	main_cycle(t_game *game)
 	while (game->carries)
 	{
 		game->cycles += 1;
+		if (game->cycles == 14781)
+			assert(game != NULL);
 		execute_carries(game, game->carries);
 		if (game->cycle_to_die <= 0 || game->cycles % game->cycle_to_die == 0)
 		{
@@ -89,6 +90,8 @@ void	main_cycle(t_game *game)
 			}
 			game->lives = 0;
 		}
+		if (game->cycles == game->d)
+			print_dump_canon(game->mem, MEM_SIZE);
 		if (game->cycles == game->dump)
 			print_dump(game->mem, MEM_SIZE);
 	}

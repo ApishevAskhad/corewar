@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:47:44 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/13 06:01:57 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/15 05:03:19 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,24 @@ void	print_dump(UC *ptr, size_t size)
 		i++;
 		if (i % 32 == 0 || i == size)
 			ft_printf("\n");
+	}
+	exit(ERR_DUMP);
+}
+
+void	print_dump_canon(UC *ptr, size_t size)
+{
+	size_t	i;
+
+	assert(ptr != NULL);
+	i = 0;
+	while (i < size)
+	{
+		if (i % 64 == 0)
+			ft_printf("0x%04x :", i);
+		ft_printf(" %02x", (int)ptr[i]);
+		i++;
+		if (i % 64 == 0 || i == size)
+			ft_printf(" \n");
 	}
 	exit(ERR_DUMP);
 }

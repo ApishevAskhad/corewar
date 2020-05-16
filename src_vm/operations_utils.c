@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 01:47:56 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/15 04:03:49 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/15 08:20:37 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,14 @@ int		read_n_bytes_from_mem(t_game *game, int pos, int n)
 		res |= (int)(game->mem[(pos + i) % MEM_SIZE]) << (CHAR_BIT * (n - i - 1));
 		i++;
 	}
+	return (res);
+}
+
+int		read_2_bytes_from_mem(t_game *game, int pos)
+{
+	int16_t	res;
+
+	res = (int16_t)(game->mem[pos % MEM_SIZE]) << CHAR_BIT;
+	res |= (int16_t)(game->mem[(pos + 1) % MEM_SIZE]);
 	return (res);
 }

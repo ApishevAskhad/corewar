@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 01:50:10 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/15 03:35:48 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/16 02:37:28 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,20 @@ void	op_and(t_game *game, t_carry *carry)
 	int arg2;
 	int	pos;
 
-	arg1 = carry->r[carry->args[0] - 1];
-	arg2 = carry->r[carry->args[1] - 1];
-	if (carry->arg_types[0] == T_DIR)
-		arg1 = carry->args[0];
-	if (carry->arg_types[1] == T_DIR)
-		arg2 = carry->args[1];
+	arg1 = carry->args[0];
+	arg2 = carry->args[1];
+	if (carry->arg_types[0] == T_REG)
+		arg1 = carry->r[carry->args[0] - 1];
+	if (carry->arg_types[1] == T_REG)
+		arg2 = carry->r[carry->args[1] - 1];
 	if (carry->arg_types[0] == T_IND)
 	{
-		pos = carry->pos + carry->args[0] % IDX_MOD;
+		pos = MEM_SIZE + carry->pos + (carry->args[0] % IDX_MOD);
 		arg1 = read_n_bytes_from_mem(game, pos, REG_SIZE);
 	}
 	if (carry->arg_types[1] == T_IND)
 	{
-		pos = carry->pos + carry->args[1] % IDX_MOD;
+		pos = MEM_SIZE + carry->pos + (carry->args[1] % IDX_MOD);
 		arg2 = read_n_bytes_from_mem(game, pos, REG_SIZE);
 	}
 	res = arg1 & arg2;
@@ -63,20 +63,20 @@ void	op_or(t_game *game, t_carry *carry)
 	int arg2;
 	int	pos;
 
-	arg1 = carry->r[carry->args[0] - 1];
-	arg2 = carry->r[carry->args[1] - 1];
-	if (carry->arg_types[0] == T_DIR)
-		arg1 = carry->args[0];
-	if (carry->arg_types[1] == T_DIR)
-		arg2 = carry->args[1];
+	arg1 = carry->args[0];
+	arg2 = carry->args[1];
+	if (carry->arg_types[0] == T_REG)
+		arg1 = carry->r[carry->args[0] - 1];
+	if (carry->arg_types[1] == T_REG)
+		arg2 = carry->r[carry->args[1] - 1];
 	if (carry->arg_types[0] == T_IND)
 	{
-		pos = carry->pos + carry->args[0] % IDX_MOD;
+		pos = MEM_SIZE + carry->pos + (carry->args[0] % IDX_MOD);
 		arg1 = read_n_bytes_from_mem(game, pos, REG_SIZE);
 	}
 	if (carry->arg_types[1] == T_IND)
 	{
-		pos = carry->pos + carry->args[1] % IDX_MOD;
+		pos = MEM_SIZE + carry->pos + (carry->args[1] % IDX_MOD);
 		arg2 = read_n_bytes_from_mem(game, pos, REG_SIZE);
 	}
 	res = arg1 | arg2;
@@ -93,20 +93,20 @@ void	op_xor(t_game *game, t_carry *carry)
 	int arg2;
 	int	pos;
 
-	arg1 = carry->r[carry->args[0] - 1];
-	arg2 = carry->r[carry->args[1] - 1];
-	if (carry->arg_types[0] == T_DIR)
-		arg1 = carry->args[0];
-	if (carry->arg_types[1] == T_DIR)
-		arg2 = carry->args[1];
+	arg1 = carry->args[0];
+	arg2 = carry->args[1];
+	if (carry->arg_types[0] == T_REG)
+		arg1 = carry->r[carry->args[0] - 1];
+	if (carry->arg_types[1] == T_REG)
+		arg2 = carry->r[carry->args[1] - 1];
 	if (carry->arg_types[0] == T_IND)
 	{
-		pos = carry->pos + carry->args[0] % IDX_MOD;
+		pos = MEM_SIZE + carry->pos + (carry->args[0] % IDX_MOD);
 		arg1 = read_n_bytes_from_mem(game, pos, REG_SIZE);
 	}
 	if (carry->arg_types[1] == T_IND)
 	{
-		pos = carry->pos + carry->args[1] % IDX_MOD;
+		pos = MEM_SIZE + carry->pos + (carry->args[1] % IDX_MOD);
 		arg2 = read_n_bytes_from_mem(game, pos, REG_SIZE);
 	}
 	res = arg1 ^ arg2;

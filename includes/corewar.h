@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/15 03:37:18 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/16 01:53:27 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ typedef struct				s_game
 {
 	int						players_nbr;
 	int						dump;
+	int						d;
+	int						aff;
 	int						visual;
 	int						alive;
 	int						cycles;
@@ -123,7 +125,8 @@ void						print_bits_ui(UI number);
 void						print_bits_char(char number);
 void						print_dump(UC *ptr, size_t size);
 void						print_hexdump(UC *ptr, size_t size);
-void						print_catty_list(t_carry *head);
+void						print_carry_list(t_carry *head);
+void						print_dump_canon(UC *ptr, size_t size);
 
 /*
 ** check_utils_01.c
@@ -187,7 +190,7 @@ int							is_player_number_correct(int nbr, t_game game);
 ** carry_utils.c
 */
 int							check_args_code(t_carry *carry, UC op_code, UC args_code);
-int							check_op_code(UC code);
+int							check_op_code(int code);
 int							set_carry_args(t_game *game, t_carry *carry);
 
 /*
@@ -200,6 +203,7 @@ void						main_cycle(t_game *game);
 */
 void						write_4bytes_to_mem(t_game *game, int pos, int src);
 int							read_n_bytes_from_mem(t_game *game, int pos, int n);
+int							read_2_bytes_from_mem(t_game *game, int pos);
 
 /*
 ** operations_1.c
