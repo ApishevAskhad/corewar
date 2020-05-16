@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:56:19 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/16 00:55:18 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/05/16 05:10:40 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,10 @@ typedef struct					s_file
 	unsigned char				is_assembly;
 	char						*champ_name;
 	char						*champ_comment;
+	unsigned char				*champ_code;
 	t_label						*labels;
 	int							code_size;
+	unsigned char				is_read_successfully;
 	unsigned char				is_correct;
 	t_error_data				*error_data;
 }								t_file;
