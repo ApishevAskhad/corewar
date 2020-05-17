@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:56:19 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/16 05:10:40 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/05/17 23:07:52 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,10 @@ typedef struct					s_file
 	unsigned char				is_assembly;
 	char						*champ_name;
 	char						*champ_comment;
+	unsigned char				*binary_header;
 	unsigned char				*champ_code;
 	t_label						*labels;
-	int							code_size;
+	ssize_t						code_size;
 	unsigned char				is_read_successfully;
 	unsigned char				is_correct;
 	t_error_data				*error_data;
@@ -100,6 +101,8 @@ unsigned char					is_not_blank_str(char *str);
 unsigned char					is_not_comment(char *str);
 
 t_file							*read_file(int fd, char *filename);
+
+void							read_binary_champ_code(t_file *file, ssize_t header_size);
 
 void							parse_file(t_file *file);
 
