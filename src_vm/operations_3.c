@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 01:50:15 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/16 22:37:07 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/17 03:02:16 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	op_zjmp(t_game *game, t_carry *carry)
 {
 	if (carry->carry == 1 && game != NULL)
 	{
-		carry->pos = (MEM_SIZE + carry->pos + (carry->args[0] % IDX_MOD)) % MEM_SIZE;
+		carry->pos = (MEM_SIZE + carry->pos + (carry->args[0] % IDX_MOD))
+		% MEM_SIZE;
 		carry->jump = 0;
 	}
 	if (game->v)
@@ -37,7 +38,7 @@ void	op_ldi(t_game *game, t_carry *carry)
 	if (carry->arg_types[0] == T_REG)
 		arg1 = carry->r[carry->args[0] - 1];
 	if (carry->arg_types[1] == T_REG)
-		arg2 = carry->r[carry->args[1] - 1];	
+		arg2 = carry->r[carry->args[1] - 1];
 	if (carry->arg_types[0] == T_IND)
 	{
 		pos = MEM_SIZE + carry->pos + (carry->args[0] % IDX_MOD);
@@ -60,7 +61,7 @@ void	op_sti(t_game *game, t_carry *carry)
 	int	arg2;
 	int	arg3;
 	int	pos;
-	
+
 	arg1 = carry->r[carry->args[0] - 1];
 	arg2 = carry->args[1];
 	arg3 = carry->args[2];

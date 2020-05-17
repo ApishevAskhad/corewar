@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 20:27:53 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/16 22:07:39 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/17 03:06:55 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,29 @@ int		push_carry(t_carry **head, int nbr, int position)
 	return (1);
 }
 
-t_carry	*del_carry(t_carry *carry, t_carry *needle)
+void	del_carry(t_carry **carry, t_carry *needle)
 {
-	t_carry *next_carry;
+	t_carry *tmp;
+	t_carry	*prev;
 
-	if (carry == NULL)
-		return (NULL);
-	if (carry == needle)
+	tmp = *carry;
+	prev = NULL;
+	while (tmp)
 	{
-		next_carry = carry->next;
-		free(carry);
-		return (next_carry);
+		if (tmp == needle)
+		{
+			if (!prev)
+			{
+				*carry = tmp->next;
+			}
+			else
+			{
+				prev->next = tmp->next;
+			}
+			free(tmp);
+			break ;
+		}
+		prev = tmp;
+		tmp = tmp->next;
 	}
-	carry->next = del_carry(carry->next, needle);
-	return (carry);
 }

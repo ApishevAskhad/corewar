@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 01:50:02 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/16 22:36:49 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/17 03:06:15 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	op_lld(t_game *game, t_carry *carry)
 		res = read_n_bytes_from_mem(game, pos, REG_SIZE);
 	}
 	carry->r[carry->args[1] - 1] = res;
-    carry->carry = 0;
+	carry->carry = 0;
 	if (res == 0)
 		carry->carry = 1;
 	if (game->v)
@@ -41,7 +41,7 @@ void	op_lldi(t_game *game, t_carry *carry)
 {
 	int	pos;
 	int	res;
-    int	arg1;
+	int	arg1;
 	int	arg2;
 
 	arg1 = carry->args[0];
@@ -56,9 +56,9 @@ void	op_lldi(t_game *game, t_carry *carry)
 		arg1 = read_n_bytes_from_mem(game, pos, REG_SIZE);
 	}
 	pos = MEM_SIZE + carry->pos + arg1 + arg2;
-    res = read_n_bytes_from_mem(game, pos, REG_SIZE);
+	res = read_n_bytes_from_mem(game, pos, REG_SIZE);
 	carry->r[carry->args[2] - 1] = res;
-    carry->carry = 0;
+	carry->carry = 0;
 	if (res == 0)
 		carry->carry = 1;
 	if (game->v)
@@ -91,8 +91,8 @@ void	op_lfork(t_game *game, t_carry *carry)
 
 void	op_aff(t_game *game, t_carry *carry)
 {
-    int arg1;
-    
+	int	arg1;
+
 	if (game->aff == TRUE)
 	{
 		arg1 = carry->r[carry->args[0] - 1];

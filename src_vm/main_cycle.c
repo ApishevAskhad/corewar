@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 19:52:39 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/16 19:46:49 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/17 03:04:46 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ void	execute_carries(t_game *game, t_carry *carry)
 				check_args_code(carry, carry->op,
 				game->mem[(carry->pos + 1) % MEM_SIZE]))
 					execute_carry(game, carry);
+				print_verbose(game, carry);
 			}
 			else
 			{
 				carry->jump = 1;
 			}
-			print_verbose(game, carry);
 			carry->pos = (MEM_SIZE + carry->pos + carry->jump) % MEM_SIZE;
 			carry->jump = 0;
 			ft_bzero(carry->arg_types, ARGS_SIZE);
@@ -54,21 +54,22 @@ void	execute_carries(t_game *game, t_carry *carry)
 	}
 }
 
-void	check_lives(t_game *game, t_carry **carry)
+void	check_lives(t_game *game)
 {
 	t_carry *head;
 	t_carry *temp;
 
-	head = *carry;
+	head = game->carries;
 	while (head)
 	{
 		temp = head;
 		head = head->next;
-		if (game->cycles - temp->live >= game->cycle_to_die || game->cycle_to_die <= 0)
+		if (game->cycles - temp->live >= game->cycle_to_die ||
+		game->cycle_to_die <= 0)
 		{
 			print_verbose_death(game, temp);
-			*carry = del_carry(*carry, temp);
-		}			
+			del_carry(&(game->carries), temp);
+		}
 	}
 }
 
@@ -83,21 +84,26 @@ void	main_cycle(t_game *game)
 		if (game->cycles == 2021)
 			assert(game != NULL);
 		print_verbose_cycle(game);
+		game->cycles_since_last_check += 1;
 		execute_carries(game, game->carries);
-		if (game->cycle_to_die <= 0 || game->cycles % game->cycle_to_die == 0)
+		if (game->cycle_to_die <= 0 || game->cycles_since_last_check ==
+		game->cycle_to_die)
 		{
 			game->checkin_nbr += 1;
-			check_lives(game, &(game->carries));
+			check_lives(game);
 			if (game->lives >= NBR_LIVE || game->checkin_nbr == MAX_CHECKS)
 			{
-				print_verbose_cycle_to_die(game);
 				game->cycle_to_die -= CYCLE_DELTA;
+				print_verbose_cycle_to_die(game);
 				game->checkin_nbr = 0;
 			}
 			game->lives = 0;
+			game->cycles_since_last_check = 0;
 		}
 		if (game->cycles == game->d)
+		{
 			print_dump_canon(game->mem, MEM_SIZE);
+		}
 		if (game->cycles == game->dump)
 			print_dump(game->mem, MEM_SIZE);
 	}

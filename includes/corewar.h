@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/16 19:47:00 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/17 02:34:09 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ typedef struct				s_game
 	int						cycles;
 	int						lives;
 	int						cycle_to_die;
+	int						cycles_since_last_check;
 	int						checkin_nbr;
 	int						timers[OPS_SIZE];
 	int						args_sizes[OPS_SIZE];
@@ -127,7 +128,7 @@ void						print_bits_ui(UI number);
 void						print_bits_char(char number);
 void						print_dump(UC *ptr, size_t size);
 void						print_hexdump(UC *ptr, size_t size);
-void						print_carry_list(t_carry *head);
+void						print_carry_list(t_game *game);
 void						print_dump_canon(UC *ptr, size_t size);
 void						print_verbose(t_game *game, t_carry *carry);
 void						print_verbose_cycle(t_game *game);
@@ -145,7 +146,7 @@ void						check_players_nbrs(t_game game);
 */
 t_carry						*new_carry(int nbr, int position);
 int							push_carry(t_carry **head, int nbr, int position);
-t_carry 					*del_carry(t_carry *carry, t_carry *needle);
+void						del_carry(t_carry **carry, t_carry *needle);
 
 /*
 ** clean_utils.c

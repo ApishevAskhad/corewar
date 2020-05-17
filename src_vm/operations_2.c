@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 01:50:10 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/16 22:31:12 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/17 03:06:27 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	op_sub(t_game *game, t_carry *carry)
 {
-	int res;	
-	
+	int res;
+
 	if (game != NULL)
 	{
 		res = carry->r[carry->args[0] - 1] - carry->r[carry->args[1] - 1];

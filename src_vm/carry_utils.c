@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 21:22:34 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/16 04:52:39 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/17 03:07:33 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int	check_args_code(t_carry *carry, UC op_code, UC args_code)
 	carry->arg_types[0] = args_code >> 6;
 	carry->arg_types[1] = (args_code >> 4) & 3;
 	carry->arg_types[2] = (args_code >> 2) & 3;
-	
 	if (op_code == OP_LV || op_code == OP_ZJMP || op_code == OP_FORK ||
 	op_code == OP_LFORK)
 		return (TRUE);

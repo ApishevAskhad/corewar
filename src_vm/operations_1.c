@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 00:06:09 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/16 22:46:05 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/17 03:03:39 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	op_live(t_game *game, t_carry *carry)
 	{
 		ft_printf("P %4d | live %d\n",
 		carry->id, carry->args[0]);
-		
 	}
 	if (carry->args[0] < 0 && -carry->args[0] <= game->players_nbr)
 	{
@@ -29,7 +28,6 @@ void	op_live(t_game *game, t_carry *carry)
 			ft_printf("Player %d (%s) is said to be alive\n",
 			-carry->args[0], game->players[-carry->args[0] - 1].prog_name);
 	}
-
 }
 
 void	op_ld(t_game *game, t_carry *carry)
@@ -61,8 +59,8 @@ void	op_st(t_game *game, t_carry *carry)
 {
 	int	pos;
 	int res;
-	
-	res = carry->r[carry->args[0] - 1];;
+
+	res = carry->r[carry->args[0] - 1];
 	if (carry->arg_types[1] == T_REG)
 	{
 		carry->r[carry->args[1] - 1] = res;

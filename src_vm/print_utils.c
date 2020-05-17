@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 14:48:39 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/16 19:48:34 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/17 02:59:22 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,16 +95,17 @@ void	print_hexdump(UC *ptr, size_t size)
 	}
 }
 
-void	print_carry_list(t_carry *head)
+void	print_carry_list(t_game *game)
 {
-	int	i;
-	
-	i = 0;
-	while (head)
+	t_carry	*carry;
+
+	ft_printf("here");
+	carry = game->carries;
+	while (carry)
 	{
-		ft_printf("carry[%d].pos : %d\n", i, head->pos);
-		head = head->next;
-		i++;
+		ft_printf("carry %4d | pos %4d | op %02x\n",
+		carry->id, carry->pos, game->mem[carry->pos]);
+		carry = carry->next;
 	}
 }
 
@@ -148,6 +149,7 @@ void	print_verbose_death(t_game *game, t_carry *carry)
 {
 	if (game->v)
 	{
-		ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n", carry->id, game->cycles - carry->live, game->cycle_to_die);
+		ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
+		carry->id, game->cycles - carry->live, game->cycle_to_die);
 	}
 }
