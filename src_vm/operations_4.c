@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 01:50:02 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/17 03:06:15 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/19 01:45:21 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,11 @@ void	op_lld(t_game *game, t_carry *carry)
 	else
 	{
 		pos = MEM_SIZE + carry->pos + carry->args[0];
-		res = read_n_bytes_from_mem(game, pos, REG_SIZE);
+		res = read_4_bytes_from_mem(game, pos);
 	}
 	carry->r[carry->args[1] - 1] = res;
-	carry->carry = 0;
-	if (res == 0)
-		carry->carry = 1;
-	if (game->v)
+	carry->carry = (res == 0) ? 1 : 0;
+	if (game->v & LOG_OPERATIONS)
 	{
 		ft_printf("P %4d | lld %d r%d\n",
 		carry->id, res, carry->args[1]);
@@ -40,7 +38,6 @@ void	op_lld(t_game *game, t_carry *carry)
 void	op_lldi(t_game *game, t_carry *carry)
 {
 	int	pos;
-	int	res;
 	int	arg1;
 	int	arg2;
 
@@ -53,15 +50,12 @@ void	op_lldi(t_game *game, t_carry *carry)
 	if (carry->arg_types[0] == T_IND)
 	{
 		pos = MEM_SIZE + carry->pos + (carry->args[0] % IDX_MOD);
-		arg1 = read_n_bytes_from_mem(game, pos, REG_SIZE);
+		arg1 = read_4_bytes_from_mem(game, pos);
 	}
 	pos = MEM_SIZE + carry->pos + arg1 + arg2;
-	res = read_n_bytes_from_mem(game, pos, REG_SIZE);
-	carry->r[carry->args[2] - 1] = res;
-	carry->carry = 0;
-	if (res == 0)
-		carry->carry = 1;
-	if (game->v)
+	carry->r[carry->args[2] - 1] = read_4_bytes_from_mem(game, pos);
+	carry->carry = (carry->r[carry->args[2] - 1] == 0) ? 1 : 0;
+	if (game->v & LOG_OPERATIONS)
 	{
 		ft_printf("P %4d | lldi %d %d r%d\n",
 		carry->id, arg1, arg2, carry->args[2]);
@@ -82,7 +76,7 @@ void	op_lfork(t_game *game, t_carry *carry)
 	ft_memcpy(new->r, carry->r, REG_SIZE * REG_NUMBER);
 	new->next = game->carries;
 	game->carries = new;
-	if (game->v)
+	if (game->v & LOG_OPERATIONS)
 	{
 		ft_printf("P %4d | lfork %d (%d)\n",
 		carry->id, carry->args[0], addr);

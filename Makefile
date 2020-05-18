@@ -6,7 +6,7 @@
 #    By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 20:31:24 by gloras-t          #+#    #+#              #
-#    Updated: 2020/05/15 01:51:32 by slindgre         ###   ########.fr        #
+#    Updated: 2020/05/19 02:11:09 by slindgre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,23 +17,23 @@ TEST_ASM 	=	tt
 OBJ_ASM_DIR	=	obj_asm
 OBJ_VM_DIR	=	obj_vm
 
-OBJ_VM 		=	$(addprefix $(OBJ_VM_DIR)/, print_utils.o \
-				check_utils_01.o \
-				create_player.o \
+OBJ_VM 		=	$(addprefix $(OBJ_VM_DIR)/, \
+				carry_args.o \
+				carry_check.o \
 				clean_utils.o \
-				utils_01.o \
-				introduce_players.o \
-				place_players.o \
-				parse_args.o \
-				list_utils.o \
-				carry_utils.o \
+				create_player.o \
 				init_game.o \
-				operations_utils.o \
+				list_utils.o \
+				main_cycle.o \
 				operations_1.o \
 				operations_2.o \
 				operations_3.o \
 				operations_4.o \
-				main_cycle.o)
+				operations_utils.o \
+				parse_args.o \
+				print_utils_1.o \
+				print_utils_2.o \
+				verbose_printing.o)
 
 OBJ_ASM		=	$(addprefix $(OBJ_ASM_DIR)/, printer.o \
 				file_validation.o \

@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 01:50:15 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/17 03:02:16 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/19 01:47:38 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	op_zjmp(t_game *game, t_carry *carry)
 		% MEM_SIZE;
 		carry->jump = 0;
 	}
-	if (game->v)
+	if (game->v & LOG_OPERATIONS)
 	{
 		ft_printf("P %4d | zjmp %d %s\n",
 		carry->id, carry->args[0], (carry->carry) ? "OK" : "FAILED");
@@ -42,11 +42,11 @@ void	op_ldi(t_game *game, t_carry *carry)
 	if (carry->arg_types[0] == T_IND)
 	{
 		pos = MEM_SIZE + carry->pos + (carry->args[0] % IDX_MOD);
-		arg1 = read_n_bytes_from_mem(game, pos, REG_SIZE);
+		arg1 = read_4_bytes_from_mem(game, pos);
 	}
 	pos = MEM_SIZE + carry->pos + ((arg1 + arg2) % IDX_MOD);
-	carry->r[carry->args[2] - 1] = read_n_bytes_from_mem(game, pos, REG_SIZE);
-	if (game->v)
+	carry->r[carry->args[2] - 1] = read_4_bytes_from_mem(game, pos);
+	if (game->v & LOG_OPERATIONS)
 	{
 		ft_printf("P %4d | ldi %d %d r%d\n",
 		carry->id, arg1, arg2, carry->args[2]);
@@ -72,11 +72,10 @@ void	op_sti(t_game *game, t_carry *carry)
 	if (carry->arg_types[1] == T_IND)
 	{
 		pos = MEM_SIZE + carry->pos + (carry->args[1] % IDX_MOD);
-		arg2 = read_n_bytes_from_mem(game, pos, REG_SIZE);
+		arg2 = read_4_bytes_from_mem(game, pos);
 	}
-	pos = MEM_SIZE + carry->pos + ((arg2 + arg3) % IDX_MOD);
-	write_4bytes_to_mem(game, pos, arg1);
-	if (game->v)
+	write_4_bytes_to_mem(game, carry->pos + ((arg2 + arg3) % IDX_MOD), arg1);
+	if (game->v & LOG_OPERATIONS)
 	{
 		ft_printf("P %4d | sti r%d %d %d\n",
 		carry->id, carry->args[0], arg2, arg3);
@@ -97,7 +96,7 @@ void	op_fork(t_game *game, t_carry *carry)
 	ft_memcpy(new->r, carry->r, REG_SIZE * REG_NUMBER);
 	new->next = game->carries;
 	game->carries = new;
-	if (game->v)
+	if (game->v & LOG_OPERATIONS)
 	{
 		ft_printf("P %4d | fork %d (%d)\n",
 		carry->id, carry->args[0], addr);

@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   carry_utils.c                                      :+:      :+:    :+:   */
+/*   carry_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 21:22:34 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/17 03:07:33 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/18 23:41:21 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int	check_op_code(int op_code)
+int			check_op_code(int op_code)
 {
 	if (0 < op_code && op_code <= OPS_SIZE)
 		return (TRUE);
 	return (FALSE);
 }
 
-int	check_reg_number(int reg_num)
-{
-	if (0 < reg_num && reg_num <= REG_NUMBER)
-		return (TRUE);
-	return (FALSE);
-}
-
-int	check_arg_code(UC arg_code)
+static int	check_arg_code(UC arg_code)
 {
 	return (REG_CODE <= arg_code && arg_code <= IND_CODE);
 }
 
-int	check_args_code_helper(t_carry *carry, UC op_code, UC args_code)
+static int	check_args_code_helper(t_carry *carry, UC op_code, UC args_code)
 {
 	UC a1;
 	UC a2;
@@ -53,7 +46,7 @@ int	check_args_code_helper(t_carry *carry, UC op_code, UC args_code)
 	return (FALSE);
 }
 
-int	check_args_code(t_carry *carry, UC op_code, UC args_code)
+int			check_args_code(t_carry *carry, UC op_code, UC args_code)
 {
 	carry->arg_types[0] = args_code >> 6;
 	carry->arg_types[1] = (args_code >> 4) & 3;
@@ -71,50 +64,4 @@ int	check_args_code(t_carry *carry, UC op_code, UC args_code)
 	(args_code == 0x90 || args_code == 0xd0))
 		return (TRUE);
 	return (check_args_code_helper(carry, op_code, args_code));
-}
-
-int	set_carry_args(t_game *game, t_carry *carry)
-{
-	int	i;
-	int	res;
-	int	pos;
-	UC	args_code;
-	UC	arg_code;
-
-	args_code = game->mem[(carry->pos + 1) % MEM_SIZE];
-	res = TRUE;
-	carry->jump = 2;
-	if (carry->op == OP_LV || carry->op == OP_ZJMP || carry->op == OP_FORK ||
-	carry->op == OP_LFORK)
-	{
-		carry->jump -= 1;
-		args_code = 0x80;
-	}
-	i = 0;
-	while (i < game->args_sizes[carry->op - 1])
-	{
-		arg_code = (args_code >> (CHAR_BIT - (i + 1) * 2)) & 3;
-		pos = (MEM_SIZE + carry->pos + carry->jump) % MEM_SIZE;
-		if (arg_code == REG_CODE)
-		{
-			carry->args[i] = read_n_bytes_from_mem(game, pos, 1);
-			if (check_reg_number(carry->args[i]) == FALSE)
-				res = FALSE;
-			carry->jump += 1;
-		}
-		if (arg_code == IND_CODE)
-		{
-			carry->args[i] = read_2_bytes_from_mem(game, pos);
-			carry->jump += IND_SIZE;
-		}
-		if (arg_code == DIR_CODE)
-		{
-			carry->args[i] = read_2_bytes_from_mem(game, pos);
-			if (game->dir_sizes[carry->op - 1] == DIR_SIZE)
-				carry->args[i] = read_n_bytes_from_mem(game, pos, DIR_SIZE);
-			carry->jump += game->dir_sizes[carry->op - 1];
-		}
-		i++;
-	}
-	return (res);
 }

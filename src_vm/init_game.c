@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 17:43:01 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/15 03:40:49 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/19 01:00:05 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	init_game(t_game *game)
 	assert(game != NULL);
 	ft_bzero(game, sizeof(t_game));
 	game->dump = OFF;
-	game->cycle_to_die = CYCLE_TO_DIE;
+	game->cycles_to_die = CYCLE_TO_DIE;
 	init_timers(game);
 	init_args_size(game);
 	init_dir_size(game);
