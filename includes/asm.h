@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:56:19 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/17 23:07:52 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/05/18 22:16:52 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 # define BINARY_EXTENSION		".cor"
 
 # define COMMENT_CHAR_2         ';'
+
+# define TRUE 1
+# define FALSE 0
 
 
 typedef struct					s_op

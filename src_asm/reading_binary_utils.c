@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/16 01:21:52 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/05/17 23:00:50 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/05/18 22:24:32 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void			save_binary_champ_code(t_file *file, ssize_t code_size)
 	{
 		file->champ_code = buffer;
 		file->code_size = code_size;
-		file->is_read_successfully = 1;
+		file->is_read_successfully = TRUE;
 	}
 	else
 	{

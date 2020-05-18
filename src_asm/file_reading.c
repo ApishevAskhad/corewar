@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 01:45:26 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/05/17 23:05:11 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/05/18 22:15:28 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void				read_asm_file(t_file *file)
 	}
 	if ((file->first_line != file->last_line) && line_num > 2 &&
 		read_status == 0)
-		file->is_read_successfully = 1;
+		file->is_read_successfully = TRUE;
 	else if (file->first_line == file->last_line)
 		print_error(file->filename, "Incorrect file, at least "
 									"champion name and comment are required");
@@ -54,7 +54,7 @@ static void				read_asm_file(t_file *file)
 		print_error(file->filename, "File reading error");
 }
 
-static void					read_binary_file(t_file *file)
+static void				read_binary_file(t_file *file)
 {
 	ssize_t				min_size;
 	unsigned char		*buffer;

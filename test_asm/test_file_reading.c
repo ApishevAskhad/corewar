@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 23:39:53 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/05/17 23:11:02 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/05/18 22:22:45 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ int				count_saved_lines(t_file *file)
 
 void			test_asm_files()
 {
-	asm_file	files[7] = {{FOL "empty.s", NULL, NULL, 0, 0, 0},
-							{FOL "single_comment.s", " \t# hi!", " \t# hi!", 1, 1, 0},
-							{FOL "no_new_line.s", ".name \"ABCDE\"", NULL, 0, 4, 1},
-							{FOL "one_new_line.s", ".name \"ABCDE\"", NULL, 0, 4, 1},
-							{FOL "ends_with_comment.s", ".name \"ABCDE\"", " ; hi!", 4, 4, 1},
-							{FOL "only_blank_and_comments.s", "# hi!", "# hi!", 10, 1, 0},
-							{FOL "ends_with_blank_and_comments.s", ".name \"ABCDE\"", "	  ", 12, 4, 1}};
+	asm_file	files[7] = {{FOL "empty.s", NULL, NULL, 0, 0, FALSE},
+							{FOL "single_comment.s", " \t# hi!", " \t# hi!", 1, 1, FALSE},
+							{FOL "no_new_line.s", ".name \"ABCDE\"", NULL, 0, 4, TRUE},
+							{FOL "one_new_line.s", ".name \"ABCDE\"", NULL, 0, 4, TRUE},
+							{FOL "ends_with_comment.s", ".name \"ABCDE\"", " ; hi!", 4, 4, TRUE},
+							{FOL "only_blank_and_comments.s", "# hi!", "# hi!", 10, 1, FALSE},
+							{FOL "ends_with_blank_and_comments.s", ".name \"ABCDE\"", "	  ", 12, 4, TRUE}};
 	int			fd;
 	t_file		*file;
 
@@ -85,13 +85,13 @@ void			test_asm_files()
 
 void				test_binary_files()
 {
-	bin_file	files[7] = {{FOL "empty.cor", 0, 0},
-							{FOL "10_002_bytes_of_champ_code.cor", 10002, 1},
-							{FOL "100_bytes_of_champ_code.cor", 100, 1},
-							{FOL "1_byte_header.cor", 0, 0},
-							{FOL "3_bytes_of_champ_code.cor", 3, 1},
-							{FOL "incomplete_header.cor", 0, 0},
-							{FOL "no_champ_code.cor", 0, 1}};
+	bin_file	files[7] = {{FOL "empty.cor", 0, FALSE},
+							{FOL "10_002_bytes_of_champ_code.cor", 10002, TRUE},
+							{FOL "100_bytes_of_champ_code.cor", 100, TRUE},
+							{FOL "1_byte_header.cor", 0, FALSE},
+							{FOL "3_bytes_of_champ_code.cor", 3, TRUE},
+							{FOL "incomplete_header.cor", 0, FALSE},
+							{FOL "no_champ_code.cor", 0, TRUE}};
 	int				fd;
 	t_file			*file;
 
