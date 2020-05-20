@@ -2,9 +2,12 @@ resources/
 .vscode/
 *.dSYM
 *.out
+*.swp
 *gc*
 *.o
 t
+o1
+o2
 corewar
 asm
 *.a

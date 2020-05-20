@@ -6,13 +6,39 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 22:15:59 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/16 22:52:00 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/19 01:35:01 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void		read_file(char *file_name, UC *buf)
+UI				convert_to_ui(UC byte[4])
+{
+	UI	n;
+	UI	*ptr;
+
+	n = 0;
+	ptr = (UI*)byte;
+	n |= (*ptr & 0xFF000000) >> 24;
+	n |= (*ptr & 0x00FF0000) >> 8;
+	n |= (*ptr & 0x0000FF00) << 8;
+	n |= (*ptr & 0x000000FF) << 24;
+	return (n);
+}
+
+int				is_cor_extension(char *file_name)
+{
+	size_t	length;
+
+	assert(file_name != NULL);
+	length = ft_strlen(file_name);
+	if (length >= 4 && !ft_strcmp(COR_EXTENSION, file_name + length - 4))
+		return (TRUE);
+	print_error(ERR_NO_COR, file_name);
+	return (FALSE);
+}
+
+static void		read_file(char *file_name, UC *buf)
 {
 	int		fd;
 	UI		ret;
@@ -33,7 +59,7 @@ void		read_file(char *file_name, UC *buf)
 		print_error(ERR_FILE_OPEN, file_name);
 }
 
-void		validate_player(char *file_name, t_player *player, UC *buf)
+static void		validate_player(char *file_name, t_player *player, UC *buf)
 {
 	player->magic = convert_to_ui(buf);
 	if (player->magic == COREWAR_EXEC_MAGIC)
@@ -55,7 +81,7 @@ void		validate_player(char *file_name, t_player *player, UC *buf)
 		print_error(ERR_NO_MAGIC, file_name);
 }
 
-t_player	create_player(char *file_name)
+t_player		create_player(char *file_name)
 {
 	t_player	player;
 	UC			buf[MIN_FILE_SIZE + CHAMP_MAX_SIZE];

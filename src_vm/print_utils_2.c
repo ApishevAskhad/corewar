@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_utils.c                                      :+:      :+:    :+:   */
+/*   print_utils_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 14:48:39 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/13 20:18:57 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/19 02:37:55 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	print_usage(void)
+void	print_usage(char *prog)
 {
 	int	space_left;
 	int	space_right;
 
 	space_left = 3;
 	space_right = 8;
-	ft_printf("Usage: ./corewar [-dump N] [-v] [[-n N] champion1.cor] ...\n");
-	ft_printf("%*c -%-*s: Dumps memory after N cycles then exits\n",
-	space_left, ' ', space_right, "dump N");
-	ft_printf("%*c -%-*c: Visual mode\n", space_left, ' ', space_right, 'v');
-	ft_printf("%*c -%-*s: Sets the N number of the next player\n",
-	space_left, ' ', space_right, "n N");
+	ft_printf("Usage: %s [-dump N] [-v] [[-n N] champion1.cor] ...\n", prog);
+	ft_printf("%*c -%-*s: ", space_left, ' ', space_right, "n N");
+	ft_printf("Sets the N number of the next player\n");
+	ft_printf("%*c -%-*s: ", space_left, ' ', space_right, "a");
+	ft_printf("Prints output from \"aff\" (Default is to hide it)\n");
+	ft_printf("#### TEXT OUTPUT MODE ####\n");
+	ft_printf("%*c -%-*s: ", space_left, ' ', space_right, "dump N");
+	ft_printf("Dumps memory after N cycles then exits. 32 bits/line\n");
+	ft_printf("%*c -%-*s: ", space_left, ' ', space_right, "d N");
+	ft_printf("Dumps memory after N cycles then exits. 64 bits/line\n");
+	ft_printf("%*c -%-*s: ", space_left, ' ', space_right, "v N");
+	ft_printf("Verbosity levels, can be added together to enable several\n");
+	ft_printf("%*c %2s - Show lives\n", space_left * 5, ' ', "1");
+	ft_printf("%*c %2s - Show cycles\n", space_left * 5, ' ', "2");
+	ft_printf("%*c %2s - Show operations\n", space_left * 5, ' ', "4");
+	ft_printf("%*c %2s - Show deaths\n", space_left * 5, ' ', "8");
+	ft_printf("%*c %2s - Show PC movements (Except for jumps)\n",
+	space_left * 5, ' ', "16");
 	if (DEBUG == 0)
 		exit(ERR_USAGE);
 }
@@ -53,32 +65,6 @@ void	print_error(int error, char *name)
 		exit(error);
 }
 
-void	print_bits_ui(UI number)
-{
-	size_t	size;
-
-	size = 8 * sizeof(UI);
-	while (size--)
-	{
-		ft_printf("%c", (number & (0x80000000)) ? '1' : '0');
-		number <<= 1;
-		if (size && !(size % 8))
-			ft_printf(" ");
-	}
-}
-
-void	print_bits_char(char number)
-{
-	size_t	size;
-
-	size = 8 * sizeof(char);
-	while (size--)
-	{
-		ft_printf("%c", (number & (CHAR_MAX + 1)) ? '1' : '0');
-		number <<= 1;
-	}
-}
-
 void	print_hexdump(UC *ptr, size_t size)
 {
 	size_t	i;
@@ -95,11 +81,15 @@ void	print_hexdump(UC *ptr, size_t size)
 	}
 }
 
-void	print_catty_list(t_carry *head)
+void	print_carry_list(t_game *game)
 {
-	while (head)
+	t_carry	*carry;
+
+	carry = game->carries;
+	while (carry)
 	{
-		ft_printf("carry number: %d\n", head->nbr);
-		head = head->next;
+		ft_printf("carry %4d | pos %4d | op %02x\n",
+		carry->id, carry->pos, game->mem[carry->pos]);
+		carry = carry->next;
 	}
 }

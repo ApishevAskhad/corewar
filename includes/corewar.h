@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/13 20:11:59 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/19 02:41:11 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define COR_EXTENSION		".cor"
 # define UI					uint32_t
 # define UC					unsigned char
-# define DEBUG				1
+# define DEBUG				0
 # define OFF				-1
 # define MIN_FILE_SIZE		4 * 4 + PROG_NAME_LENGTH + COMMENT_LENGTH
 # define TRUE				1
@@ -31,7 +31,13 @@
 # define ARGS_SIZE			3
 # define OPS_SIZE			16
 
-enum e_operations {
+# define LOG_LIVES			1
+# define LOG_CYCLES			2
+# define LOG_OPERATIONS		4
+# define LOG_DEATHS			8
+# define LOG_MOVEMENTS		16
+
+enum	e_operations {
 	OP_LV = 1,
 	OP_LD,
 	OP_ST,
@@ -50,7 +56,7 @@ enum e_operations {
 	OP_AFF
 };
 
-enum e_errors {
+enum	e_errors {
 	ERR_SUCCESS,
 	ERR_USAGE,
 	ERR_NO_COR,
@@ -77,27 +83,9 @@ typedef struct				s_player
 	char					comment[COMMENT_LENGTH + 1];
 }							t_player;
 
-typedef struct				s_game
-{
-	int						players_nbr;
-	int						dump;
-	int						visual;
-	int						alive;
-	int						cycles;
-	int						lives;
-	int						cycle_to_die;
-	int						checkin_nbr;
-	int						timers[OPS_SIZE];
-	int						args_sizes[OPS_SIZE];
-	int						dir_sizes[OPS_SIZE];
-	void					*operations[OPS_SIZE];
-	t_player				players[MAX_PLAYERS];
-	UC						mem[MEM_SIZE];
-}							t_game;
-
 typedef struct				s_carry
 {
-	int						nbr;
+	int						id;
 	int						carry;
 	int						op;
 	int						live;
@@ -105,95 +93,149 @@ typedef struct				s_carry
 	int						pos;
 	int						jump;
 	int						args[ARGS_SIZE];
+	int						arg_types[ARGS_SIZE];
 	int						r[REG_NUMBER];
 	struct s_carry			*next;
 }							t_carry;
 
-typedef	void				(*t_handler)(t_game*, t_carry*);
+typedef struct				s_game
+{
+	int						players_nbr;
+	int						dump;
+	int						d;
+	int						v;
+	int						aff;
+	int						alive;
+	int						cycles;
+	int						lives;
+	int						cycles_to_die;
+	int						cycles_since_last_check;
+	int						checkin_nbr;
+	int						timers[OPS_SIZE];
+	int						args_sizes[OPS_SIZE];
+	int						dir_sizes[OPS_SIZE];
+	void					*operations[OPS_SIZE];
+	t_player				players[MAX_PLAYERS];
+	UC						mem[MEM_SIZE];
+	t_carry					*carries;
+}							t_game;
 
+typedef	void				(*t_handler)(t_game*, t_carry*);
 int							ft_printf(const char *restrict format, ...);
 
 /*
-** print_utils.c
+** carr_args.c
 */
-void						print_usage(void);
-void						print_error(int error, char *name);
-void						print_bits_ui(UI number);
-void						print_bits_char(char number);
-void						print_dump(UC *ptr, size_t size);
-void						print_hexdump(UC *ptr, size_t size);
-void						print_catty_list(t_carry *head);
+int							set_carry_args(t_game *game, t_carry *carry);
 
 /*
-** check_utils_01.c
+** carry_check.c
 */
+int							check_op_code(int code);
+int							check_args_code(t_carry *carry,
+							UC op_code, UC args_code);
+
+/*
+** clean_utils.c
+*/
+void						destroy(void *ptr);
+void						free_carry_list(t_carry *carry);
+
+/*
+** create_player.c
+*/
+UI							convert_to_ui(UC byte[4]);
 int							is_cor_extension(char *file_name);
-void						check_players_nbrs(t_game game);
+t_player					create_player(char *file_name);
+
+/*
+** init_game.c
+*/
+void						init_game(t_game *game);
 
 /*
 ** list_utils.c
 */
 t_carry						*new_carry(int nbr, int position);
 int							push_carry(t_carry **head, int nbr, int position);
-t_carry 					*del_carry(t_carry *carry, t_carry *needle);
-
-/*
-** clean_utils.c
-*/
-void						destroy(void *ptr);
-
-/*
-** create_player.c
-*/
-t_player					create_player(char *file_name);
-int							check_file(char *file_name);
-
-/*
-** init_game.c
-*/
-void						init_game(t_game *game);
-
-
-/*
-** utils_01.c
-*/
-UI							convert_to_ui(UC byte[4]);
-
-/*
-** init_game.c
-*/
-void						init_game(t_game *game);
-
-/*
-** introduce_player.c
-*/
-void						introduce_players(t_game game);
-void						introduce_winner(t_game game);
-
-/*
-** place_players.c
-*/
-void    					place_players_code(t_game *game, t_carry **carry);
-
-/*
-** parse_args.c
-*/
-void						parse_args(int argc, char *argv[], t_game *game);
-int							get_free_player_number(t_player *players);
-int							is_player_number_correct(int nbr, t_game game);
-
-/*
-** carry_utils.c
-*/
-int							check_args_code(UC op_code, UC args_code);
-int							check_op_code(UC code);
-int							set_carry_args(t_game *game, t_carry *carry);
+void						del_carry(t_carry **carry, t_carry *needle);
 
 /*
 ** main_cycle.c
 */
-void						main_cycle(t_game *game, t_carry *carry);
+void						main_cycle(t_game *game);
 
-
+/*
+** operations_1.c
+*/
 void						op_live(t_game *game, t_carry *carry);
+void						op_ld(t_game *game, t_carry *carry);
+void						op_st(t_game *game, t_carry *carry);
+void						op_add(t_game *game, t_carry *carry);
+
+/*
+** operations_2.c
+*/
+void						op_sub(t_game *game, t_carry *carry);
+void						op_and(t_game *game, t_carry *carry);
+void						op_or(t_game *game, t_carry *carry);
+void						op_xor(t_game *game, t_carry *carry);
+
+/*
+** operations_3.c
+*/
+void						op_zjmp(t_game *game, t_carry *carry);
+void						op_ldi(t_game *game, t_carry *carry);
+void						op_sti(t_game *game, t_carry *carry);
+void						op_fork(t_game *game, t_carry *carry);
+
+/*
+** operations_4.c
+*/
+void						op_lld(t_game *game, t_carry *carry);
+void						op_lldi(t_game *game, t_carry *carry);
+void						op_lfork(t_game *game, t_carry *carry);
+void						op_aff(t_game *game, t_carry *carry);
+
+/*
+** operations_utils.c
+*/
+void						write_4_bytes_to_mem(t_game *game,
+							int pos, int src);
+int							read_4_bytes_from_mem(t_game *game, int pos);
+int							read_2_bytes_from_mem(t_game *game, int pos);
+
+/*
+** parse_args.c
+*/
+void						check_players_nbrs(t_game game);
+int							is_player_number_correct(int nbr, t_game game);
+void						place_players_code(t_game *game, t_carry **carry);
+void						parse_args(int argc, char *argv[], t_game *game);
+
+/*
+** print_utils_2.c
+*/
+void						print_usage(char *prog_name);
+void						print_error(int error, char *name);
+void						print_hexdump(UC *ptr, size_t size);
+void						print_carry_list(t_game *game);
+
+/*
+** print_utils_1.c
+*/
+void						introduce_players(t_game game);
+void						introduce_winner(t_game game);
+void						print_dump_32(UC *ptr, size_t size);
+void						print_dump_64(UC *ptr, size_t size);
+
+/*
+** verbose_printing.c
+*/
+void						print_verbose_movements(t_game *game,
+							t_carry *carry);
+void						print_verbose_cycle(t_game *game);
+void						print_verbose_cycles_to_die(t_game *game);
+void						print_verbose_death(t_game *game, t_carry *carry);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 17:43:01 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/13 19:41:13 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/19 01:00:05 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,23 +74,22 @@ void	init_dir_size(t_game *game)
 
 void	init_operations(t_game *game)
 {
-	// TODO: fill with correspond functions
 	game->operations[OP_LV - 1] = op_live;
-	game->operations[OP_LD - 1] = op_live;
-	game->operations[OP_ST - 1] = op_live;
-	game->operations[OP_ADD - 1] = op_live;
-	game->operations[OP_SUB - 1] = op_live;
-	game->operations[OP_AND - 1] = op_live;
-	game->operations[OP_OR - 1] = op_live;
-	game->operations[OP_XOR - 1] = op_live;
-	game->operations[OP_ZJMP - 1] = op_live;
-	game->operations[OP_LDI - 1] = op_live;
-	game->operations[OP_STI - 1] = op_live;
-	game->operations[OP_FORK - 1] = op_live;
-	game->operations[OP_LLD - 1] = op_live;
-	game->operations[OP_LLDI - 1] = op_live;
-	game->operations[OP_LFORK - 1] = op_live;
-	game->operations[OP_AFF - 1] = op_live;
+	game->operations[OP_LD - 1] = op_ld;
+	game->operations[OP_ST - 1] = op_st;
+	game->operations[OP_ADD - 1] = op_add;
+	game->operations[OP_SUB - 1] = op_sub;
+	game->operations[OP_AND - 1] = op_and;
+	game->operations[OP_OR - 1] = op_or;
+	game->operations[OP_XOR - 1] = op_xor;
+	game->operations[OP_ZJMP - 1] = op_zjmp;
+	game->operations[OP_LDI - 1] = op_ldi;
+	game->operations[OP_STI - 1] = op_sti;
+	game->operations[OP_FORK - 1] = op_fork;
+	game->operations[OP_LLD - 1] = op_lld;
+	game->operations[OP_LLDI - 1] = op_lldi;
+	game->operations[OP_LFORK - 1] = op_lfork;
+	game->operations[OP_AFF - 1] = op_aff;
 }
 
 void	init_game(t_game *game)
@@ -98,7 +97,7 @@ void	init_game(t_game *game)
 	assert(game != NULL);
 	ft_bzero(game, sizeof(t_game));
 	game->dump = OFF;
-	game->cycle_to_die = CYCLE_TO_DIE;
+	game->cycles_to_die = CYCLE_TO_DIE;
 	init_timers(game);
 	init_args_size(game);
 	init_dir_size(game);

@@ -6,24 +6,26 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 18:16:56 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/13 19:48:22 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/19 01:40:20 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int		get_free_player_number(t_player *players)
+void		check_players_nbrs(t_game game)
 {
 	int i;
 
-	assert(players != NULL);
 	i = 0;
-	while (players[i++].magic && i <= MAX_PLAYERS)
-		;
-	return (i);
+	while (i < game.players_nbr)
+	{
+		if (!game.players[i].magic)
+			print_error(ERR_PL_NBRS_SEQUENCE, ft_itoa(i + 1));
+		i++;
+	}
 }
 
-int		is_player_number_correct(int nbr, t_game game)
+int			is_player_number_correct(int nbr, t_game game)
 {
 	char	*str;
 	int		no_error;
@@ -42,11 +44,16 @@ int		is_player_number_correct(int nbr, t_game game)
 	return (no_error);
 }
 
-void	set_player(t_game *game, int argc, char *argv[], int *i)
+static void	set_player(t_game *game, int argc, char *argv[], int *i)
 {
 	int	nbr;
 
-	nbr = get_free_player_number(game->players);
+	assert(game->players != NULL);
+	nbr = 1;
+	while (game->players[nbr - 1].magic && nbr <= MAX_PLAYERS)
+	{
+		nbr++;
+	}
 	if (!ft_strcmp(argv[*i], "-n") && *i + 2 < argc)
 	{
 		nbr = ft_atoi(argv[++(*i)]);
@@ -57,7 +64,25 @@ void	set_player(t_game *game, int argc, char *argv[], int *i)
 	game->players_nbr += 1;
 }
 
-void	parse_args(int argc, char *argv[], t_game *game)
+void		place_players_code(t_game *game, t_carry **carry)
+{
+	int				i;
+	int				n;
+	unsigned char	*start;
+
+	assert(game != NULL);
+	i = 0;
+	n = game->players_nbr;
+	while (i < n)
+	{
+		start = game->mem + i * MEM_SIZE / n;
+		ft_memcpy(start, game->players[i].code, CHAMP_MAX_SIZE);
+		push_carry(carry, -i - 1, i * MEM_SIZE / n);
+		i++;
+	}
+}
+
+void		parse_args(int argc, char *argv[], t_game *game)
 {
 	int i;
 
@@ -65,14 +90,18 @@ void	parse_args(int argc, char *argv[], t_game *game)
 	i = 0;
 	while (++i < argc)
 	{
-		if (!ft_strcmp(argv[i], "-v"))
-			game->visual = 1;
-		else if (!ft_strcmp(argv[i], "-dump") && i + 1 < argc)
+		if (!ft_strcmp(argv[i], "-dump") && i + 1 < argc)
 			game->dump = ft_atoi(argv[++i]);
+		else if (!ft_strcmp(argv[i], "-d") && i + 1 < argc)
+			game->d = ft_atoi(argv[++i]);
+		else if (!ft_strcmp(argv[i], "-a"))
+			game->aff = TRUE;
+		else if (!ft_strcmp(argv[i], "-v") && i + 1 < argc)
+			game->v = ft_atoi(argv[++i]);
 		else
 			set_player(game, argc, argv, &i);
 	}
 	if (game->players_nbr == 0)
-		print_usage();
+		print_usage(argv[0]);
 	check_players_nbrs(*game);
 }

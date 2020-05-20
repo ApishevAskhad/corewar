@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_print_dump.c                                  :+:      :+:    :+:   */
+/*   test_print_dump_32.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -23,9 +23,9 @@ int main()
     read(open("resources/champs/Gagnant.cor", O_RDONLY), test_champ, size_champ);
 
     ft_printf("Test blank dump, size: %d\n", size_zero);
-    print_dump(test_zero, size_zero);
+    print_dump_32(test_zero, size_zero);
 
      ft_printf("\nTest dump of champ file, size: %d\n", size_champ);
-    print_dump(test_champ, size_champ);
+    print_dump_32(test_champ, size_champ);
     return (0);
 }
