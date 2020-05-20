@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:55:42 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/11 19:28:17 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/05/16 05:21:31 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,14 @@ void			process_file(char *filename, short int options)
 	if (fd >= 0)
 	{
 		file = read_file(fd, filename);
-		parse_file(file);
-		if (file->is_correct)
-			translate_file(file, options);
-		else
-			print_file_validation_error(file);
+		if (file->is_read_successfully)
+		{
+			parse_file(file);
+			if (file->is_correct)
+				translate_file(file, options);
+			else
+				print_file_validation_error(file);
+		}
 	}
 	delete_file(&file);
 	close(fd);

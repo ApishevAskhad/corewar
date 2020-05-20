@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+         #
+#    By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 20:31:24 by gloras-t          #+#    #+#              #
 #    Updated: 2020/05/19 02:11:09 by slindgre         ###   ########.fr        #
@@ -44,7 +44,8 @@ OBJ_ASM		=	$(addprefix $(OBJ_ASM_DIR)/, printer.o \
 				file_translation.o \
 				freeing_memory.o \
 				file_parsing.o \
-				error_handling.o)
+				error_handling.o\
+				reading_binary_utils.o)
 
 INCLUDES	=	includes
 LIBFT 		=	$(INCLUDES)/ft_printf
