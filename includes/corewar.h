@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/19 02:41:11 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/20 23:32:05 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 # define LOG_OPERATIONS		4
 # define LOG_DEATHS			8
 # define LOG_MOVEMENTS		16
+
+# define STD_ERROR			2
 
 enum	e_operations {
 	OP_LV = 1,
