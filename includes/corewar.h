@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/19 02:41:11 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/21 00:07:42 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,8 +226,8 @@ void						print_carry_list(t_game *game);
 */
 void						introduce_players(t_game game);
 void						introduce_winner(t_game game);
-void						print_dump_32(UC *ptr, size_t size);
-void						print_dump_64(UC *ptr, size_t size);
+void						print_dump_32(t_game *game, size_t size);
+void						print_dump_64(t_game *game, size_t size);
 
 /*
 ** verbose_printing.c
