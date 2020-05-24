@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 14:48:39 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/19 02:37:55 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/20 23:45:59 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	print_error(int error, char *name)
 	error_msg[12] = "Player with this number already exists, got:";
 	error_msg[13] = "Player numbers are not consistent, lost: ";
 	error_msg[14] = "Dump";
-	ft_printf("{red}error:{eoc} %s %s\n", error_msg[error], name);
+	ft_printf("{red}error:{eoc} %s %s\n%_", error_msg[error], name, STD_ERROR);
 	if (DEBUG == 0)
 		exit(error);
 }

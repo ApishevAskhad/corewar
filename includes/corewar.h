@@ -37,6 +37,8 @@
 # define LOG_DEATHS			8
 # define LOG_MOVEMENTS		16
 
+# define STD_ERROR			2
+
 enum	e_operations {
 	OP_LV = 1,
 	OP_LD,
