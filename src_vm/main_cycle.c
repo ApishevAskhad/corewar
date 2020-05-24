@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 19:52:39 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/19 02:06:50 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/21 00:07:14 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ void		main_cycle(t_game *game)
 			game->cycles_since_last_check = 0;
 		}
 		if (game->cycles == game->d)
-			print_dump_64(game->mem, MEM_SIZE);
+			print_dump_64(game, MEM_SIZE);
 		if (game->cycles == game->dump)
-			print_dump_32(game->mem, MEM_SIZE);
+			print_dump_32(game, MEM_SIZE);
 	}
 }

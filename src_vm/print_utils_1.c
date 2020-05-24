@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:47:44 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/19 02:06:50 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/24 20:21:47 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,12 @@ void	introduce_winner(t_game game)
 	ft_printf("Contestant %d, \"%s\", has won !\n", i, p.prog_name);
 }
 
-void	print_dump_32(UC *ptr, size_t size)
+void	print_dump_32(t_game *game, size_t size)
 {
 	size_t	i;
+	UC		*ptr;
 
+	ptr = game->mem;
 	assert(ptr != NULL);
 	i = 0;
 	while (i < size)
@@ -54,13 +56,16 @@ void	print_dump_32(UC *ptr, size_t size)
 		if (i % 32 == 0 || i == size)
 			ft_printf("\n");
 	}
-	exit(ERR_DUMP);
+	free_carry_list(game->carries);
+	exit(ERR_SUCCESS);
 }
 
-void	print_dump_64(UC *ptr, size_t size)
+void	print_dump_64(t_game *game, size_t size)
 {
 	size_t	i;
+	UC		*ptr;
 
+	ptr = game->mem;
 	assert(ptr != NULL);
 	i = 0;
 	while (i < size)
@@ -72,5 +77,6 @@ void	print_dump_64(UC *ptr, size_t size)
 		if (i % 64 == 0 || i == size)
 			ft_printf(" \n");
 	}
-	exit(ERR_DUMP);
+	free_carry_list(game->carries);
+	exit(ERR_SUCCESS);
 }
