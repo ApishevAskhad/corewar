@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+         #
+#    By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 20:31:24 by gloras-t          #+#    #+#              #
-#    Updated: 2020/05/19 02:11:09 by slindgre         ###   ########.fr        #
+#    Updated: 2020/05/28 21:05:52 by slindgre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,11 +67,11 @@ $(OBJ_VM_DIR):
 	@mkdir $(OBJ_VM_DIR)
 
 $(ASM): $(OBJ_ASM_DIR) $(LIBFTP) $(OBJ_ASM_DIR)/asm.o $(OBJ_ASM)
-	@gcc -o $(ASM) $(OBJ_ASM_DIR)/asm.o $(OBJ_ASM) -I $(INCLUDES) -I $(LIBFTH) -L $(LIBFT)/ -lftp -g
+	@gcc -o $(FLAGS) $(ASM) $(OBJ_ASM_DIR)/asm.o $(OBJ_ASM) -I $(INCLUDES) -I $(LIBFTH) -L $(LIBFT)/ -lftp -g
 	@echo "$(GREEN)complete:$(EOC) $(ITALIC)ASM$(EOC)"
 
 $(COREWAR): $(OBJ_VM_DIR) $(LIBFTP) $(OBJ_VM_DIR)/corewar.o $(OBJ_VM)
-	@gcc -o $(COREWAR) $(OBJ_VM_DIR)/corewar.o $(OBJ_VM) -I $(INCLUDES) -I $(LIBFTH) -L $(LIBFT)/ -lftp -g
+	gcc -o $(FLAGS) $(COREWAR) $(OBJ_VM_DIR)/corewar.o $(OBJ_VM) -I $(INCLUDES) -I $(LIBFTH) -L $(LIBFT)/ -lftp -g
 	@echo "$(GREEN)complete:$(EOC) $(ITALIC)COREWAR$(EOC)"
 
 $(TEST_VM): $(OBJ_VM_DIR) $(OBJ_VM) $(LIBFTP) $(T)

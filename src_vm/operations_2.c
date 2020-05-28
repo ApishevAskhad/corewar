@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 01:50:10 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/19 01:49:53 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/24 22:20:48 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,16 @@ void	op_and(t_game *game, t_carry *carry)
 
 	arg1 = carry->args[0];
 	arg2 = carry->args[1];
-	if (carry->arg_types[0] == T_REG)
+	if (carry->arg_types[0] == REG_CODE)
 		arg1 = carry->r[carry->args[0] - 1];
-	if (carry->arg_types[1] == T_REG)
+	if (carry->arg_types[1] == REG_CODE)
 		arg2 = carry->r[carry->args[1] - 1];
-	if (carry->arg_types[0] == T_IND)
+	if (carry->arg_types[0] == IND_CODE)
 	{
 		pos = MEM_SIZE + carry->pos + (carry->args[0] % IDX_MOD);
 		arg1 = read_4_bytes_from_mem(game, pos);
 	}
-	if (carry->arg_types[1] == T_IND)
+	if (carry->arg_types[1] == IND_CODE)
 	{
 		pos = MEM_SIZE + carry->pos + (carry->args[1] % IDX_MOD);
 		arg2 = read_4_bytes_from_mem(game, pos);
@@ -68,16 +68,16 @@ void	op_or(t_game *game, t_carry *carry)
 
 	arg1 = carry->args[0];
 	arg2 = carry->args[1];
-	if (carry->arg_types[0] == T_REG)
+	if (carry->arg_types[0] == REG_CODE)
 		arg1 = carry->r[carry->args[0] - 1];
-	if (carry->arg_types[1] == T_REG)
+	if (carry->arg_types[1] == REG_CODE)
 		arg2 = carry->r[carry->args[1] - 1];
-	if (carry->arg_types[0] == T_IND)
+	if (carry->arg_types[0] == IND_CODE)
 	{
 		pos = MEM_SIZE + carry->pos + (carry->args[0] % IDX_MOD);
 		arg1 = read_4_bytes_from_mem(game, pos);
 	}
-	if (carry->arg_types[1] == T_IND)
+	if (carry->arg_types[1] == IND_CODE)
 	{
 		pos = MEM_SIZE + carry->pos + (carry->args[1] % IDX_MOD);
 		arg2 = read_4_bytes_from_mem(game, pos);
@@ -97,16 +97,16 @@ void	op_xor(t_game *game, t_carry *carry)
 
 	arg1 = carry->args[0];
 	arg2 = carry->args[1];
-	if (carry->arg_types[0] == T_REG)
+	if (carry->arg_types[0] == REG_CODE)
 		arg1 = carry->r[carry->args[0] - 1];
-	if (carry->arg_types[1] == T_REG)
+	if (carry->arg_types[1] == REG_CODE)
 		arg2 = carry->r[carry->args[1] - 1];
-	if (carry->arg_types[0] == T_IND)
+	if (carry->arg_types[0] == IND_CODE)
 	{
 		pos = MEM_SIZE + carry->pos + (carry->args[0] % IDX_MOD);
 		arg1 = read_4_bytes_from_mem(game, pos);
 	}
-	if (carry->arg_types[1] == T_IND)
+	if (carry->arg_types[1] == IND_CODE)
 	{
 		pos = MEM_SIZE + carry->pos + (carry->args[1] % IDX_MOD);
 		arg2 = read_4_bytes_from_mem(game, pos);

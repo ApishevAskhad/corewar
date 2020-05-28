@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 00:06:09 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/19 00:34:53 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/05/24 22:22:41 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	op_ld(t_game *game, t_carry *carry)
 	int	pos;
 	int	res;
 
-	if (carry->arg_types[0] == T_DIR)
+	if (carry->arg_types[0] == DIR_CODE)
 	{
 		res = carry->args[0];
 	}
@@ -61,7 +61,7 @@ void	op_st(t_game *game, t_carry *carry)
 	int res;
 
 	res = carry->r[carry->args[0] - 1];
-	if (carry->arg_types[1] == T_REG)
+	if (carry->arg_types[1] == REG_CODE)
 	{
 		carry->r[carry->args[1] - 1] = res;
 	}

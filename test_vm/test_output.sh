@@ -4,7 +4,7 @@ RED='\033[0;31m'
 EOC='\033[0m'
 
 pl_1="resources/champs/Gagnant.cor"
-pl_2="resources/champs/maxidef.cor"
+pl_2="resources/champs/aff.cor"
 pl_3=""
 pl_4=""
 
