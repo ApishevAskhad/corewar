@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:56:19 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/28 10:34:13 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/05/29 13:38:14 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@
 # define IND_STR "indirect"
 
 # define TYPES_STRINGS			{ REG_STR, DIR_STR, IND_STR }
+
+# define TAB_LEN				4
 
 
 typedef struct					s_op
@@ -181,6 +183,8 @@ void							print_file_parsing_error(t_file *file);
 void							delete_labels(t_label **labels);
 void							delete_file(t_file **file);
 
+char							*make_type_error_message(t_line *line, int i,
+														char *filename);
 void							fill_error(t_file *file, t_line *line,
 											unsigned int pos, char *message);
 
