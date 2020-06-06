@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 00:44:30 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/19 01:01:02 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/06/04 23:27:43 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	print_verbose_movements(t_game *game, t_carry *carry)
 	to = (MEM_SIZE + carry->pos + carry->jump) % MEM_SIZE;
 	if ((game->v & LOG_MOVEMENTS) && carry->jump != 0)
 	{
-		ft_printf("ADV %d (0x%04x -> 0x%04x) ", carry->jump, carry->pos, to);
+		ft_printf("ADV %d (0x%04x -> 0x%04x) ", carry->jump, carry->pos,
+		carry->pos + carry->jump);
 		i = 0;
 		while (i < carry->jump)
 		{

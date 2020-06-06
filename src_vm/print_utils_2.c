@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 14:48:39 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/20 23:45:59 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/06/06 19:48:37 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	print_usage(char *prog)
 	ft_printf("Usage: %s [-dump N] [-v] [[-n N] champion1.cor] ...\n", prog);
 	ft_printf("%*c -%-*s: ", space_left, ' ', space_right, "n N");
 	ft_printf("Sets the N number of the next player\n");
-	ft_printf("%*c -%-*s: ", space_left, ' ', space_right, "a");
-	ft_printf("Prints output from \"aff\" (Default is to hide it)\n");
 	ft_printf("#### TEXT OUTPUT MODE ####\n");
 	ft_printf("%*c -%-*s: ", space_left, ' ', space_right, "dump N");
 	ft_printf("Dumps memory after N cycles then exits. 32 bits/line\n");
@@ -37,7 +35,7 @@ void	print_usage(char *prog)
 	ft_printf("%*c %2s - Show deaths\n", space_left * 5, ' ', "8");
 	ft_printf("%*c %2s - Show PC movements (Except for jumps)\n",
 	space_left * 5, ' ', "16");
-	if (DEBUG == 0)
+	if (DEBUG == FALSE)
 		exit(ERR_USAGE);
 }
 
@@ -61,11 +59,11 @@ void	print_error(int error, char *name)
 	error_msg[13] = "Player numbers are not consistent, lost: ";
 	error_msg[14] = "Dump";
 	ft_printf("{red}error:{eoc} %s %s\n%_", error_msg[error], name, STD_ERROR);
-	if (DEBUG == 0)
+	if (DEBUG == FALSE)
 		exit(error);
 }
 
-void	print_hexdump(UC *ptr, size_t size)
+void	print_hexdump(uint8_t *ptr, size_t size)
 {
 	size_t	i;
 

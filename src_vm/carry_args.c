@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 23:38:27 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/18 23:43:43 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/06/04 23:46:02 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static int	check_reg_number(int reg_num)
 	return (FALSE);
 }
 
-static int	set_carry_arg(t_game *game, t_carry *carry, UC arg_code, int arg_n)
+static int	set_carry_arg(t_game *game, t_carry *carry, uint8_t arg_code,
+int arg_n)
 {
 	int	res;
 	int pos;
@@ -49,10 +50,10 @@ static int	set_carry_arg(t_game *game, t_carry *carry, UC arg_code, int arg_n)
 
 int			set_carry_args(t_game *game, t_carry *carry)
 {
-	int	i;
-	int	res;
-	UC	args_code;
-	UC	arg_code;
+	int		i;
+	int32_t	res;
+	uint8_t	args_code;
+	uint8_t	arg_code;
 
 	args_code = game->mem[(carry->pos + 1) % MEM_SIZE];
 	res = TRUE;

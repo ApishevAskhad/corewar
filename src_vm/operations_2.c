@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 01:50:10 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/24 22:20:48 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/06/04 23:52:12 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	op_sub(t_game *game, t_carry *carry)
 {
-	int res;
+	int32_t res;
 
 	if (game != NULL)
 	{
@@ -33,9 +33,9 @@ void	op_sub(t_game *game, t_carry *carry)
 
 void	op_and(t_game *game, t_carry *carry)
 {
-	int	arg1;
-	int arg2;
-	int	pos;
+	int32_t	arg1;
+	int32_t arg2;
+	int		pos;
 
 	arg1 = carry->args[0];
 	arg2 = carry->args[1];
@@ -62,9 +62,9 @@ void	op_and(t_game *game, t_carry *carry)
 
 void	op_or(t_game *game, t_carry *carry)
 {
-	int	arg1;
-	int arg2;
-	int	pos;
+	int32_t	arg1;
+	int32_t arg2;
+	int		pos;
 
 	arg1 = carry->args[0];
 	arg2 = carry->args[1];
@@ -91,9 +91,9 @@ void	op_or(t_game *game, t_carry *carry)
 
 void	op_xor(t_game *game, t_carry *carry)
 {
-	int	arg1;
-	int arg2;
-	int	pos;
+	int32_t	arg1;
+	int32_t arg2;
+	int		pos;
 
 	arg1 = carry->args[0];
 	arg2 = carry->args[1];

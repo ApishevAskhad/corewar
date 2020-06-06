@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 00:06:09 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/24 22:22:41 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/06/04 23:57:07 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,21 @@ void	op_live(t_game *game, t_carry *carry)
 	game->lives += 1;
 	if (game->v & LOG_OPERATIONS)
 	{
-		ft_printf("P %4d | live %d\n",
-		carry->id, carry->args[0]);
+		ft_printf("P %4d | live %d\n", carry->id, carry->args[0]);
 	}
 	if (carry->args[0] < 0 && -carry->args[0] <= game->players_nbr)
 	{
 		game->alive = -carry->args[0];
 		if (game->v & LOG_LIVES)
-			ft_printf("Player %d (%s) is said to be alive\n",
-			-carry->args[0], game->players[-carry->args[0] - 1].prog_name);
+			ft_printf("Player %d (%s) is said to be alive\n", -carry->args[0],
+			game->players[-carry->args[0] - 1].prog_name);
 	}
 }
 
 void	op_ld(t_game *game, t_carry *carry)
 {
-	int	pos;
-	int	res;
+	int		pos;
+	int32_t res;
 
 	if (carry->arg_types[0] == DIR_CODE)
 	{
@@ -50,15 +49,14 @@ void	op_ld(t_game *game, t_carry *carry)
 		carry->carry = 1;
 	if (game->v & LOG_OPERATIONS)
 	{
-		ft_printf("P %4d | ld %d r%d\n",
-		carry->id, res, carry->args[1]);
+		ft_printf("P %4d | ld %d r%d\n", carry->id, res, carry->args[1]);
 	}
 }
 
 void	op_st(t_game *game, t_carry *carry)
 {
-	int	pos;
-	int res;
+	int		pos;
+	int32_t res;
 
 	res = carry->r[carry->args[0] - 1];
 	if (carry->arg_types[1] == REG_CODE)
@@ -72,14 +70,14 @@ void	op_st(t_game *game, t_carry *carry)
 	}
 	if (game->v & LOG_OPERATIONS)
 	{
-		ft_printf("P %4d | st r%d %d\n",
-		carry->id, carry->args[0], carry->args[1]);
+		ft_printf("P %4d | st r%d %d\n", carry->id, carry->args[0],
+		carry->args[1]);
 	}
 }
 
 void	op_add(t_game *game, t_carry *carry)
 {
-	int res;
+	int32_t res;
 
 	res = carry->r[carry->args[0] - 1] + carry->r[carry->args[1] - 1];
 	carry->r[carry->args[2] - 1] = res;
@@ -88,7 +86,7 @@ void	op_add(t_game *game, t_carry *carry)
 		carry->carry = 1;
 	if (game->v & LOG_OPERATIONS)
 	{
-		ft_printf("P %4d | add r%d r%d r%d\n",
-		carry->id, carry->args[0], carry->args[1], carry->args[2]);
+		ft_printf("P %4d | add r%d r%d r%d\n", carry->id, carry->args[0],
+		carry->args[1], carry->args[2]);
 	}
 }
