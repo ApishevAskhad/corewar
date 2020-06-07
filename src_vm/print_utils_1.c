@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:47:44 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/24 20:21:47 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/06/04 23:33:33 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	introduce_winner(t_game game)
 void	print_dump_32(t_game *game, size_t size)
 {
 	size_t	i;
-	UC		*ptr;
+	uint8_t	*ptr;
 
 	ptr = game->mem;
 	assert(ptr != NULL);
@@ -63,7 +63,7 @@ void	print_dump_32(t_game *game, size_t size)
 void	print_dump_64(t_game *game, size_t size)
 {
 	size_t	i;
-	UC		*ptr;
+	uint8_t	*ptr;
 
 	ptr = game->mem;
 	assert(ptr != NULL);

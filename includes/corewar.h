@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 21:44:41 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/21 00:07:42 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/06/06 19:49:55 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,10 @@
 # include <stdint.h>
 
 # define COR_EXTENSION		".cor"
-# define UI					uint32_t
-# define UC					unsigned char
-# define DEBUG				0
-# define OFF				-1
-# define MIN_FILE_SIZE		4 * 4 + PROG_NAME_LENGTH + COMMENT_LENGTH
-# define TRUE				1
 # define FALSE				0
+# define TRUE				1
+# define DEBUG				FALSE
+# define OFF				-1
 
 # define ARGS_SIZE			3
 # define OPS_SIZE			16
@@ -78,9 +75,9 @@ enum	e_errors {
 
 typedef struct				s_player
 {
-	UI						magic;
-	UI						prog_size;
-	UC						code[CHAMP_MAX_SIZE];
+	uint32_t				magic;
+	uint32_t				prog_size;
+	uint8_t					code[CHAMP_MAX_SIZE];
 	char					prog_name[PROG_NAME_LENGTH + 1];
 	char					comment[COMMENT_LENGTH + 1];
 }							t_player;
@@ -94,9 +91,9 @@ typedef struct				s_carry
 	int						timer;
 	int						pos;
 	int						jump;
-	int						args[ARGS_SIZE];
+	int32_t					args[ARGS_SIZE];
 	int						arg_types[ARGS_SIZE];
-	int						r[REG_NUMBER];
+	int32_t					r[REG_NUMBER];
 	struct s_carry			*next;
 }							t_carry;
 
@@ -118,7 +115,7 @@ typedef struct				s_game
 	int						dir_sizes[OPS_SIZE];
 	void					*operations[OPS_SIZE];
 	t_player				players[MAX_PLAYERS];
-	UC						mem[MEM_SIZE];
+	uint8_t					mem[MEM_SIZE];
 	t_carry					*carries;
 }							t_game;
 
@@ -135,7 +132,7 @@ int							set_carry_args(t_game *game, t_carry *carry);
 */
 int							check_op_code(int code);
 int							check_args_code(t_carry *carry,
-							UC op_code, UC args_code);
+							uint8_t op_code, uint8_t args_code);
 
 /*
 ** clean_utils.c
@@ -146,7 +143,7 @@ void						free_carry_list(t_carry *carry);
 /*
 ** create_player.c
 */
-UI							convert_to_ui(UC byte[4]);
+uint32_t					convert_to_ui(uint8_t byte[4]);
 int							is_cor_extension(char *file_name);
 t_player					create_player(char *file_name);
 
@@ -204,8 +201,8 @@ void						op_aff(t_game *game, t_carry *carry);
 */
 void						write_4_bytes_to_mem(t_game *game,
 							int pos, int src);
-int							read_4_bytes_from_mem(t_game *game, int pos);
-int							read_2_bytes_from_mem(t_game *game, int pos);
+int32_t						read_4_bytes_from_mem(t_game *game, int pos);
+int16_t						read_2_bytes_from_mem(t_game *game, int pos);
 
 /*
 ** parse_args.c
@@ -220,7 +217,7 @@ void						parse_args(int argc, char *argv[], t_game *game);
 */
 void						print_usage(char *prog_name);
 void						print_error(int error, char *name);
-void						print_hexdump(UC *ptr, size_t size);
+void						print_hexdump(uint8_t *ptr, size_t size);
 void						print_carry_list(t_game *game);
 
 /*

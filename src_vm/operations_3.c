@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 01:50:15 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/19 01:47:38 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/06/04 23:52:46 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ void	op_zjmp(t_game *game, t_carry *carry)
 
 void	op_ldi(t_game *game, t_carry *carry)
 {
-	int	arg1;
-	int	arg2;
-	int	pos;
+	int32_t	arg1;
+	int32_t arg2;
+	int		pos;
 
 	arg1 = carry->args[0];
 	arg2 = carry->args[1];
-	if (carry->arg_types[0] == T_REG)
+	if (carry->arg_types[0] == REG_CODE)
 		arg1 = carry->r[carry->args[0] - 1];
-	if (carry->arg_types[1] == T_REG)
+	if (carry->arg_types[1] == REG_CODE)
 		arg2 = carry->r[carry->args[1] - 1];
-	if (carry->arg_types[0] == T_IND)
+	if (carry->arg_types[0] == IND_CODE)
 	{
 		pos = MEM_SIZE + carry->pos + (carry->args[0] % IDX_MOD);
 		arg1 = read_4_bytes_from_mem(game, pos);
@@ -57,19 +57,19 @@ void	op_ldi(t_game *game, t_carry *carry)
 
 void	op_sti(t_game *game, t_carry *carry)
 {
-	int	arg1;
-	int	arg2;
-	int	arg3;
-	int	pos;
+	int32_t	arg1;
+	int32_t arg2;
+	int32_t arg3;
+	int		pos;
 
 	arg1 = carry->r[carry->args[0] - 1];
 	arg2 = carry->args[1];
 	arg3 = carry->args[2];
-	if (carry->arg_types[1] == T_REG)
+	if (carry->arg_types[1] == REG_CODE)
 		arg2 = carry->r[carry->args[1] - 1];
-	if (carry->arg_types[2] == T_REG)
+	if (carry->arg_types[2] == REG_CODE)
 		arg3 = carry->r[carry->args[2] - 1];
-	if (carry->arg_types[1] == T_IND)
+	if (carry->arg_types[1] == IND_CODE)
 	{
 		pos = MEM_SIZE + carry->pos + (carry->args[1] % IDX_MOD);
 		arg2 = read_4_bytes_from_mem(game, pos);

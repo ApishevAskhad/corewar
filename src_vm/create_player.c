@@ -6,19 +6,19 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 22:15:59 by slindgre          #+#    #+#             */
-/*   Updated: 2020/05/19 01:35:01 by slindgre         ###   ########.fr       */
+/*   Updated: 2020/06/05 22:06:51 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-UI				convert_to_ui(UC byte[4])
+uint32_t		convert_to_ui(uint8_t byte[4])
 {
-	UI	n;
-	UI	*ptr;
+	uint32_t	n;
+	uint32_t	*ptr;
 
 	n = 0;
-	ptr = (UI*)byte;
+	ptr = (uint32_t*)byte;
 	n |= (*ptr & 0xFF000000) >> 24;
 	n |= (*ptr & 0x00FF0000) >> 8;
 	n |= (*ptr & 0x0000FF00) << 8;
@@ -38,19 +38,21 @@ int				is_cor_extension(char *file_name)
 	return (FALSE);
 }
 
-static void		read_file(char *file_name, UC *buf)
+static void		read_file(char *file_name, uint8_t *buf)
 {
-	int		fd;
-	UI		ret;
+	int			fd;
+	uint32_t	ret;
+	uint32_t	min_file_size;
 
+	min_file_size = 4 * 4 + PROG_NAME_LENGTH + COMMENT_LENGTH;
 	if ((fd = open(file_name, O_RDONLY)) > 2)
 	{
-		ret = read(fd, buf, MIN_FILE_SIZE + CHAMP_MAX_SIZE + 1);
-		if (ret < MIN_FILE_SIZE)
+		ret = read(fd, buf, min_file_size + CHAMP_MAX_SIZE + 1);
+		if (ret < min_file_size)
 			print_error(ERR_SMALL_FILE, file_name);
-		if (ret > (MIN_FILE_SIZE + CHAMP_MAX_SIZE))
+		if (ret > (min_file_size + CHAMP_MAX_SIZE))
 			print_error(ERR_LARGE_EXEC_CODE, file_name);
-		if ((MIN_FILE_SIZE + convert_to_ui(buf + (4 + PROG_NAME_LENGTH + 4)))
+		if ((min_file_size + convert_to_ui(buf + (4 + PROG_NAME_LENGTH + 4)))
 		!= ret)
 			print_error(ERR_WRONG_EXEC_CODE, file_name);
 		close(fd);
@@ -59,7 +61,7 @@ static void		read_file(char *file_name, UC *buf)
 		print_error(ERR_FILE_OPEN, file_name);
 }
 
-static void		validate_player(char *file_name, t_player *player, UC *buf)
+static void		validate_player(char *file_name, t_player *player, uint8_t *buf)
 {
 	player->magic = convert_to_ui(buf);
 	if (player->magic == COREWAR_EXEC_MAGIC)
@@ -84,12 +86,13 @@ static void		validate_player(char *file_name, t_player *player, UC *buf)
 t_player		create_player(char *file_name)
 {
 	t_player	player;
-	UC			buf[MIN_FILE_SIZE + CHAMP_MAX_SIZE];
+	uint8_t		bf[17 + PROG_NAME_LENGTH + COMMENT_LENGTH + CHAMP_MAX_SIZE];
 
 	is_cor_extension(file_name);
-	ft_bzero(buf, MIN_FILE_SIZE + CHAMP_MAX_SIZE);
-	read_file(file_name, buf);
+	ft_bzero(bf, 4 * 4 + PROG_NAME_LENGTH +
+	COMMENT_LENGTH + CHAMP_MAX_SIZE + 1);
+	read_file(file_name, bf);
 	ft_bzero(&player, sizeof(t_player));
-	validate_player(file_name, &player, buf);
+	validate_player(file_name, &player, bf);
 	return (player);
 }
