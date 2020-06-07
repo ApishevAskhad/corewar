@@ -6,7 +6,7 @@
 #    By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 20:31:24 by gloras-t          #+#    #+#              #
-#    Updated: 2020/05/29 14:48:19 by dtimeon          ###   ########.fr        #
+#    Updated: 2020/06/07 09:27:06 by dtimeon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,11 @@ OBJ_ASM		=	$(addprefix $(OBJ_ASM_DIR)/, printer.o \
 				parsing_asm_op_finding_op.o \
 				parsing_asm_arg.o \
 				replacing_labels_with_values.o \
-				op_data.o)
+				op_data.o \
+				parsing_binary_header.o \
+				translating_utils.o \
+				parsing_binary_code.o \
+				parsing_binary_args.o)
 
 INCLUDES	=	includes
 LIBFT 		=	$(INCLUDES)/ft_printf
