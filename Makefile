@@ -86,12 +86,12 @@ $(ASM): $(OBJ_ASM_DIR) $(LIBFTP) $(OBJ_ASM_DIR)/asm.o $(OBJ_ASM)
 	@echo "$(GREEN)complete:$(EOC) $(ITALIC)ASM$(EOC)"
 
 $(COREWAR): $(OBJ_VM_DIR) $(LIBFTP) $(OBJ_VM_DIR)/corewar.o $(OBJ_VM)
-	gcc $(FLAGS) -o $(COREWAR) $(OBJ_VM_DIR)/corewar.o $(OBJ_VM) -I $(INCLUDES) -I $(LIBFTH) -L $(LIBFT)/ -lftp -g
+	@gcc $(FLAGS) -o $(COREWAR) $(OBJ_VM_DIR)/corewar.o $(OBJ_VM) -I $(INCLUDES) -I $(LIBFTH) -L $(LIBFT)/ -lftp -g
 	@echo "$(GREEN)complete:$(EOC) $(ITALIC)COREWAR$(EOC)"
 
 $(TEST_VM): $(OBJ_VM_DIR) $(OBJ_VM) $(LIBFTP) $(T)
-	gcc -o $(TEST_VM) $(T) $(OBJ_VM) -I $(INCLUDES) -I $(LIBFTH) -L $(LIBFT)/ -lftp -g
-	echo "$(GREEN)complete:$(EOC) $(ITALIC)$(T)$(EOC)"
+	@gcc -o $(TEST_VM) $(T) $(OBJ_VM) -I $(INCLUDES) -I $(LIBFTH) -L $(LIBFT)/ -lftp -g
+	@echo "$(GREEN)complete:$(EOC) $(ITALIC)$(T)$(EOC)"
 
 $(TEST_ASM): $(OBJ_ASM_DIR) $(OBJ_ASM) $(LIBFTP) $(T)
 	@gcc -o $(TEST_ASM) $(T) $(OBJ_ASM) -I $(INCLUDES) -I $(LIBFTH) -L $(LIBFT)/ -lftp -g
