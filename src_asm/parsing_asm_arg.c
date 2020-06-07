@@ -6,14 +6,14 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 09:52:03 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/07 10:45:51 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/07 14:25:03 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static void		assign_arg_as(unsigned char type, t_arg *arg,
-								unsigned char is_dir_ind)
+void		assign_arg_as(unsigned char type, t_arg *arg,
+							unsigned char is_dir_ind)
 {
 	if (type == T_REG)
 	{
