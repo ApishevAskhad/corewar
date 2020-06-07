@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/27 08:52:51 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/05/28 08:56:51 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/07 10:08:44 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #define FOL "./test_asm/assets/file_parsing/"
 #define FOL_INC "./test_asm/assets/file_parsing/incorrect/"
+#define FOL_INC_2 "./test_vm/vm_unit_tests/test_players/"
 
 typedef struct
 {
@@ -151,6 +152,76 @@ void					test_incorrect_asm_files(int do_print_details)
 }
 
 
+void	test_correct_bin_files(void)
+{
+	char	*files[19] = {	FOL "only_label.cor",
+							FOL "negative_arg_values.cor",
+							FOL "random_spaces.cor",
+							FOL "minimum_spaces.cor",
+							FOL "repeating_labels.cor",
+							FOL "empty_name_and_comment.cor",
+							FOL "all_ops.cor",
+							FOL "multiline_name_and_comment.cor",
+							FOL "42.cor",
+							FOL "barriere.cor", 
+							FOL "Car.cor",
+							FOL "ex.cor",
+							FOL "Gagnant.cor",
+							FOL "jumper.cor",
+							FOL "maxidef.cor",
+							FOL "mortel.cor",
+							FOL "Octobre_Rouge_V4.2.cor",
+							FOL "slider2.cor",
+							FOL "toto.cor"};
+	t_file	*file;
+	int		fd;
+
+	for (int i = 0; i < 19; i++)
+	{
+		fd = open(files[i], O_RDONLY);
+		file = read_file(fd, files[i]);
+		parse_file(file);
+		assert(file->is_correct == TRUE);
+		delete_file(&file);
+	}
+}
+
+void	test_incorrect_bin_files(int do_print_details)
+{
+	char	*files[14] = {	FOL_INC "big_reg_value.cor",
+							FOL_INC "inaccurate_arg_types_code.cor",
+							FOL_INC "incomplete_op.cor",
+							FOL_INC "incorrect_op_code.cor",
+							FOL_INC "negative_reg_value.cor",
+							FOL_INC "not_enough_args.cor",
+							FOL_INC "wrong_arg_type.cor",
+							FOL_INC_2 "Player_no_gap_1.cor",
+							FOL_INC_2 "Player_no_gap_2.cor",
+							FOL_INC_2 "Player_no_magic.cor",
+							FOL_INC_2 "Player_prog_size_more_then_MAX.cor",
+							FOL_INC_2 "Player_valid.cor",
+							FOL_INC_2 "Player_wrong_prog_size_1.cor",
+							FOL_INC_2 "Player_wrong_prog_size_2.cor"};
+	t_file	*file;
+	int		fd;
+
+	for (int i = 0; i < 14; i++)
+	{
+		fd = open(files[i], O_RDONLY);
+		file = read_file(fd, files[i]);
+		parse_file(file);
+		if (do_print_details)
+		{
+			ft_printf("\nOpened file %i %s\n", i, files[i]);
+			ft_putendl(file->error_data->message);
+		}
+		assert(file->is_correct == FALSE);
+		if (file->error_data->is_needed_to_free_message)
+			ft_strdel(&(file->error_data->message));
+		delete_file(&file);
+	}
+}
+
 int		main(int ac, char **av)
 {
 	int	do_print_details = 0;
@@ -160,4 +231,7 @@ int		main(int ac, char **av)
 	test_correct_asm_files(do_print_details);
 	test_incorrect_asm_files(do_print_details);
 	ft_printf("OK: asm parsing\n");
+	test_incorrect_bin_files(do_print_details);
+	test_correct_bin_files();
+	ft_printf("OK: bin parsing\n");
 }
