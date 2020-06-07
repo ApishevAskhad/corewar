@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 19:08:08 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/05/29 14:07:36 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/07 09:28:49 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,29 @@
 void		print_error(char *filename, char *message)
 {
 	if (filename)
-		ft_printf("Error in file \"%s\": %s\n", filename, message);
+		ft_printf("Error in file {blue}%s{eoc}: %s\n", filename, message);
 	else
-		ft_printf("Error: %s\n", message);
+		ft_printf("\t{red}%s{red}\n\n", message);
 }
 
-static int	count_tabs(char *str)
+void 		print_bin_parsing_error(t_file *file)
 {
-	int		num_of_tabs;
+	ssize_t	pos;
 
-	num_of_tabs = 0;
-	while (*str)
-	{
-		if (*str == '\t')
-			num_of_tabs++;
-		str++;
-	}
-	return (num_of_tabs);
+	pos = file->error_data->error_pos;
+	if (pos >= 0)
+		ft_printf("     Byte %lli: | {red}%08hhB{eoc} | <-- ", pos,
+					*(file->champ_code + pos));
+	ft_printf("{red}%s{eoc}\n\n", file->error_data->message);
 }
 
-void		print_file_parsing_error(t_file *file)
+void		print_asm_parsing_error(t_file *file)
 {
 	size_t	offset;
 	size_t	line_num;
-	size_t	pos;
+	ssize_t	pos;
 	char	*message;
 
-	ft_printf("Parsing error in file {blue}%s{eoc}:\n", file->filename);
 	if (file->error_data->line)
 	{
 		line_num = file->error_data->line->num;
@@ -52,9 +48,18 @@ void		print_file_parsing_error(t_file *file)
 		ft_printf("{red}% *s{eoc}\n", pos + offset, "^");
 	}
 	message = file->error_data->message;
-	ft_printf("\t%s\n", message);
+	ft_printf("\t{red}%s{eoc}\n\n", message);
+}
+
+void		print_file_parsing_error(t_file *file)
+{
+	ft_printf("Parsing error in file {blue}%s{eoc}:\n", file->filename);
+	if (file->is_assembly)
+		print_asm_parsing_error(file);
+	else
+		print_bin_parsing_error(file);
 	if (file->error_data->is_needed_to_free_message)
-		ft_strdel(&message);
+		ft_strdel(&(file->error_data->message));
 }
 
 void		print_usage(char *program_path)

@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 01:46:09 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/05/27 08:57:49 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/06 11:06:11 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,17 @@ char			*join_with_line_break(char *first_str, char *second_str)
 	dest[dest_len] = '\0';
 	return(dest);
 }
-                                    
+
+int				count_tabs(char *str)
+{
+	int			num_of_tabs;
+
+	num_of_tabs = 0;
+	while (*str)
+	{
+		if (*str == '\t')
+			num_of_tabs++;
+		str++;
+	}
+	return (num_of_tabs);
+}

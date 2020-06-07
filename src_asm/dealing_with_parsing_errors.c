@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/23 00:56:31 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/05/29 13:38:34 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/06 14:40:04 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char			*make_type_error_message(t_line *line, int i, char *filename)
 }
 
 void			fill_error(t_file *file, t_line *line,
-								unsigned int pos, char *message)
+								ssize_t pos, char *message)
 {
 	file->error_data = init_error_data(file->filename);
 	file->error_data->line = line;

@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:56:19 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/29 13:38:14 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/07 09:20:29 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,18 @@
 # define DIR_AS_IND_CODE_SIZE	2
 # define DIR_AS_DATA_CODE_SIZE	4
 
-# define REG_STR "registry"
-# define DIR_STR "direct"
-# define IND_STR "indirect"
+# define REG_STR				"registry"
+# define DIR_STR				"direct"
+# define IND_STR				"indirect"
 
 # define TYPES_STRINGS			{ REG_STR, DIR_STR, IND_STR }
 
 # define TAB_LEN				4
 
+
+typedef unsigned int			t_magic;
+typedef unsigned int			t_sep;
+typedef unsigned int			t_prog_size;
 
 typedef struct					s_op
 {
@@ -141,6 +145,7 @@ unsigned char					is_blank_str(char *str);
 unsigned char					is_comment(char *str);
 char							*join_with_line_break(char *first_str,
 														char *second_str);
+int								count_tabs(char *str);
 
 t_file							*read_file(int fd, char *filename);
 
@@ -148,6 +153,13 @@ void							read_binary_champ_code(t_file *file,
 														ssize_t header_size);
 
 void							parse_file(t_file *file);
+
+void							parse_binary_header(t_file *file);
+
+void							parse_binary_code(t_file *file);
+
+size_t							parse_bin_args(unsigned char *bin_data,
+										t_line *line, size_t pos, t_file *file);
 
 void							parse_asm_header(t_file *file);
 
@@ -163,6 +175,8 @@ void							parse_asm_op(t_file *file, t_line *cur_line,
 												char **start_pos);
 t_op							*get_op(char **str);
 
+void							assign_arg_as(unsigned char type, t_arg *arg,
+										  		unsigned char is_dir_ind);
 void							parse_asm_arg(char **str, t_line *line, int i,
 												t_file *file);
 
@@ -176,6 +190,8 @@ unsigned char					is_comment_cmd(char *start_pos);
 
 void							translate_file(t_file *file, short int options);
 
+size_t							to_big_endian(size_t le_num, unsigned int size);
+
 void							print_error(char *filename, char *message);
 void							print_usage(char *program_path);
 void							print_file_parsing_error(t_file *file);
@@ -186,7 +202,7 @@ void							delete_file(t_file **file);
 char							*make_type_error_message(t_line *line, int i,
 														char *filename);
 void							fill_error(t_file *file, t_line *line,
-											unsigned int pos, char *message);
+											ssize_t pos, char *message);
 
 void							exit_with_allocation_error(char *filename);
 

@@ -6,14 +6,14 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 09:52:03 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/05/28 09:57:54 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/07 14:25:03 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static void		assign_arg_as(unsigned char type, t_arg *arg,
-								unsigned char is_dir_ind)
+void		assign_arg_as(unsigned char type, t_arg *arg,
+							unsigned char is_dir_ind)
 {
 	if (type == T_REG)
 	{
@@ -27,7 +27,7 @@ static void		assign_arg_as(unsigned char type, t_arg *arg,
 		arg->code = IND_CODE;
 		arg->size = IND_CODE_SIZE;
 	}
-	else
+	else if (type == T_DIR)
 	{
 		arg->type = T_DIR;
 		arg->code = DIR_CODE;
@@ -35,7 +35,7 @@ static void		assign_arg_as(unsigned char type, t_arg *arg,
 	}
 	arg->has_value_from_label = FALSE;
 	arg->label_name = NULL;
-	arg->value = 0;	
+	arg->value = 0;
 }
 
 static void		save_label_arg_value(char **str, t_line *line, int i,
