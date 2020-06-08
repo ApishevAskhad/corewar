@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 19:08:08 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/07 09:28:49 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/08 14:21:15 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		print_asm_parsing_error(t_file *file)
 	ssize_t	pos;
 	char	*message;
 
-	if (file->error_data->line)
+	if (file->error_data->line && file->error_data->line->initial_str)
 	{
 		line_num = file->error_data->line->num;
 		offset = ft_printf("     line %u: ", line_num);

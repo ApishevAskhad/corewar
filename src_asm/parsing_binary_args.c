@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 09:15:47 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/07 09:23:05 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/08 13:28:56 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ static size_t	save_bin_arg(unsigned char *bin_data, t_arg *arg)
 		((unsigned char *)(&arg->value))[arg->size - j - 1] = bin_data[j];
 		j++;
 	}
+	if (arg->size == sizeof(char))
+		arg->value = (char)arg->value;
+	else if (arg->size == sizeof(short int))
+		arg->value = (short int)arg->value;
+	arg->str_value = ft_itoa(arg->value);
 	return (j);
 }
 

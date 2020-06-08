@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 09:40:26 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/05/29 13:38:39 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/08 11:47:31 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void					check_sep_symbol(t_file *file, t_line *line,
 		(*str)++;
 }
 
-static unsigned short int	calc_op_size(t_line *line)
+unsigned short int			calc_op_size(t_line *line)
 {
 	unsigned short int		len;
 	int						i;
@@ -78,7 +78,7 @@ void						parse_asm_op(t_file *file, t_line *cur_line,
 {
 	int						i;
 
-	cur_line->op_data = get_op(start_pos);
+	save_op_data(start_pos, cur_line);
 	if (!(cur_line->op_data))
 		fill_error(file, cur_line, *start_pos - cur_line->initial_str,
 					"This is not valid label or valid operation, nor comment");

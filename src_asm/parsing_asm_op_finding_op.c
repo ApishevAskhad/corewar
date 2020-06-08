@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 10:00:33 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/05/29 14:48:24 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/07 17:25:57 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,10 @@ t_op				*get_op(char **str)
 	extern t_op		g_op_tab[OP_NUM];
 
 	return(find_op(str, (t_op *)g_op_tab));
+}
+
+void				save_op_data(char **str, t_line *line)
+{
+	line->op_pos = *str - line->initial_str;
+	line->op_data = get_op(str);
 }

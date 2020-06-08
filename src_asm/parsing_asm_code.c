@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 08:57:24 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/05/28 10:21:34 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/08 15:30:11 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void					parse_asm_code(t_file *file)
 	{
 		start_pos = find_first_non_space_char(cur_line->initial_str);
 		label_name = find_label(&start_pos, file, cur_line);
+		cur_line->pos = file->code_size;
 		if (label_name)
 			parse_labels(file, &cur_line, &start_pos, label_name);
 		if (!(file->error_data) && start_pos)
