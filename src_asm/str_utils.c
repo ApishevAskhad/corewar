@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 01:46:09 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/06 11:06:11 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/08 14:30:30 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char			*find_first_non_space_char(char *str)
 {
-	while (*str && ft_isspace(*str))
+	while (str && *str && ft_isspace(*str))
 		str++;
-	if (*str)
+	if (str && *str)
 		return(str);
 	return(NULL);
 }
@@ -64,6 +64,7 @@ int				count_tabs(char *str)
 	int			num_of_tabs;
 
 	num_of_tabs = 0;
+	
 	while (*str)
 	{
 		if (*str == '\t')

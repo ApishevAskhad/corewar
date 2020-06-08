@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:56:19 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/06/07 09:20:29 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/08 13:46:10 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@
 # define DIR_STR				"direct"
 # define IND_STR				"indirect"
 
+# define REG_SYM				"r"
+# define DIR_SYM				"%"
+# define IND_SYM				""
+
 # define TYPES_STRINGS			{ REG_STR, DIR_STR, IND_STR }
 
 # define TAB_LEN				4
@@ -74,11 +78,23 @@ typedef struct					s_arg
 	unsigned char				code;
 	int							value;
 	int							value_len;
+	char						*str_value;
 	unsigned char				size;
 	unsigned char				has_value_from_label;
 	char						*label_name;
 	size_t						label_name_len;
+	size_t						pos;
+	char						*sym;
 }								t_arg;
+
+typedef struct					s_label
+{
+	char						*name;
+	size_t						name_len;
+	struct s_line				*op_line;
+	struct s_label				*next;
+	size_t						pos;
+}								t_label;
 
 typedef struct					s_line
 {
@@ -89,7 +105,10 @@ typedef struct					s_line
 	size_t						pos;
 	unsigned short int			len;
 	unsigned char				has_label_in;
+	t_label						*label;
 	unsigned char				has_label_to_find;
+	size_t						op_pos;
+	unsigned char				arg_types_code;
 	struct s_line				*next;
 }								t_line;
 
@@ -100,14 +119,6 @@ typedef struct					s_error_data
 	char						*message;
 	unsigned char				is_needed_to_free_message;
 }								t_error_data;
-
-typedef struct					s_label
-{
-	char						*name;
-	size_t						name_len;
-	t_line						*op_line;
-	struct s_label				*next;
-}								t_label;
 
 typedef struct					s_file
 {
@@ -171,8 +182,11 @@ void							parse_asm_code(t_file *file);
 void							parse_labels(t_file *file, t_line **cur_line,
 											char **start_pos, char *label_name);
 
+unsigned short int				calc_op_size(t_line *line);
 void							parse_asm_op(t_file *file, t_line *cur_line,
 												char **start_pos);
+
+void							save_op_data(char **str, t_line *line);
 t_op							*get_op(char **str);
 
 void							assign_arg_as(unsigned char type, t_arg *arg,
@@ -190,8 +204,11 @@ unsigned char					is_comment_cmd(char *start_pos);
 
 void							translate_file(t_file *file, short int options);
 
+void							fill_arg_types_codes(t_line *line);
+char							*ft_strndup(const char *src, size_t n);
 size_t							to_big_endian(size_t le_num, unsigned int size);
 
+void							print_annotated_file(t_file *file);
 void							print_error(char *filename, char *message);
 void							print_usage(char *program_path);
 void							print_file_parsing_error(t_file *file);

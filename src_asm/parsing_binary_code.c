@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 10:30:39 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/07 10:38:40 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/08 12:16:40 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static unsigned char	*parse_bin_arg_types(unsigned char *bin_data, t_line *line,
 			fill_error(file, NULL, pos, "Incorrect arguments types byte");
 		i++;
 	}
+	line->arg_types_code = *bin_data;
 	return (types);
 }
 
@@ -97,11 +98,17 @@ void					parse_binary_code(t_file *file)
 	size_t				bytes_parsed;
 
 	bytes_parsed = 0;
+	file->first_code_line = file->first_line;
 	while((bytes_parsed < file->code_size) && !(file->error_data))
 	{
 		bytes_parsed += parse_bin_op(file->champ_code + bytes_parsed,
 										bytes_parsed, file);
-		if (!(file->error_data) && (bytes_parsed < file->code_size))
+		if (!(file->error_data))
+		{
+			file->last_line->len = calc_op_size(file->last_line);
+			file->last_line->pos = bytes_parsed - file->last_line->len;
+		}
+		if (!(file->error_data) && (bytes_parsed <= file->code_size))
 		{
 			file->last_line->next = init_line();
 			if (!(file->last_line->next))

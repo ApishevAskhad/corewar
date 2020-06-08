@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 01:44:01 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/07 09:12:50 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/08 13:58:19 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,21 @@
 void			delete_lines(t_file *file)
 {
 	t_line		*temp_line;
+	int			i;
 
 	while (file->first_line)
 	{
 		temp_line = file->first_line;
 		file->first_line = temp_line->next;
 		ft_strdel(&(temp_line->initial_str));
+		i = 0;
+		if (temp_line->op_data)
+			while (i < temp_line->op_data->number_of_args)
+			{
+				if (temp_line->args[i].str_value)
+					ft_strdel(&(temp_line->args[i].str_value));
+				i++;
+			}
 		ft_memdel((void**)&temp_line);
 	}
 }

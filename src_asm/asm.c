@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:55:42 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/05/28 09:13:42 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/08 14:27:31 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void			process_file(char *filename, short int options)
 		}
 		delete_file(&file);
 	}
-	close(fd);
+	if (fd >= 0)
+		close(fd);
 }
 
 int				main(int argc, char *argv[])
