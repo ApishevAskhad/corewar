@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 19:08:08 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/08 14:21:15 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/10 16:01:02 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void 		print_bin_parsing_error(t_file *file)
 {
 	ssize_t	pos;
 
-	pos = file->error_data->error_pos;
+	pos = file->error_data->bin_pos;
 	if (pos >= 0)
 		ft_printf("     Byte %lli: | {red}%08hhB{eoc} | <-- ", pos,
 					*(file->champ_code + pos));
@@ -35,17 +35,23 @@ void		print_asm_parsing_error(t_file *file)
 {
 	size_t	offset;
 	size_t	line_num;
-	ssize_t	pos;
+	char	*pos;
+	size_t	arrow_pos;
 	char	*message;
 
 	if (file->error_data->line && file->error_data->line->initial_str)
 	{
 		line_num = file->error_data->line->num;
 		offset = ft_printf("     line %u: ", line_num);
-		offset += count_tabs(file->error_data->line->initial_str) * TAB_LEN;
-		pos = file->error_data->error_pos;
+		pos = file->error_data->asm_pos;
+		offset += count_tabs(file->error_data->line->initial_str, pos) *
+					TAB_LEN;
+		if (pos)
+			arrow_pos = pos - file->error_data->line->initial_str;
+		else
+			arrow_pos = ft_strlen(file->error_data->line->initial_str);
 		ft_printf("{blue}%s{eoc}\n", file->error_data->line->initial_str);
-		ft_printf("{red}% *s{eoc}\n", pos + offset, "^");
+		ft_printf("{red}% *s{eoc}\n", arrow_pos + offset, "^");
 	}
 	message = file->error_data->message;
 	ft_printf("\t{red}%s{eoc}\n\n", message);

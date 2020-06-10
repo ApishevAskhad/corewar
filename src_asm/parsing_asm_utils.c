@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/23 00:45:24 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/05/26 07:54:09 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/10 14:03:55 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ char				*find_label(char **str, t_file *file, t_line *line)
 		return(label_name);
 	}
 	else if (i == 0 && (*str)[i] == LABEL_CHAR)
-		fill_error(file, line, *str - line->initial_str, 
-					"Label name cannot be empty");
+		fill_error(file, line, (t_pos)*str, "Label name cannot be empty");
 	return(NULL);
 }
 

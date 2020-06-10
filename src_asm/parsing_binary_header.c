@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 10:30:45 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/09 16:35:35 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/10 14:26:47 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,13 @@ static unsigned char	is_header_structure_valid(unsigned char *bin_data,
 {
 	if (!is_valid_magic(bin_data))
 	{
-		fill_error(file, NULL, -1, "Incorrect file signature");
+		fill_error(file, NULL, (t_pos)(ssize_t)-1, "Incorrect file signature");
 		return (0);
 	}
 	else if (!is_separators_present(bin_data))
 	{
-		fill_error(file, NULL, -1, "Zero-filled separator is not found");
+		fill_error(file, NULL, (t_pos)(ssize_t)-1,
+					"Zero-filled separator is not found");
 		return (0);
 	}
 	return (1);
@@ -60,7 +61,7 @@ static unsigned char	is_code_size_correct(t_file *file)
 	if (*(t_prog_size *)code_size_pos != 
 			(t_prog_size)to_big_endian(file->code_size, sizeof(t_prog_size)))
 	{
-		fill_error(file, NULL, -1,
+		fill_error(file, NULL, (t_pos)(ssize_t)-1,
 					"Declared program size does not match the actual size");
 		return (0);
 	}

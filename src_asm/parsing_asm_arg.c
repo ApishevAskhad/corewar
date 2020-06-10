@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 09:52:03 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/07 17:42:01 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/10 16:13:22 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ static void		save_label_arg_value(char **str, t_line *line, int i,
 			*str += j;
 		}
 		else
-			fill_error(file, line, *str - line->initial_str,
+			fill_error(file, line, (t_pos)*str,
 						"Incorrect label name in this argument");
 	}
 	else
-		fill_error(file, line, *str - line->initial_str - 1,
+		fill_error(file, line, (t_pos)*str,
 					"Unexpected line end, there should be a label name");
 }
 
@@ -88,13 +88,14 @@ static void		save_arg_value(char **str, t_line *line, int i, t_file *file)
 		*str += j;
 	}
 	else
-		fill_error(file, line, *str - line->initial_str,
+		fill_error(file, line, (t_pos)(*str + 1),
 					"Incorrect value of the argument");
 }
 
 void			parse_asm_arg(char **str, t_line *line, int i, t_file *file)
 {
 	*str = find_first_non_space_char(*str);
+	line->args[i].pos = *str;
 	if (*str && **str == REG_CHAR)
 	{
 		assign_arg_as(T_REG, &(line->args[i]), 0);
@@ -114,7 +115,7 @@ void			parse_asm_arg(char **str, t_line *line, int i, t_file *file)
 		else if (*str && **str)
 			save_arg_value(str, line, i, file);
 		else
-			fill_error(file, line, *str - line->initial_str - 1,
+			fill_error(file, line, (t_pos)*str,
 					"Unexpected line end, there should be the argument value");
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 10:31:16 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/10 10:32:55 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/10 14:30:57 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ static void		check_end_of_string(t_file *file, t_line **cur_line,
 	str_len = 0;
 	str_end_line = find_str_end_line(*cur_line, start_pos, &str_len);
 	if (!str_end_line)
-		fill_error(file, NULL, 0, "Name and comment strings should end "
- 										"with " STRING_END " symbol");
+		fill_error(file, NULL, (t_pos)(char *)NULL,
+			"Name and comment strings should end with " STRING_END " symbol");
 	else if (str_len > max_len)
-		fill_error(file, *cur_line, ft_strlen(start_pos), "String is too long");
+		fill_error(file, *cur_line, (t_pos)start_pos, "This string is too long");
 	else
 	{
 		if ((dest == NAME) && !(file->champ_name))
@@ -79,8 +79,8 @@ static void		check_end_of_string(t_file *file, t_line **cur_line,
 			file->champ_comment = save_string_asm(file, cur_line, str_end_line,
 													str_len);
 		else
-			fill_error(file, *cur_line, 0, "File should have no more than one"
-											" name and one comment");
+			fill_error(file, NULL, (t_pos)(char *)NULL, 
+					"File should have no more than one name and one comment");
 	}
 }
 
@@ -93,10 +93,11 @@ void			check_start_of_string(t_file *file, t_line **cur_line,
 	if (start_pos && *start_pos == *STRING_START)
 		check_end_of_string(file, cur_line, start_pos + 1, dest);
 	else if (!start_pos)
-		fill_error(file, *cur_line, 0, "The string should start on this line");
+		fill_error(file, *cur_line, (t_pos)(char *)NULL,
+					"The string should start on this line");
 	else
 	{
-		fill_error(file, *cur_line, start_pos - (*cur_line)->initial_str,
+		fill_error(file, *cur_line, (t_pos)start_pos,
 				"Expected a string starting with a " STRING_START " symbol");
 	}
 	if (!(file->error_data))

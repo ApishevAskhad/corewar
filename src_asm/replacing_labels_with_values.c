@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 09:30:43 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/05/28 09:32:19 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/10 15:37:43 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void				replace_label_with_value(t_file *file, t_arg *arg,
 		arg_index = ft_itoa(i + 1);
 		message = ft_strjoin("Couldn't find label to dereference argument #",
 								arg_index);
-		fill_error(file, line, 0, message);
+		fill_error(file, line, (t_pos)(arg->pos + 1), message);
 		file->error_data->is_needed_to_free_message = TRUE;
 		ft_strdel(&arg_index);
 	}

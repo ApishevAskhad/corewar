@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:56:19 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/06/10 09:50:13 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/10 16:01:32 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ typedef struct					s_arg
 	unsigned char				has_value_from_label;
 	char						*label_name;
 	size_t						label_name_len;
-	size_t						pos;
+	char						*pos;
 	char						*sym;
 }								t_arg;
 
@@ -121,10 +121,21 @@ typedef struct					s_line
 typedef struct					s_error_data
 {
 	t_line						*line;
-	size_t						error_pos;
+	ssize_t						bin_pos;
+	char						*asm_pos;
 	char						*message;
 	unsigned char				is_needed_to_free_message;
 }								t_error_data;
+
+typedef struct					s_warning
+{
+	t_line						*line;
+	size_t						pos;
+	char						*s_pos;
+	char						*message;
+	struct s_warning			*next;
+}								t_warning;
+
 
 typedef struct					s_file
 {
@@ -149,6 +160,12 @@ typedef struct					s_file
 	t_error_data				*error_data;
 }								t_file;
 
+typedef union					u_pos
+{
+	ssize_t						bin_pos;
+	char						*asm_pos;
+}								t_pos;
+
 
 int								ft_printf(const char *restrict format, ...);
 
@@ -166,7 +183,7 @@ unsigned char					is_blank_str(char *str);
 unsigned char					is_comment(char *str);
 char							*join_with_line_break(char *first_str,
 														char *second_str);
-int								count_tabs(char *str);
+int								count_tabs(char *str, char *end_pos);
 
 t_file							*read_file(int fd, char *filename);
 
@@ -233,7 +250,7 @@ void							delete_file(t_file **file);
 char							*make_type_error_message(t_line *line, int i,
 														char *filename);
 void							fill_error(t_file *file, t_line *line,
-											ssize_t pos, char *message);
+											t_pos pos, char *message);
 
 void							exit_with_allocation_error(char *filename);
 

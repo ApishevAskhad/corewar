@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 10:30:39 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/09 20:50:56 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/10 14:26:51 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static unsigned char	*parse_bin_arg_types(unsigned char *bin_data, t_line *line,
 
 	i = 0;
 	if (*bin_data & 3)
-		fill_error(file, NULL, pos,
+		fill_error(file, NULL, (t_pos)(ssize_t)pos,
 					"Expected arguments types byte to end with 2 zero bits");
 	if (!(types = (unsigned char *)ft_memalloc(sizeof(unsigned char) * 3)))
 		exit_with_allocation_error(file->filename);
@@ -35,10 +35,10 @@ static unsigned char	*parse_bin_arg_types(unsigned char *bin_data, t_line *line,
 		else if (arg_code == IND_CODE)
 			types[i] = T_IND;
 		else
-			fill_error(file, NULL, pos, "Incorrect arguments types byte");
+			fill_error(file, NULL, (t_pos)(ssize_t)pos,
+						"Incorrect arguments types byte");
 		i++;
 	}
-	line->arg_types_code = *bin_data;
 	return (types);
 }
 
@@ -49,7 +49,10 @@ static size_t			save_bin_arg_types(unsigned char *bin_data, t_line *line,
 	int					i;
 
 	if (line->op_data->has_arg_type_code)
+	{
 		types = parse_bin_arg_types(bin_data, line, pos, file);
+		line->arg_types_code = *bin_data;
+	}
 	else
 		types = line->op_data->arg_types;
 	i = 0;
@@ -77,9 +80,9 @@ static size_t			parse_bin_op(unsigned char *bin_data, size_t pos,
 	bytes_parsed = 1;
 	cur_line = file->last_line;
 	if ((*bin_data > OP_NUM) || (*bin_data == 0))
-		fill_error(file, NULL, pos, "Incorrect operation code");
+		fill_error(file, NULL, (t_pos)(ssize_t)pos, "Incorrect operation code");
 	else if (pos + bytes_parsed >= file->code_size)
-		fill_error(file, NULL, -1,
+		fill_error(file, NULL, (t_pos)(ssize_t)-1,
 					"Some operations/arguments are incomplete or missing");
 	else
 	{

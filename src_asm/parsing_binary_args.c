@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 09:15:47 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/08 13:28:56 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/10 14:26:55 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ static void		check_bin_arg(t_line *line, int i, size_t pos,
 	if (!(line->op_data->arg_types[i] & arg.type))
 	{
 		message = make_type_error_message(line, i, file->filename);
-		fill_error(file, NULL, pos, message);
+		fill_error(file, NULL, (t_pos)(ssize_t)pos, message);
 		file->error_data->is_needed_to_free_message = TRUE;
 	}
 	else if ((arg.type == T_REG) && ((char)arg.value < 0))
-		fill_error(file, NULL, pos,
+		fill_error(file, NULL, (t_pos)(ssize_t)pos,
 					"Registry argument value cannot be negative");
 	else if ((arg.type == T_REG) && (arg.value > 99))
-		fill_error(file, NULL, pos,
+		fill_error(file, NULL, (t_pos)(ssize_t)pos,
 					"Registry argument value cannot be larger than 99");
 	
 }
@@ -65,7 +65,7 @@ size_t			parse_bin_args(unsigned char *bin_data, t_line *line,
 	while (i < line->op_data->number_of_args && !(file->error_data))
 	{
 		if ((pos + bytes_parsed + line->args[i].size) > file->code_size)
-			fill_error(file, NULL, -1,
+			fill_error(file, NULL, (t_pos)(ssize_t)-1,
 						"Some operations/arguments are incomplete or missing");
 		else
 			arg_len = save_bin_arg(bin_data + bytes_parsed,

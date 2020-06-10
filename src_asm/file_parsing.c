@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 01:47:56 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/07 10:25:41 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/10 14:33:15 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void		parse_header(t_file *file)
 		if (!(file->error_data) &&
 			(!(file->champ_name) || !(file->champ_comment)))
 		{
-			fill_error(file, NULL, -1,
+			fill_error(file, NULL, (t_pos)(char *)NULL,
 						"File should contain a champion name and a comment");
 		}
 	}

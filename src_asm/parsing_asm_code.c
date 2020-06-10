@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 08:57:24 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/08 15:30:11 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/10 14:34:07 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void				process_new_code_line(t_file *file, t_line **cur_line)
 	if ((*cur_line)->next == file->last_line)
 	{
 		if (!is_line_break_found(file))
-			fill_error(file, *cur_line, ft_strlen((*cur_line)->initial_str),
+			fill_error(file, *cur_line, (t_pos)(char *)NULL,
 				"Every code line should end with a line break symbol");
 	}
 	if (!(file->error_data))

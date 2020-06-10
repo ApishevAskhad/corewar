@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 09:40:26 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/08 11:47:31 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/10 16:15:51 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,18 @@ static unsigned char		is_arg_correct(t_line *line, int i, t_file *file)
 	if (!(line->op_data->arg_types[i] & arg.type))
 	{
 		message = make_type_error_message(line, i, file->filename);
-		fill_error(file, line, 0, message);
+		fill_error(file, line, (t_pos)line->args[i].pos, message);
 		file->error_data->is_needed_to_free_message = TRUE;
 	}
 	else if ((arg.type == T_REG) && arg.has_value_from_label)
-		fill_error(file, line, 0, "Registry argument value cannot be a label");
+		fill_error(file, line, (t_pos)(line->args[i].pos + 1),
+					"Registry argument value cannot be a label");
 	else if ((arg.type == T_REG) && (arg.value < 0))
-		fill_error(file, line, 0, "Registry argument value cannot be negative");
+		fill_error(file, line, (t_pos)(line->args[i].pos + 1),
+					"Registry argument value cannot be negative");
 	else if ((arg.type == T_REG) && (arg.value_len > 2))
-		fill_error(file, line, 0, "Registry argument value is too long");
+		fill_error(file, line, (t_pos)(line->args[i].pos + 1),
+					"Registry argument value is too long");
 	if (!(file->error_data))
 		return(TRUE);
 	return(FALSE);
@@ -41,10 +44,11 @@ static void					check_sep_symbol(t_file *file, t_line *line,
 {
 	*str = find_first_non_space_char(*str);
 	if  (!(*str) || (!(**str)))
-		fill_error(file, line, ft_strlen(line->initial_str), "Unexpected line "
-			"end, there should be a separator symbol and more arguments");
+		fill_error(file, line, (t_pos)(char *)NULL,
+					"Unexpected line end, there should be a separator symbol "
+					"and more arguments");
 	else if (**str != SEPARATOR_CHAR)
-		fill_error(file, line, *str - line->initial_str, 
+		fill_error(file, line, (t_pos)*str,
 					"Expected separator symbol before the next argument");
 	else
 		(*str)++;
@@ -80,7 +84,7 @@ void						parse_asm_op(t_file *file, t_line *cur_line,
 
 	save_op_data(start_pos, cur_line);
 	if (!(cur_line->op_data))
-		fill_error(file, cur_line, *start_pos - cur_line->initial_str,
+		fill_error(file, cur_line, (t_pos)(*start_pos + 1),
 					"This is not valid label or valid operation, nor comment");
 	else
 	{
@@ -95,7 +99,7 @@ void						parse_asm_op(t_file *file, t_line *cur_line,
 					check_sep_symbol(file, cur_line, start_pos);
 			}
 			else
-				fill_error(file, cur_line, ft_strlen(cur_line->initial_str),
+				fill_error(file, cur_line, (t_pos)(char *)NULL,
 							"Expected more arguments");
 		}
 		if (!(file->error_data))
