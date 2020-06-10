@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 10:03:54 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/08 15:28:26 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/09 10:31:42 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static char	*find_next_op_str(t_file *file, t_line **cur_line,
 
 	op_pos = NULL;
 	temp_label = first_label;
-	while (((*cur_line) != file->last_line) && !op_pos)
+	while (((*cur_line) != file->last_line) && (!op_pos || is_comment(op_pos)))
 	{
 		(*cur_line) = (*cur_line)->next;
 		skip_non_useful_lines(cur_line);
@@ -76,7 +76,6 @@ static void		save_labels_to_file(t_label *first_label, t_file *file)
 		file->labels = first_label;
 }
 
-
 void			parse_labels(t_file *file, t_line **cur_line, char **start_pos,
 								char *label_name)
 {
@@ -87,7 +86,7 @@ void			parse_labels(t_file *file, t_line **cur_line, char **start_pos,
 	first_label = init_label(label_name, file->filename);
 	first_label_line = *cur_line;
 	op_pos = find_first_non_space_char(*start_pos);
-	if (!op_pos && (*cur_line)->next != file->last_line)
+	if ((!op_pos || is_comment(op_pos)) && (*cur_line)->next != file->last_line)
 		op_pos =find_next_op_str(file, cur_line, first_label, (*cur_line)->pos);
 	*start_pos = op_pos;
 	if (op_pos)

@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 01:44:01 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/08 13:58:19 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/09 16:35:35 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,11 @@ void			delete_file(t_file **file)
 		ft_strdel(&((*file)->champ_name));
 	if ((*file)->champ_comment)
 		ft_strdel(&((*file)->champ_comment));
-	if ((*file)->binary_header)
-		ft_memdel((void **)&((*file)->binary_header));
+	if ((*file)->header)
+		ft_memdel((void **)&((*file)->header));
 	if ((*file)->champ_code)
 		ft_memdel((void **)&((*file)->champ_code));
+	if ((*file)->out_filename)
+		ft_strdel(&(*file)->out_filename);
 	ft_memdel((void **)file);
 }

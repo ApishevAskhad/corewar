@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 01:45:26 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/05/23 05:35:05 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/09 21:21:15 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ static void				read_binary_file(t_file *file)
 	unsigned char		*buffer;
 	ssize_t				bytes_read;
 
-	min_size = 2 * sizeof(unsigned int) + PROG_NAME_LENGTH + COMMENT_LENGTH + 8;
+	min_size = sizeof(t_magic) + PROG_NAME_LENGTH + COMMENT_LENGTH +
+				2 * sizeof(t_sep) + sizeof(t_prog_size);
 	buffer = (unsigned char *)malloc(sizeof(unsigned char) * min_size);
 	if (!buffer)
 		exit_with_allocation_error(file->filename);
@@ -75,8 +76,9 @@ static void				read_binary_file(t_file *file)
 	}
 	else
 	{
-		file->binary_header = buffer;
-		read_binary_champ_code(file, min_size);			
+		file->header = buffer;
+		file->header_size = min_size;
+		read_binary_champ_code(file, min_size);
 	}
 }
 

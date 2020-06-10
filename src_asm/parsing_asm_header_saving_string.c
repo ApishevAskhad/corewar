@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 10:31:16 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/05/28 10:32:36 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/10 10:32:55 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ static void		check_end_of_string(t_file *file, t_line **cur_line,
 {
 	size_t		max_len;
 	size_t		str_len;
-	char		*str;
 	t_line		*str_end_line;
 
 	max_len = (dest == NAME ? PROG_NAME_LENGTH : COMMENT_LENGTH);
@@ -73,11 +72,15 @@ static void		check_end_of_string(t_file *file, t_line **cur_line,
 		fill_error(file, *cur_line, ft_strlen(start_pos), "String is too long");
 	else
 	{
-		str = save_string_asm(file, cur_line, str_end_line, str_len);
-		if (dest == NAME)
-			file->champ_name = str;
+		if ((dest == NAME) && !(file->champ_name))
+			file->champ_name = save_string_asm(file, cur_line, str_end_line,
+												str_len);
+		else if ((dest == COMMENT) && !(file->champ_comment))
+			file->champ_comment = save_string_asm(file, cur_line, str_end_line,
+													str_len);
 		else
-			file->champ_comment = str;
+			fill_error(file, *cur_line, 0, "File should have no more than one"
+											" name and one comment");
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 10:30:39 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/08 12:16:40 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/09 20:50:56 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,29 @@ static size_t			parse_bin_op(unsigned char *bin_data, size_t pos,
 	return (bytes_parsed);
 }
 
+/*
+** [5 spaces][op][space][sym][value][sep][space][next arg]\n
+*/
+size_t					calc_str_len(t_line *line)
+{
+	size_t				len;
+	t_arg				arg;
+	int					i;
+
+	len = sizeof(char) * 5 + line->op_data->name_len + sizeof(char);
+	i = 0;
+	while (i < line->op_data->number_of_args)
+	{
+		arg = line->args[i];
+		len += ft_strlen(arg.sym) + ft_strlen(arg.str_value);
+		i++;
+		if (i < line->op_data->number_of_args)
+			len += sizeof(char) * 2;		
+	}
+	len += sizeof(char);
+	return (len);
+}
+
 void					parse_binary_code(t_file *file)
 {
 	size_t				bytes_parsed;
@@ -107,6 +130,8 @@ void					parse_binary_code(t_file *file)
 		{
 			file->last_line->len = calc_op_size(file->last_line);
 			file->last_line->pos = bytes_parsed - file->last_line->len;
+			file->last_line->str_len = calc_str_len(file->last_line);
+			file->str_code_len += file->last_line->str_len;
 		}
 		if (!(file->error_data) && (bytes_parsed <= file->code_size))
 		{

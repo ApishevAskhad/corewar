@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 10:30:45 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/06 18:27:10 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/09 16:35:35 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static unsigned char	is_code_size_correct(t_file *file)
 	size_t				code_size_offset;
 
 	code_size_offset = sizeof(t_magic) + PROG_NAME_LENGTH + sizeof(t_sep);
-	code_size_pos = file->binary_header + code_size_offset;
+	code_size_pos = file->header + code_size_offset;
 	if (*(t_prog_size *)code_size_pos != 
 			(t_prog_size)to_big_endian(file->code_size, sizeof(t_prog_size)))
 	{
@@ -75,10 +75,10 @@ void					parse_binary_header(t_file *file)
 	size_t				comment_len;
 	size_t				comment_offset;
 
-	if (is_header_structure_valid(file->binary_header, file) &&
+	if (is_header_structure_valid(file->header, file) &&
 			is_code_size_correct(file))
 	{
-		name_pos = file->binary_header + sizeof(t_magic);
+		name_pos = file->header + sizeof(t_magic);
 		name_len = ft_strlen((char *)name_pos);
 		file->champ_name = ft_strnew(name_len);
 		if (!(file->champ_code))
