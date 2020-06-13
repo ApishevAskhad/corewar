@@ -6,7 +6,7 @@
 #    By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 20:31:24 by gloras-t          #+#    #+#              #
-#    Updated: 2020/06/10 09:54:40 by dtimeon          ###   ########.fr        #
+#    Updated: 2020/06/12 23:13:23 by dtimeon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,11 @@ OBJ_ASM		=	$(addprefix $(OBJ_ASM_DIR)/, printer.o \
 				parsing_binary_args.o \
 				printing_annotated_file.o \
 				translating_asm.o \
-				translating_bin.o)
+				translating_bin.o \
+				printing_warnings.o \
+				ft_strtol.o \
+				ft_strnchr.o \
+				ft_chrtoint.o)
 
 INCLUDES	=	includes
 LIBFT 		=	$(INCLUDES)/ft_printf

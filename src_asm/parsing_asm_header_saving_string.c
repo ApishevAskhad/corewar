@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 10:31:16 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/10 14:30:57 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/13 14:13:33 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static char		*save_string_asm(t_file *file, t_line **cur_line,
 	char		*str;
 	char		*start_pos;
 	size_t		copied_len;
+	size_t		last_line_str_len;
 
-	str = ft_strnew(str_len);
-	if (!str)
+	if (!(str = ft_strnew(str_len)))
 		exit_with_allocation_error(file->filename);
 	copied_len = 0;
 	start_pos = ft_strchr((*cur_line)->initial_str, *STRING_START) + 1;
@@ -46,12 +46,17 @@ static char		*save_string_asm(t_file *file, t_line **cur_line,
 	{
 		ft_strcpy(str + copied_len, start_pos);
 		copied_len += ft_strlen(start_pos);
-		str[copied_len] = '\n';
-		copied_len++;
+		str[copied_len++] = '\n';
 		*cur_line = (*cur_line)->next;
 		start_pos = (*cur_line)->initial_str;
 	}
-	ft_strncpy(str + copied_len, start_pos, str_len - copied_len);
+	last_line_str_len = str_len - copied_len;
+	ft_strncpy(str + copied_len, start_pos, last_line_str_len);
+	start_pos += last_line_str_len + 1;
+	if (!is_blank_str(start_pos) && !is_comment(start_pos))
+		fill_warning(file, *cur_line,
+						(t_pos)(find_first_non_space_char(start_pos) + 1), 
+						"Unexpected symbol after the string end");
 	return(str);
 }
 

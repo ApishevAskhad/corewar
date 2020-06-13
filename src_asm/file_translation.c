@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 01:45:40 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/10 09:47:12 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/10 17:33:10 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,6 @@ void			write_data_to_file(t_file *file)
 {
 	write(file->out_fd, file->header, file->header_size);
 	write(file->out_fd, file->champ_code, file->code_size);
-}
-
-void			print_warnings(t_file *file)
-{
-	(void)file;
 }
 
 void				translate_file(t_file *file, short int options)

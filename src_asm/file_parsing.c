@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 01:47:56 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/10 14:33:15 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/13 12:38:42 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ static void		parse_header(t_file *file)
 	}
 	else
 		parse_binary_header(file);
+	if (!(file->error_data) && !*(file->champ_name))
+		fill_warning(file, NULL, (t_pos)(ssize_t)-1,
+					"Champion name is an empty string");
+	if (!(file->error_data) && !*(file->champ_comment))
+		fill_warning(file, NULL, (t_pos)(ssize_t)-1,
+					"Champion comment is empty");
 }
 
 static void		parse_code(t_file *file)
@@ -43,6 +49,11 @@ void			parse_file(t_file *file)
 	{
 		parse_code(file);
 		if (!(file->error_data))
+		{
 			file->is_correct = TRUE;
+			if (file->code_size == 0)
+				fill_warning(file, NULL, (t_pos)(ssize_t)-1,
+								"No operations in this file");
+		}
 	}
 }

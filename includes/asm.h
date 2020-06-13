@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:56:19 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/06/10 16:01:32 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/13 14:04:05 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define ANNOTATION_OPTION_CODE	1
 # define WARNINGS_OPTION		'w'
 # define WARNINGS_OPTION_CODE	2
+# define OPTIONS_CHARS			"aw"
 
 # define SOURCE_EXTENSION		".s"
 # define BINARY_EXTENSION		".cor"
@@ -130,9 +131,10 @@ typedef struct					s_error_data
 typedef struct					s_warning
 {
 	t_line						*line;
-	size_t						pos;
-	char						*s_pos;
+	ssize_t						bin_pos;
+	char						*asm_pos;
 	char						*message;
+	unsigned char				is_needed_to_free_message;
 	struct s_warning			*next;
 }								t_warning;
 
@@ -158,6 +160,8 @@ typedef struct					s_file
 	unsigned char				is_read_successfully;
 	unsigned char				is_correct;
 	t_error_data				*error_data;
+	t_warning					*first_warning;
+	t_warning					*last_warning;
 }								t_file;
 
 typedef union					u_pos
@@ -171,10 +175,12 @@ int								ft_printf(const char *restrict format, ...);
 
 t_line							*init_line();
 t_label							*init_label(char *label_name, char *filename);
+t_warning						*init_warning(char *filename);
 t_error_data					*init_error_data(char *filename);
 t_file							*init_file(int fd, char *filename);
 
-short int						read_options(char *line);
+short int						read_options(char **args, int num_of_args,
+												short int *options);
 
 int								is_valid_file(int fd, char *filename);
 
@@ -239,6 +245,13 @@ void							fill_arg_types_codes(t_line *line);
 char							*ft_strndup(const char *src, size_t n);
 size_t							to_big_endian(size_t le_num, unsigned int size);
 
+char							*ft_strnchr(const char *str, char c, size_t n);
+int								ft_chrtoint(char c);
+long int						ft_strtol(const char *nptr, char **endptr,
+											int base);
+
+void							print_warnings(t_file *file);
+
 void							print_annotated_file(t_file *file);
 void							print_error(char *filename, char *message);
 void							print_usage(char *program_path);
@@ -251,6 +264,8 @@ char							*make_type_error_message(t_line *line, int i,
 														char *filename);
 void							fill_error(t_file *file, t_line *line,
 											t_pos pos, char *message);
+void							fill_warning(t_file *file, t_line *line,
+												t_pos pos, char *message);
 
 void							exit_with_allocation_error(char *filename);
 

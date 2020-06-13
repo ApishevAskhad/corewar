@@ -6,12 +6,11 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 09:40:26 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/10 16:15:51 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/11 13:41:05 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
 
 static unsigned char		is_arg_correct(t_line *line, int i, t_file *file)
 {

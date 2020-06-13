@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 01:44:01 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/09 16:35:35 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/12 04:12:43 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,19 @@ void			delete_labels(t_label **labels)
 	}
 }
 
+void			delete_warnings(t_file *file)
+{
+	t_warning	*temp_warning;
+
+	temp_warning = file->first_warning;
+	while(temp_warning)
+	{
+		file->first_warning = temp_warning->next;
+		ft_memdel((void **)&temp_warning);
+		temp_warning = file->first_warning;
+	}
+}
+
 void			delete_file(t_file **file)
 {
 	delete_lines(*file);
@@ -55,6 +68,8 @@ void			delete_file(t_file **file)
 		delete_labels(&((*file)->labels));
 	if ((*file)->error_data)
 		ft_memdel((void **)&((*file)->error_data));
+	if ((*file)->first_warning)
+		delete_warnings(*file);
 	if ((*file)->champ_name)
 		ft_strdel(&((*file)->champ_name));
 	if ((*file)->champ_comment)
