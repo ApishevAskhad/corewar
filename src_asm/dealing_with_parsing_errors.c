@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/23 00:56:31 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/06 14:40:04 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/10 17:29:51 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,37 @@ char			*make_type_error_message(t_line *line, int i, char *filename)
 }
 
 void			fill_error(t_file *file, t_line *line,
-								ssize_t pos, char *message)
+								t_pos pos, char *message)
 {
 	file->error_data = init_error_data(file->filename);
 	file->error_data->line = line;
-	file->error_data->error_pos = pos;
 	file->error_data->message = message;
+	if (file->is_assembly)
+		file->error_data->asm_pos = pos.asm_pos;
+	else
+		file->error_data->bin_pos = pos.bin_pos;
+}
+
+void			fill_warning(t_file *file, t_line *line, t_pos pos,
+								char *message)
+{
+	t_warning	*new_warning;
+
+	new_warning = init_warning(file->filename);
+	new_warning->line = line;
+	new_warning->message = message;
+	if (file->is_assembly)
+		new_warning->asm_pos = pos.asm_pos;
+	else
+		new_warning->bin_pos = pos.bin_pos;
+	if (!(file->first_warning))
+	{
+		file->first_warning = new_warning;
+		file->last_warning = new_warning;
+	}
+	else
+	{
+		file->last_warning->next = new_warning;
+		file->last_warning = new_warning;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 09:52:03 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/07 17:42:01 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/13 14:12:09 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ static void		save_label_arg_value(char **str, t_line *line, int i,
 			*str += j;
 		}
 		else
-			fill_error(file, line, *str - line->initial_str,
+			fill_error(file, line, (t_pos)*str,
 						"Incorrect label name in this argument");
 	}
 	else
-		fill_error(file, line, *str - line->initial_str - 1,
+		fill_error(file, line, (t_pos)*str,
 					"Unexpected line end, there should be a label name");
 }
 
@@ -83,18 +83,43 @@ static void		save_arg_value(char **str, t_line *line, int i, t_file *file)
 	if (j > 0)
 	{
 		line->args[i].value_len = j;
-		line->args[i].value = ft_atoi(*str);
+		line->args[i].value = ft_strtol(*str, NULL, 10);
 		line->args[i].str_value = ft_strndup(*str, j);
 		*str += j;
 	}
 	else
-		fill_error(file, line, *str - line->initial_str,
+		fill_error(file, line, (t_pos)(*str + 1),
 					"Incorrect value of the argument");
+}
+
+void			check_spaces_before_arg(char **str, t_line *line,
+										t_file *file)
+{
+	char		*non_space_pos;
+
+	non_space_pos = find_first_non_space_char(*str);
+	if (non_space_pos && (non_space_pos == *str))
+	{
+		if (!ft_isspace(*(*str -1)) && *(*str - 1) != SEPARATOR_CHAR &&
+			**str == REG_CHAR)
+		{
+			fill_warning(file, line, (t_pos)*str,
+						"No space between operation and registry argument");
+		}
+		else if (!ft_isspace(*(*str -1)) && *(*str - 1) != SEPARATOR_CHAR &&
+					ft_isdigit(**str))
+		{
+			fill_warning(file, line, (t_pos)*str,
+						"No space between operation and indirect argument");
+		}
+	}
+	*str = non_space_pos;
 }
 
 void			parse_asm_arg(char **str, t_line *line, int i, t_file *file)
 {
-	*str = find_first_non_space_char(*str);
+	check_spaces_before_arg(str, line, file);
+	line->args[i].pos = *str;
 	if (*str && **str == REG_CHAR)
 	{
 		assign_arg_as(T_REG, &(line->args[i]), 0);
@@ -114,7 +139,7 @@ void			parse_asm_arg(char **str, t_line *line, int i, t_file *file)
 		else if (*str && **str)
 			save_arg_value(str, line, i, file);
 		else
-			fill_error(file, line, *str - line->initial_str - 1,
+			fill_error(file, line, (t_pos)*str,
 					"Unexpected line end, there should be the argument value");
 	}
 }

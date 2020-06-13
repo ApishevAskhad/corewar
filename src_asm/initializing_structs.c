@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 01:45:59 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/05/26 12:05:23 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/10 17:26:24 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@ t_label				*init_label(char *label_name, char *filename)
 	label->name = label_name;
 	label->name_len = ft_strlen(label_name);
 	return(label);
+}
+
+t_warning			*init_warning(char *filename)
+{
+	t_warning		*warning;
+
+	warning	= (t_warning *)ft_memalloc(sizeof(t_warning));
+	if (!warning)
+		exit_with_allocation_error(filename);
+	return(warning);
 }
 
 t_error_data		*init_error_data(char *filename)

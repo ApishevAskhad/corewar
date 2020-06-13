@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 02:46:47 by dtimeon           #+#    #+#             */
-/*   Updated: 2019/11/18 23:10:51 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/10 20:11:56 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,18 @@ static int	is_readble_file(int fd)
 
 int			is_valid_file(int fd, char *filename)
 {
+	if (!is_valid_extension(filename))
+	{
+		print_error(filename, "Filename should have " SOURCE_EXTENSION " or "
+					BINARY_EXTENSION " extension");
+		return (0);
+	}
 	if (fd < 0)
 	{
 		if (!*filename)
 			print_error(NULL, "Filename can't be empty");
 		else
 			print_error(filename, "Unable to open file for reading");
-		return (0);
-	}
-	if (!is_valid_extension(filename))
-	{
-		print_error(filename, "Filename should have " SOURCE_EXTENSION " or "
-					BINARY_EXTENSION " extension");
 		return (0);
 	}
 	if (!is_readble_file(fd))

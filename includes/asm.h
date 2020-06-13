@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:56:19 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/06/08 13:46:10 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/13 14:04:05 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 
 # define ANNOTATION_OPTION		'a'
 # define ANNOTATION_OPTION_CODE	1
+# define WARNINGS_OPTION		'w'
+# define WARNINGS_OPTION_CODE	2
+# define OPTIONS_CHARS			"aw"
 
 # define SOURCE_EXTENSION		".s"
 # define BINARY_EXTENSION		".cor"
@@ -37,6 +40,9 @@
 # define OP_NUM					16
 
 # define REG_CHAR				'r'
+
+# define OP_SIZE				1
+# define TYPES_SIZE				1
 
 # define REG_CODE_SIZE			1
 # define IND_CODE_SIZE			2
@@ -83,7 +89,7 @@ typedef struct					s_arg
 	unsigned char				has_value_from_label;
 	char						*label_name;
 	size_t						label_name_len;
-	size_t						pos;
+	char						*pos;
 	char						*sym;
 }								t_arg;
 
@@ -104,6 +110,7 @@ typedef struct					s_line
 	t_arg						args[3];
 	size_t						pos;
 	unsigned short int			len;
+	size_t						str_len;
 	unsigned char				has_label_in;
 	t_label						*label;
 	unsigned char				has_label_to_find;
@@ -115,39 +122,65 @@ typedef struct					s_line
 typedef struct					s_error_data
 {
 	t_line						*line;
-	size_t						error_pos;
+	ssize_t						bin_pos;
+	char						*asm_pos;
 	char						*message;
 	unsigned char				is_needed_to_free_message;
 }								t_error_data;
+
+typedef struct					s_warning
+{
+	t_line						*line;
+	ssize_t						bin_pos;
+	char						*asm_pos;
+	char						*message;
+	unsigned char				is_needed_to_free_message;
+	struct s_warning			*next;
+}								t_warning;
+
 
 typedef struct					s_file
 {
 	int							fd;
 	char						*filename;
+	int							out_fd;
+	char						*out_filename;
 	t_line						*first_line;
 	t_line						*last_line;
 	t_line						*first_code_line;
 	unsigned char				is_assembly;
 	char						*champ_name;
 	char						*champ_comment;
-	unsigned char				*binary_header;
+	unsigned char				*header;
+	size_t						header_size;
 	unsigned char				*champ_code;
 	t_label						*labels;
+	size_t						str_code_len;
 	size_t						code_size;
 	unsigned char				is_read_successfully;
 	unsigned char				is_correct;
 	t_error_data				*error_data;
+	t_warning					*first_warning;
+	t_warning					*last_warning;
 }								t_file;
+
+typedef union					u_pos
+{
+	ssize_t						bin_pos;
+	char						*asm_pos;
+}								t_pos;
 
 
 int								ft_printf(const char *restrict format, ...);
 
 t_line							*init_line();
 t_label							*init_label(char *label_name, char *filename);
+t_warning						*init_warning(char *filename);
 t_error_data					*init_error_data(char *filename);
 t_file							*init_file(int fd, char *filename);
 
-short int						read_options(char *line);
+short int						read_options(char **args, int num_of_args,
+												short int *options);
 
 int								is_valid_file(int fd, char *filename);
 
@@ -156,7 +189,7 @@ unsigned char					is_blank_str(char *str);
 unsigned char					is_comment(char *str);
 char							*join_with_line_break(char *first_str,
 														char *second_str);
-int								count_tabs(char *str);
+int								count_tabs(char *str, char *end_pos);
 
 t_file							*read_file(int fd, char *filename);
 
@@ -204,9 +237,20 @@ unsigned char					is_comment_cmd(char *start_pos);
 
 void							translate_file(t_file *file, short int options);
 
+void							translate_bin(t_file *file, short int options);
+
+void							translate_asm(t_file *file, short int options);
+
 void							fill_arg_types_codes(t_line *line);
 char							*ft_strndup(const char *src, size_t n);
 size_t							to_big_endian(size_t le_num, unsigned int size);
+
+char							*ft_strnchr(const char *str, char c, size_t n);
+int								ft_chrtoint(char c);
+long int						ft_strtol(const char *nptr, char **endptr,
+											int base);
+
+void							print_warnings(t_file *file);
 
 void							print_annotated_file(t_file *file);
 void							print_error(char *filename, char *message);
@@ -219,7 +263,9 @@ void							delete_file(t_file **file);
 char							*make_type_error_message(t_line *line, int i,
 														char *filename);
 void							fill_error(t_file *file, t_line *line,
-											ssize_t pos, char *message);
+											t_pos pos, char *message);
+void							fill_warning(t_file *file, t_line *line,
+												t_pos pos, char *message);
 
 void							exit_with_allocation_error(char *filename);
 

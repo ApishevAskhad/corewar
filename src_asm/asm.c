@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:55:42 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/06/08 14:27:31 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/10 20:11:50 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,15 @@ void			process_file(char *filename, short int options)
 int				main(int argc, char *argv[])
 {
 	int			i;
+	int			args_read;
 	short int	options;
 
 	i = 1;
 	if (argc > 1)
 	{
-		options = read_options(argv[1]);
+		args_read = read_options(argv + 1, argc - 1, &options);
 		if (options)
-			i++;
+			i += args_read;
 		if (argc == i)
 			print_error(NULL, "No files. Specify filename after options");
 		while (i < argc)
