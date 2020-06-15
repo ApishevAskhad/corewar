@@ -12,7 +12,7 @@
 
 import os
 import filecmp
-from subprocess import run
+from subprocess import run, PIPE
 from shutil import copy as copy_file
 from platform import system
 from time import time
@@ -29,7 +29,7 @@ def run_program(program, file, file_copy_name, measure_time):
     if measure_time:
         run_time = time()
     output = run(f"./{program} {file_copy_name}",
-                 capture_output=True, shell=True)
+                 stdout=PIPE, stderr=PIPE, shell=True)
     if measure_time:
         run_time = time() - run_time
     return(output.returncode, (output.stdout + output.stderr).decode('utf-8'),
@@ -147,7 +147,7 @@ def run_leak_check(program, options, file):
         if not option == "":
             option = f" -{option}"
         command = f"valgrind ./{program}{option} {temp_file}"
-        valgrind_output = run(command, capture_output=True, shell=True)
+        valgrind_output = run(command, stdout=PIPE, stderr=PIPE, shell=True)
         valgrind_output = valgrind_output.stderr.decode('utf-8')
         print_cur_task(f"Checking for leaks '{tc.some_color}"
                        f"{program}{option} {temp_file}{tc.color_clear}'")
