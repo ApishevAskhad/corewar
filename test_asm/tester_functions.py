@@ -120,6 +120,21 @@ def gather_files(tests_dirs):
     return(files)
 
 
+def check_leaks_on_empty_program():
+    command = f"valgrind ./{tc.empty_main}"
+    valgrind_output = run(command, stderr=PIPE, shell=True)
+    valgrind_output = valgrind_output.stderr.decode('utf-8')
+    leaks_pos = valgrind_output.find(tc.definitely_line)
+    if leaks_pos >= 0:
+        leaks_part = valgrind_output[leaks_pos:].splitlines()
+        tc.no_leaks_line_mac_1 = leaks_part[0]
+        leaks_pos = leaks_part[1].find(tc.indirectly_line)
+        tc.no_leaks_line_mac_2 = leaks_part[1][leaks_pos:]
+        error_summary_pos = leaks_part[8].find(tc.error_summary_line)
+        offset = error_summary_pos + len(tc.error_summary_line)
+        tc.no_error_line = leaks_part[8][offset:]
+
+
 def check_valgrind_output(output, program, file):
     if (system() == 'Linux' and tc.no_leaks_line_linux not in output) or \
        (system() == 'Darwin' and (tc.no_leaks_line_mac_1 not in output or

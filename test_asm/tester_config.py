@@ -11,7 +11,8 @@
 # *************************************************************************** #
 
 tested_asm = 'asm'
-school_asm = 'test_asm/school_asm_mac'
+school_asm = 'test_asm/school_asm_linux'
+empty_main = 'test_asm/empty_main_linux_leak'
 temp_tested_asm_file = 'test_asm/temp_tested.s'
 temp_school_asm_file = 'test_asm/temp_school.s'
 temp_tested_bin_file = 'test_asm/temp_tested.cor'
@@ -28,6 +29,9 @@ no_leaks_line_linux = 'no leaks are possible'
 no_leaks_line_mac_1 = 'definitely lost: 0 bytes in 0 blocks'
 no_leaks_line_mac_2 = 'indirectly lost: 0 bytes in 0 blocks'
 no_error_line = '0 errors from 0 contexts (suppressed: 0 from 0)'
+definitely_line = "definitely lost: "
+indirectly_line = "indirectly lost: "
+error_summary_line = "ERROR SUMMARY: "
 
 blue = "\u001b[34;1m"
 red = "\u001b[31;1m"

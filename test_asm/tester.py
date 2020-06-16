@@ -42,6 +42,9 @@ if __name__ == "__main__":
     if args.options:
         options.extend(args.options)
 
+    if not args.no_leak_check:
+        tf.check_leaks_on_empty_program()
+
     if args.reversed_test:
         tc.tested_asm, tc.school_asm = tc.school_asm, tc.tested_asm
 
