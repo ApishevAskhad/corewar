@@ -68,6 +68,7 @@ static void		translate_bin_args(t_line *line, char **dest)
 /*
 ** [5 spaces][op][space][sym][value][sep][space][next arg]\n
 */
+
 static void		translate_bin_code(t_file *file)
 {
 	char		*dest;

@@ -6,12 +6,12 @@
 #    By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #    Created: 2020/06/15 13:46:08 by dtimeon           #+#    #+#             #
-#    Updated: 2020/06/15 17:22:51 by dtimeon          ###   ########.fr       #
+#    Updated: 2020/06/16 12:16:03 by student          ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
 tested_asm = 'asm'
-school_asm = 'test_asm/asm'
+school_asm = 'test_asm/school_asm_mac'
 temp_tested_asm_file = 'test_asm/temp_tested.s'
 temp_school_asm_file = 'test_asm/temp_school.s'
 temp_tested_bin_file = 'test_asm/temp_tested.cor'

@@ -61,7 +61,6 @@
 
 # define TAB_LEN				4
 
-
 typedef unsigned int			t_magic;
 typedef unsigned int			t_sep;
 typedef unsigned int			t_prog_size;
@@ -138,7 +137,6 @@ typedef struct					s_warning
 	struct s_warning			*next;
 }								t_warning;
 
-
 typedef struct					s_file
 {
 	int							fd;
@@ -156,7 +154,7 @@ typedef struct					s_file
 	unsigned char				*champ_code;
 	t_label						*labels;
 	size_t						str_code_len;
-	size_t						code_size;
+	ssize_t						code_size;
 	unsigned char				is_read_successfully;
 	unsigned char				is_correct;
 	t_error_data				*error_data;
@@ -168,8 +166,8 @@ typedef union					u_pos
 {
 	ssize_t						bin_pos;
 	char						*asm_pos;
+	void						*null_pos;
 }								t_pos;
-
 
 int								ft_printf(const char *restrict format, ...);
 
@@ -203,7 +201,7 @@ void							parse_binary_header(t_file *file);
 void							parse_binary_code(t_file *file);
 
 size_t							parse_bin_args(unsigned char *bin_data,
-										t_line *line, size_t pos, t_file *file);
+									t_line *line, ssize_t pos, t_file *file);
 
 void							parse_asm_header(t_file *file);
 
@@ -223,7 +221,7 @@ void							save_op_data(char **str, t_line *line);
 t_op							*get_op(char **str);
 
 void							assign_arg_as(unsigned char type, t_arg *arg,
-										  		unsigned char is_dir_ind);
+												unsigned char is_dir_ind);
 void							parse_asm_arg(char **str, t_line *line, int i,
 												t_file *file);
 

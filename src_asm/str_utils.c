@@ -17,8 +17,8 @@ char			*find_first_non_space_char(char *str)
 	while (str && *str && ft_isspace(*str))
 		str++;
 	if (str && *str)
-		return(str);
-	return(NULL);
+		return (str);
+	return (NULL);
 }
 
 unsigned char	is_blank_str(char *str)
@@ -51,12 +51,12 @@ char			*join_with_line_break(char *first_str, char *second_str)
 	dest_len = first_len + second_len + 1;
 	dest = (char *)malloc(sizeof(char) * dest_len);
 	if (!dest)
-		return(NULL);
+		return (NULL);
 	ft_strncpy(dest, first_str, first_len);
 	dest[first_len] = '\n';
 	ft_strncpy(dest + first_len + 1, second_str, second_len);
 	dest[dest_len] = '\0';
-	return(dest);
+	return (dest);
 }
 
 int				count_tabs(char *str, char *end_pos)
@@ -64,7 +64,6 @@ int				count_tabs(char *str, char *end_pos)
 	int			num_of_tabs;
 
 	num_of_tabs = 0;
-	
 	while (*str && str != end_pos)
 	{
 		if (*str == '\t')

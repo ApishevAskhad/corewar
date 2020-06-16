@@ -19,7 +19,7 @@ char				*find_label(char **str, t_file *file, t_line *line)
 	size_t			i;
 
 	i = 0;
-	while(((*str)[i] && ft_strchr(LABEL_CHARS, (*str)[i])))
+	while (((*str)[i] && ft_strchr(LABEL_CHARS, (*str)[i])))
 		i++;
 	if ((*str)[i] == LABEL_CHAR && i > 0)
 	{
@@ -29,11 +29,11 @@ char				*find_label(char **str, t_file *file, t_line *line)
 			exit_with_allocation_error(file->filename);
 		ft_strncpy(label_name, *str, label_len);
 		*str += label_len + 1;
-		return(label_name);
+		return (label_name);
 	}
 	else if (i == 0 && (*str)[i] == LABEL_CHAR)
-		fill_error(file, line, (t_pos)*str, "Label name cannot be empty");
-	return(NULL);
+		fill_error(file, line, (t_pos)(*str), "Label name cannot be empty");
+	return (NULL);
 }
 
 void				skip_non_useful_lines(t_line **line)
@@ -43,18 +43,18 @@ void				skip_non_useful_lines(t_line **line)
 		*line = (*line)->next;
 }
 
-unsigned char	is_name_cmd(char *start_pos)
+unsigned char		is_name_cmd(char *start_pos)
 {
-	size_t		cmd_len;
+	size_t			cmd_len;
 
 	cmd_len = ft_strlen(NAME_CMD_STRING);
-	return(ft_strnequ(start_pos, NAME_CMD_STRING, cmd_len));
+	return (ft_strnequ(start_pos, NAME_CMD_STRING, cmd_len));
 }
 
-unsigned char	is_comment_cmd(char *start_pos)
+unsigned char		is_comment_cmd(char *start_pos)
 {
-	size_t		cmd_len;
+	size_t			cmd_len;
 
 	cmd_len = ft_strlen(COMMENT_CMD_STRING);
-	return(ft_strnequ(start_pos, COMMENT_CMD_STRING, cmd_len));
+	return (ft_strnequ(start_pos, COMMENT_CMD_STRING, cmd_len));
 }

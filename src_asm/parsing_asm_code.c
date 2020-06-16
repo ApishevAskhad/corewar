@@ -39,13 +39,13 @@ static void				process_new_code_line(t_file *file, t_line **cur_line,
 	if ((*cur_line)->next == file->last_line)
 	{
 		if (!is_line_break_found(file))
-			fill_error(file, *cur_line, (t_pos)(char *)NULL,
+			fill_error(file, *cur_line, (t_pos)NULL,
 				"Every code line should end with a line break symbol");
 	}
 	if (!(file->error_data))
 	{
 		*cur_line = (*cur_line)->next;
-		skip_non_useful_lines(cur_line);		
+		skip_non_useful_lines(cur_line);
 	}
 }
 
@@ -57,7 +57,7 @@ void					parse_asm_code(t_file *file)
 
 	cur_line = file->first_code_line;
 	file->code_size = 0;
-	while(cur_line != file->last_line && !(file->error_data))
+	while (cur_line != file->last_line && !(file->error_data))
 	{
 		start_pos = find_first_non_space_char(cur_line->initial_str);
 		label_name = find_label(&start_pos, file, cur_line);

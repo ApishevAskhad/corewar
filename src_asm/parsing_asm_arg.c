@@ -12,8 +12,8 @@
 
 #include "asm.h"
 
-void		assign_arg_as(unsigned char type, t_arg *arg,
-							unsigned char is_dir_ind)
+void			assign_arg_as(unsigned char type, t_arg *arg,
+								unsigned char is_dir_ind)
 {
 	if (type == T_REG)
 	{
@@ -63,11 +63,11 @@ static void		save_label_arg_value(char **str, t_line *line, int i,
 			*str += j;
 		}
 		else
-			fill_error(file, line, (t_pos)*str,
+			fill_error(file, line, (t_pos)(*str),
 						"Incorrect label name in this argument");
 	}
 	else
-		fill_error(file, line, (t_pos)*str,
+		fill_error(file, line, (t_pos)(*str),
 					"Unexpected line end, there should be a label name");
 }
 
@@ -100,16 +100,16 @@ void			check_spaces_before_arg(char **str, t_line *line,
 	non_space_pos = find_first_non_space_char(*str);
 	if (non_space_pos && (non_space_pos == *str))
 	{
-		if (!ft_isspace(*(*str -1)) && *(*str - 1) != SEPARATOR_CHAR &&
+		if (!ft_isspace(*(*str - 1)) && *(*str - 1) != SEPARATOR_CHAR &&
 			**str == REG_CHAR)
 		{
-			fill_warning(file, line, (t_pos)*str,
+			fill_warning(file, line, (t_pos)(*str),
 						"No space between operation and registry argument");
 		}
-		else if (!ft_isspace(*(*str -1)) && *(*str - 1) != SEPARATOR_CHAR &&
+		else if (!ft_isspace(*(*str - 1)) && *(*str - 1) != SEPARATOR_CHAR &&
 					ft_isdigit(**str))
 		{
-			fill_warning(file, line, (t_pos)*str,
+			fill_warning(file, line, (t_pos)(*str),
 						"No space between operation and indirect argument");
 		}
 	}
@@ -139,7 +139,7 @@ void			parse_asm_arg(char **str, t_line *line, int i, t_file *file)
 		else if (*str && **str)
 			save_arg_value(str, line, i, file);
 		else
-			fill_error(file, line, (t_pos)*str,
+			fill_error(file, line, (t_pos)(*str),
 					"Unexpected line end, there should be the argument value");
 	}
 }

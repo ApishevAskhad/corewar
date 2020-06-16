@@ -20,7 +20,7 @@ void		print_error(char *filename, char *message)
 		ft_printf("\t{red}%s{red}\n\n", message);
 }
 
-void 		print_bin_parsing_error(t_file *file)
+void		print_bin_parsing_error(t_file *file)
 {
 	ssize_t	pos;
 

@@ -27,7 +27,7 @@ static ssize_t		get_champ_code_size(t_file *file, ssize_t header_size)
 static void			save_binary_champ_code(t_file *file, ssize_t code_size)
 {
 	unsigned char	*buffer;
-	
+
 	buffer = (unsigned char *)malloc(sizeof(unsigned char) * code_size);
 	if (!buffer)
 		exit_with_allocation_error(file->filename);

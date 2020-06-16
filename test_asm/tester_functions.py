@@ -6,7 +6,7 @@
 #    By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #    Created: 2020/06/15 13:46:13 by dtimeon           #+#    #+#             #
-#    Updated: 2020/06/15 17:21:18 by dtimeon          ###   ########.fr       #
+#    Updated: 2020/06/16 12:42:23 by student          ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -96,7 +96,7 @@ def test_program_on_binary(file_path, print_errors=False):
     if code != 0 and print_errors:
         color = tc.blue if code == 1 else tc.red
         print('\r', flush=True, end='')
-        print(color, '*' * 82, tc.color_clear)
+        print(color, '*' * 82, tc.color_clear, ' ' * 42)
         print(f" Tested program returned {code} while converting binary file "
               f"'{os.path.basename(file_path)}', output:")
         print(' ', output.replace('\n', '\n '), sep='')

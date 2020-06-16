@@ -29,17 +29,17 @@ t_label				*init_label(char *label_name, char *filename)
 		exit_with_allocation_error(filename);
 	label->name = label_name;
 	label->name_len = ft_strlen(label_name);
-	return(label);
+	return (label);
 }
 
 t_warning			*init_warning(char *filename)
 {
 	t_warning		*warning;
 
-	warning	= (t_warning *)ft_memalloc(sizeof(t_warning));
+	warning = (t_warning *)ft_memalloc(sizeof(t_warning));
 	if (!warning)
 		exit_with_allocation_error(filename);
-	return(warning);
+	return (warning);
 }
 
 t_error_data		*init_error_data(char *filename)
@@ -49,7 +49,7 @@ t_error_data		*init_error_data(char *filename)
 	error_data = (t_error_data *)ft_memalloc(sizeof(t_error_data));
 	if (!error_data)
 		exit_with_allocation_error(filename);
-	return(error_data);
+	return (error_data);
 }
 
 t_file				*init_file(int fd, char *filename)

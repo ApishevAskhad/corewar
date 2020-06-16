@@ -52,7 +52,7 @@ void			delete_warnings(t_file *file)
 	t_warning	*temp_warning;
 
 	temp_warning = file->first_warning;
-	while(temp_warning)
+	while (temp_warning)
 	{
 		file->first_warning = temp_warning->next;
 		if (temp_warning->is_needed_to_free_message)

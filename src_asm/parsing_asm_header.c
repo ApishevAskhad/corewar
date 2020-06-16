@@ -29,7 +29,7 @@ static void			find_name_or_comment(t_file *file, t_line **cur_line)
 		start_pos += ft_strlen(COMMENT_CMD_STRING);
 	}
 	else
-		fill_error(file, *cur_line, (t_pos)(char *)NULL,
+		fill_error(file, *cur_line, (t_pos)NULL,
 			"Expected champion name or comment at the beginning of the file");
 	if (!(file->error_data))
 		check_start_of_string(file, cur_line, start_pos, dest);
@@ -44,7 +44,7 @@ void				parse_asm_header(t_file *file)
 	cur_line = file->first_line;
 	skip_non_useful_lines(&cur_line);
 	if (!(cur_line))
-		fill_error(file, NULL, (t_pos)(char *)NULL,
+		fill_error(file, NULL, (t_pos)NULL,
 					"No champion name or comment found");
 	while (i++ < 2 && !(file->error_data) && cur_line)
 		find_name_or_comment(file, &cur_line);

@@ -14,8 +14,8 @@
 
 static unsigned char	is_valid_magic(unsigned char *bin_data)
 {
-	if (*(t_magic *)(bin_data) != (t_magic)to_big_endian(COREWAR_EXEC_MAGIC, 
-															sizeof(t_magic)))
+	if (*(t_magic *)(bin_data) != (t_magic)to_big_endian(COREWAR_EXEC_MAGIC,
+														sizeof(t_magic)))
 		return (0);
 	return (1);
 }
@@ -26,7 +26,7 @@ static unsigned char	is_separators_present(unsigned char *bin_data)
 	size_t				second_offset;
 
 	first_offset = sizeof(t_magic) + PROG_NAME_LENGTH;
-	second_offset = first_offset + sizeof(t_sep) + sizeof(t_prog_size) + 
+	second_offset = first_offset + sizeof(t_sep) + sizeof(t_prog_size) +
 					COMMENT_LENGTH;
 	if (*(t_sep *)(bin_data + first_offset) ||
 			*(t_sep *)(bin_data + second_offset))
@@ -39,12 +39,13 @@ static unsigned char	is_header_structure_valid(unsigned char *bin_data,
 {
 	if (!is_valid_magic(bin_data))
 	{
-		fill_error(file, NULL, (t_pos)(ssize_t)-1, "Incorrect file signature");
+		fill_error(file, NULL, (t_pos)(ssize_t)(-1),
+					"Incorrect file signature");
 		return (0);
 	}
 	else if (!is_separators_present(bin_data))
 	{
-		fill_error(file, NULL, (t_pos)(ssize_t)-1,
+		fill_error(file, NULL, (t_pos)(ssize_t)(-1),
 					"Zero-filled separator is not found");
 		return (0);
 	}
@@ -58,10 +59,10 @@ static unsigned char	is_code_size_correct(t_file *file)
 
 	code_size_offset = sizeof(t_magic) + PROG_NAME_LENGTH + sizeof(t_sep);
 	code_size_pos = file->header + code_size_offset;
-	if (*(t_prog_size *)code_size_pos != 
+	if (*(t_prog_size *)code_size_pos !=
 			(t_prog_size)to_big_endian(file->code_size, sizeof(t_prog_size)))
 	{
-		fill_error(file, NULL, (t_pos)(ssize_t)-1,
+		fill_error(file, NULL, (t_pos)(ssize_t)(-1),
 					"Declared program size does not match the actual size");
 		return (0);
 	}

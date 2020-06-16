@@ -34,7 +34,7 @@ void			print_asm_warning(t_warning *warning, t_file *file)
 		tabs_num = count_tabs(warning->line->initial_str, pos);
 		offset -= (tabs_num ? (int)(tabs_num + 4) : (int)-1);
 		i = 0;
-		while (i++ < tabs_num )
+		while (i++ < tabs_num)
 			ft_printf("%c", '\t');
 		ft_printf("{green}% *s{eoc}\n", offset, "^");
 	}

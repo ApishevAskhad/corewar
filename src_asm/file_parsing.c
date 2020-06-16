@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 01:47:56 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/13 12:38:42 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/16 12:54:29 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,17 @@ static void		parse_header(t_file *file)
 	if (file->is_assembly)
 	{
 		parse_asm_header(file);
-		if (!(file->error_data) &&
-			(!(file->champ_name) || !(file->champ_comment)))
-		{
-			fill_error(file, NULL, (t_pos)(char *)NULL,
+		if (!file->error_data && (!file->champ_name || !file->champ_comment))
+			fill_error(file, NULL, (t_pos)NULL,
 						"File should contain a champion name and a comment");
-		}
 	}
 	else
 		parse_binary_header(file);
-	if (!(file->error_data) && !*(file->champ_name))
-		fill_warning(file, NULL, (t_pos)(ssize_t)-1,
+	if (!(file->error_data) && !(*(file->champ_name)))
+		fill_warning(file, NULL, (t_pos)(ssize_t)(-1),
 					"Champion name is an empty string");
 	if (!(file->error_data) && !*(file->champ_comment))
-		fill_warning(file, NULL, (t_pos)(ssize_t)-1,
+		fill_warning(file, NULL, (t_pos)(ssize_t)(-1),
 					"Champion comment is empty");
 }
 
@@ -52,8 +49,8 @@ void			parse_file(t_file *file)
 		{
 			file->is_correct = TRUE;
 			if (file->code_size == 0)
-				fill_warning(file, NULL, (t_pos)(ssize_t)-1,
-								"No operations in this file");
+				fill_warning(file, NULL, (t_pos)(ssize_t)(-1),
+				"No operations in this file");
 		}
 	}
 }
