@@ -120,35 +120,53 @@ def gather_files(tests_dirs):
     return(files)
 
 
-def check_leaks_on_empty_program():
-    command = f"valgrind ./{tc.empty_main}"
-    valgrind_output = run(command, stderr=PIPE, shell=True)
-    valgrind_output = valgrind_output.stderr.decode('utf-8')
-    leaks_pos = valgrind_output.find(tc.definitely_line)
-    if leaks_pos >= 0:
-        leaks_part = valgrind_output[leaks_pos:].splitlines()
-        tc.no_leaks_line_mac_1 = leaks_part[0]
-        leaks_pos = leaks_part[1].find(tc.indirectly_line)
-        tc.no_leaks_line_mac_2 = leaks_part[1][leaks_pos:]
-        error_summary_pos = leaks_part[8].find(tc.error_summary_line)
-        offset = error_summary_pos + len(tc.error_summary_line)
-        tc.no_error_line = leaks_part[8][offset:]
+def count_mentions(output, program):
+    mentions = output.count(f"./{program}")
+    return(mentions)
 
 
-def check_valgrind_output(output, program, file):
-    if (system() == 'Linux' and tc.no_leaks_line_linux not in output) or \
-       (system() == 'Darwin' and (tc.no_leaks_line_mac_1 not in output or
-                                  tc.no_leaks_line_mac_2 not in output)):
+def is_leaking_linux(output):
+    return(tc.no_leaks_line not in output)
+
+
+def is_leaking_mac(output, program):
+    return(count_mentions(output, program) > 1)
+
+
+def has_memory_errors_linux(output):
+    return(tc.no_error_line in output)
+
+
+def has_memory_errors_mac(output, program):
+    return(count_mentions(output, program) > 1)
+
+
+def print_valgrind_result(asm_leaking, asm_has_errors, output, program, file):
+    if asm_leaking:
         print('\r', flush=True, end='')
         print(tc.red, '*' * 82, tc.color_clear)
         print(f" Found memory leaks in {program} with file {file}:")
         print(' ' + output.replace('\n', '\n '))
         print(tc.red, '*' * 82, tc.color_clear)
-    if tc.no_error_line not in output:
+    if asm_has_errors:
         print('\r', flush=True, end='')
         print(tc.red, '*' * 82, tc.color_clear)
         print(f" Found memory errors in {program} with file {file}")
         print(tc.red, '*' * 82, tc.color_clear)
+
+
+def check_valgrind_output(output, program, file):
+    sep = output.find(" HEAP SUMMARY")
+    memory_errors_output = output[:sep]
+    leaks_output = output[sep:]
+    if system() == 'Linux':
+        asm_leaking = is_leaking_linux(leaks_output)
+        asm_has_errors = has_memory_errors_linux(memory_errors_output)
+    elif system() == 'Darwin':
+        asm_leaking = is_leaking_mac(leaks_output, program)
+        asm_has_errors = has_memory_errors_mac(memory_errors_output, program)
+    if asm_leaking or asm_has_errors:
+        print_valgrind_result(output, program, file)
 
 
 def run_leak_check(program, options, file):
@@ -161,7 +179,11 @@ def run_leak_check(program, options, file):
     for option in options:
         if not option == "":
             option = f" -{option}"
-        command = f"valgrind ./{program}{option} {temp_file}"
+        if system() == 'Linux':
+            command = f"valgrind ./{program}{option} {temp_file}"
+        elif system() == 'Darwin':
+            valgrind_args = "valgrind  --leak-check=full --show-leak-kinds=all"
+            command = f"{valgrind_args} ./{program}{option} {temp_file}"
         valgrind_output = run(command, stdout=PIPE, stderr=PIPE, shell=True)
         valgrind_output = valgrind_output.stderr.decode('utf-8')
         print_cur_task(f"Checking for leaks '{tc.some_color}"

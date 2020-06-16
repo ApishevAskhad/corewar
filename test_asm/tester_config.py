@@ -11,8 +11,8 @@
 # *************************************************************************** #
 
 tested_asm = 'asm'
-school_asm = 'test_asm/school_asm_linux'
-empty_main = 'test_asm/empty_main_linux_leak'
+school_asm = 'test_asm/school_asm_mac'
+empty_main = 'test_asm/empty_main_sleep'
 temp_tested_asm_file = 'test_asm/temp_tested.s'
 temp_school_asm_file = 'test_asm/temp_school.s'
 temp_tested_bin_file = 'test_asm/temp_tested.cor'
