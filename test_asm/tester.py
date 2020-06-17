@@ -18,6 +18,10 @@ from tester_functions import tc
 
 
 if __name__ == "__main__":
+    if tf.system() not in ('Linux', 'Darwin'):
+        print("This platform is not supported yet")
+        quit()
+
     parser = ArgumentParser()
     parser.add_argument("filenames", nargs="*", type=str,
                         help="specify files to test")

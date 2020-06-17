@@ -40,7 +40,7 @@ def compare(file_1, file_2, filename="", name="tested",
             comparing_with_original=False):
     if not filecmp.cmp(file_1, file_2):
         print('\r', flush=True, end='')
-        print(tc.red, '*' * 82, tc.color_clear)
+        print(tc.red, '*' * 82, tc.color_clear, ' ' * 42)
         if comparing_with_original:
             print(f" Binary by {name} program differs "
                   f"with original '{file_2}'")
@@ -75,13 +75,14 @@ def test_both_programs(file_path, file_to_compare=None, print_errors=False,
                     comparing_with_original=True)
             compare(tc.temp_school_bin_file, file_to_compare, name="school",
                     comparing_with_original=True)
-    elif tested_code != school_code:
+    elif (print_errors or tested_code != school_code):
         print('\r', flush=True, end='')
-        print(tc.blue, '*' * 82, tc.color_clear)
+        print(tc.blue, '*' * 82, tc.color_clear, ' ' * 42)
         if file_to_compare:
             file_path = file_to_compare
-        print(f" For file '{os.path.basename(file_path)}' exit codes differ: "
-              f"{tested_code} and {school_code}")
+        if tested_code != school_code:
+            print(f" For file '{os.path.basename(file_path)}' exit codes "
+                  f"differ: {tested_code} and {school_code}")
         if (tested_code != 0 and print_errors):
             print_output(tested_output)
         if (school_code != 0 and print_errors):
@@ -121,7 +122,7 @@ def gather_files(tests_dirs):
 
 
 def count_mentions(output, program):
-    mentions = output.count(f"./{program}")
+    mentions = output.count(f"/{program}")
     return(mentions)
 
 
@@ -134,7 +135,7 @@ def is_leaking_mac(output, program):
 
 
 def has_memory_errors_linux(output):
-    return(tc.no_error_line in output)
+    return(tc.no_errors_line not in output)
 
 
 def has_memory_errors_mac(output, program):
@@ -145,33 +146,35 @@ def print_valgrind_result(asm_leaking, asm_has_errors, output, program, file):
     if asm_leaking:
         print('\r', flush=True, end='')
         print(tc.red, '*' * 82, tc.color_clear)
-        print(f" Found memory leaks in {program} with file {file}:")
+        print(f" Found memory leaks in {program} with file '{file}':\n")
         print(' ' + output.replace('\n', '\n '))
         print(tc.red, '*' * 82, tc.color_clear)
     if asm_has_errors:
         print('\r', flush=True, end='')
         print(tc.red, '*' * 82, tc.color_clear)
-        print(f" Found memory errors in {program} with file {file}")
+        print(f" Found memory errors in {program} with file '{file}':\n")
+        print(' ' + output.replace('\n', '\n '))
         print(tc.red, '*' * 82, tc.color_clear)
 
 
 def check_valgrind_output(output, program, file):
-    sep = output.find(" HEAP SUMMARY")
+    sep = output.find(tc.separator_line)
     memory_errors_output = output[:sep]
     leaks_output = output[sep:]
     if system() == 'Linux':
         asm_leaking = is_leaking_linux(leaks_output)
-        asm_has_errors = has_memory_errors_linux(memory_errors_output)
+        asm_has_errors = has_memory_errors_linux(output)
     elif system() == 'Darwin':
         asm_leaking = is_leaking_mac(leaks_output, program)
         asm_has_errors = has_memory_errors_mac(memory_errors_output, program)
     if asm_leaking or asm_has_errors:
-        print_valgrind_result(output, program, file)
+        print_valgrind_result(asm_leaking, asm_has_errors, output,
+                              program, file)
 
 
 def run_leak_check(program, options, file):
     ext = os.path.splitext(file)[1]
-    temp_file = f"temp_file{ext}"
+    temp_file = f"{tc.valgrind_temp_basename}{ext}"
     if os.path.isfile(file):
         copy_file(file, temp_file)
     else:
@@ -217,6 +220,8 @@ def remove_temp_files():
                  tc.temp_school_bin_file,
                  tc.temp_tested_asm_file,
                  tc.temp_tested_bin_file,
-                 tc.generated_asm_file):
+                 tc.generated_asm_file,
+                 tc.valgrind_temp_asm_file,
+                 tc.valgrind_temp_bin_file):
         if os.path.exists(file):
             os.remove(file)
