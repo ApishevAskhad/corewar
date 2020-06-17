@@ -14,7 +14,7 @@
 
 static void		print_strwise_row(t_line *line)
 {
-	int 		i;
+	int			i;
 
 	i = 0;
 	ft_printf("%-7zu(%hd):\t    %-10s", line->pos, line->len,
@@ -30,7 +30,7 @@ static void		print_strwise_row(t_line *line)
 
 static void		print_bytewise_row(t_line *line)
 {
-	int 		i;
+	int			i;
 	int			j;
 	int			value;
 
@@ -58,10 +58,10 @@ static void		print_bytewise_row(t_line *line)
 
 static void		print_typewise_row(t_line *line)
 {
-	int 		i;
+	int			i;
 
 	ft_printf("%*s", 20, "");
-				ft_printf("%-4hhd", line->op_data->op_code);
+	ft_printf("%-4hhd", line->op_data->op_code);
 	if (line->op_data->has_arg_type_code)
 		ft_printf("%-6hhu", line->arg_types_code);
 	else
@@ -77,7 +77,6 @@ static void		print_typewise_row(t_line *line)
 
 static void		print_annotated_line(t_line *line)
 {
-
 	if (line->has_label_in)
 		ft_printf("%-10zu:%12s:\n", line->pos, line->label->name);
 	if (line->op_data)

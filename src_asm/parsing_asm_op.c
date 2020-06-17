@@ -34,16 +34,16 @@ static unsigned char		is_arg_correct(t_line *line, int i, t_file *file)
 		fill_error(file, line, (t_pos)(line->args[i].pos + 1),
 					"Registry argument value is too long");
 	if (!(file->error_data))
-		return(TRUE);
-	return(FALSE);
+		return (TRUE);
+	return (FALSE);
 }
 
 static void					check_sep_symbol(t_file *file, t_line *line,
 												char **str)
 {
 	*str = find_first_non_space_char(*str);
-	if  (!(*str) || (!(**str)))
-		fill_error(file, line, (t_pos)(char *)NULL,
+	if (!(*str) || (!(**str)))
+		fill_error(file, line, (t_pos)NULL,
 					"Unexpected line end, there should be a separator symbol "
 					"and more arguments");
 	else if (**str != SEPARATOR_CHAR)
@@ -66,7 +66,7 @@ unsigned short int			calc_op_size(t_line *line)
 		len += line->args[i].size;
 		i++;
 	}
-	return(len);
+	return (len);
 }
 
 static unsigned char		is_more_args_expected(t_file *file, t_line *line,
@@ -98,7 +98,7 @@ void						parse_asm_op(t_file *file, t_line *cur_line,
 					check_sep_symbol(file, cur_line, start_pos);
 			}
 			else
-				fill_error(file, cur_line, (t_pos)(char *)NULL,
+				fill_error(file, cur_line, (t_pos)NULL,
 							"Expected more arguments");
 		}
 		if (!(file->error_data))

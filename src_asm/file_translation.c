@@ -12,12 +12,12 @@
 
 #include "asm.h"
 
-void			make_output_filename(t_file *file)
+void				make_output_filename(t_file *file)
 {
-	char		*dot_pos;
-	char		*ext;
-	int			diff;
-	size_t		len;
+	char			*dot_pos;
+	char			*ext;
+	int				diff;
+	size_t			len;
 
 	dot_pos = ft_strrchr(file->filename, '.');
 	diff = ft_strlen(BINARY_EXTENSION) - ft_strlen(SOURCE_EXTENSION);
@@ -27,7 +27,7 @@ void			make_output_filename(t_file *file)
 	{
 		ext = SOURCE_EXTENSION;
 		diff = -diff;
-	}	
+	}
 	len = ft_strlen(file->filename) + diff;
 	file->out_filename = ft_strnew(len);
 	if (!(file->out_filename))
@@ -37,7 +37,7 @@ void			make_output_filename(t_file *file)
 	ft_strncpy(file->out_filename + diff, ext, ft_strlen(ext));
 }
 
-unsigned char	create_output_file(t_file *file)
+unsigned char		create_output_file(t_file *file)
 {
 	make_output_filename(file);
 	file->out_fd = open(file->out_filename, O_CREAT | O_TRUNC | O_WRONLY,
@@ -45,7 +45,7 @@ unsigned char	create_output_file(t_file *file)
 	return (file->out_fd > -1);
 }
 
-void			write_data_to_file(t_file *file)
+void				write_data_to_file(t_file *file)
 {
 	write(file->out_fd, file->header, file->header_size);
 	write(file->out_fd, file->champ_code, file->code_size);
@@ -74,6 +74,6 @@ void				translate_file(t_file *file, short int options)
 			close(file->out_fd);
 		}
 		else
-			print_error(file->filename, "Couldn't create file to write output");	
+			print_error(file->filename, "Couldn't create file to write output");
 	}
 }

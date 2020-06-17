@@ -6,13 +6,13 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:55:42 by gloras-t          #+#    #+#             */
-/*   Updated: 2020/06/10 20:11:50 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/13 22:35:28 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int				open_file(char *filename)
+static int		open_file(char *filename)
 {
 	int			fd;
 
@@ -22,10 +22,11 @@ int				open_file(char *filename)
 	return (-1);
 }
 
-void			process_file(char *filename, short int options)
+static int		process_file(char *filename, short int options)
 {
 	int			fd;
-	t_file      *file;
+	t_file		*file;
+	int			status;
 
 	fd = open_file(filename);
 	if (fd >= 0)
@@ -39,10 +40,13 @@ void			process_file(char *filename, short int options)
 			else
 				print_file_parsing_error(file);
 		}
+		status = (file->is_correct) ? 0 : 1;
 		delete_file(&file);
-	}
-	if (fd >= 0)
 		close(fd);
+	}
+	else
+		status = 1;
+	return (status);
 }
 
 int				main(int argc, char *argv[])
@@ -50,19 +54,24 @@ int				main(int argc, char *argv[])
 	int			i;
 	int			args_read;
 	short int	options;
+	int			status;
 
 	i = 1;
+	status = 0;
 	if (argc > 1)
 	{
 		args_read = read_options(argv + 1, argc - 1, &options);
 		if (options)
 			i += args_read;
 		if (argc == i)
+		{
 			print_error(NULL, "No files. Specify filename after options");
+			status = 1;
+		}
 		while (i < argc)
-			process_file(argv[i++], options);
+			status |= process_file(argv[i++], options);
 	}
 	else
 		print_usage(argv[0]);
-	return (0);
+	return (status);
 }

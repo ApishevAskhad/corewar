@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:31:10 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/13 13:58:35 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/14 20:06:54 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void			print_asm_warning(t_warning *warning, t_file *file)
 		tabs_num = count_tabs(warning->line->initial_str, pos);
 		offset -= (tabs_num ? (int)(tabs_num + 4) : (int)-1);
 		i = 0;
-		while (i++ < tabs_num )
+		while (i++ < tabs_num)
 			ft_printf("%c", '\t');
 		ft_printf("{green}% *s{eoc}\n", offset, "^");
 	}
@@ -67,7 +67,10 @@ void			print_warnings(t_file *file)
 	{
 		print_func(cur_warning, file);
 		if (cur_warning->is_needed_to_free_message)
+		{
 			ft_strdel(&cur_warning->message);
+			cur_warning->is_needed_to_free_message = FALSE;
+		}
 		cur_warning = cur_warning->next;
 	}
 }

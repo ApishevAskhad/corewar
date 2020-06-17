@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 01:45:26 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/09 21:21:15 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/16 12:57:07 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static void				read_asm_file(t_file *file)
 	while ((read_status = get_next_line(file->fd, &buffer)) > 0)
 	{
 		save_new_line(file->last_line, buffer, line_num++);
-		// if (is_not_blank_str(buffer) && is_not_comment(buffer))
 		add_new_line(file);
 	}
 	if ((file->first_line != file->last_line) && line_num > 2 &&

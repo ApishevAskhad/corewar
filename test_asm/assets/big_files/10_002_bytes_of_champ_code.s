@@ -1,6 +1,5 @@
 .name "42"
 .comment "Just a basic Winner Program"
-
      live %42
      ld %0, r5
      ld %0, r5

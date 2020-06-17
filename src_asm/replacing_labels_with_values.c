@@ -21,9 +21,10 @@ static unsigned char	is_label_names_match(t_label *label, t_arg *arg)
 }
 
 /*
-** "Label name '[name]' is used [uses_num] times, the first occurance will be 
+** "Label name '[name]' is used [uses_num] times, the first occurance will be
 ** used to dereference argument"
 */
+
 char					*make_multiple_labels_message(t_file *file,
 													t_arg *arg,
 													int times_label_found)
@@ -96,10 +97,10 @@ static void				replace_label_with_value(t_file *file, t_arg *arg,
 	}
 }
 
-void				replace_label_args(t_file *file)
+void					replace_label_args(t_file *file)
 {
-	t_line			*cur_line;
-	int				i;
+	t_line				*cur_line;
+	int					i;
 
 	cur_line = file->first_code_line;
 	while (cur_line != file->last_line && !(file->error_data))

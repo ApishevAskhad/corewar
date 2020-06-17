@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 09:43:34 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/10 09:48:30 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/13 20:08:17 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void		translate_asm_header(t_file *file)
 	dest += sizeof(t_magic);
 	ft_memcpy(dest, (void *)file->champ_name, ft_strlen(file->champ_name));
 	dest += PROG_NAME_LENGTH;
-	ft_memcpy(dest, (t_sep)0, sizeof(t_sep));
+	ft_memset(dest, 0, sizeof(t_sep));
 	dest += sizeof(t_sep);
 	data = to_big_endian(file->code_size, sizeof(t_prog_size));
 	ft_memcpy(dest, (void *)&data, sizeof(t_prog_size));
@@ -79,7 +79,7 @@ static void		translate_asm_header(t_file *file)
 	ft_memcpy(dest, (void *)file->champ_comment,
 				ft_strlen(file->champ_comment));
 	dest += COMMENT_LENGTH;
-	ft_memcpy(dest, 0, sizeof(t_sep));
+	ft_memset(dest, 0, sizeof(t_sep));
 }
 
 void			translate_asm(t_file *file, short int options)

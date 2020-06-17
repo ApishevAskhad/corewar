@@ -12,20 +12,20 @@
 
 #include "asm.h"
 
-static void	save_label(t_line *line, t_label *label, size_t code_pos)
+static void		save_label(t_line *line, t_label *label, size_t code_pos)
 {
 	line->has_label_in = TRUE;
 	line->pos = code_pos;
 	line->label = label;
 }
 
-static char	*find_next_op_str(t_file *file, t_line **cur_line,
+static char		*find_next_op_str(t_file *file, t_line **cur_line,
 								t_label *first_label, size_t code_pos)
 {
-	t_label	*temp_label;
-	char	*start_pos;
-	char	*new_label_name;
-	char	*op_pos;
+	t_label		*temp_label;
+	char		*start_pos;
+	char		*new_label_name;
+	char		*op_pos;
 
 	op_pos = NULL;
 	temp_label = first_label;
@@ -46,7 +46,7 @@ static char	*find_next_op_str(t_file *file, t_line **cur_line,
 			op_pos = find_first_non_space_char(start_pos);
 		}
 	}
-	return(op_pos);
+	return (op_pos);
 }
 
 static void		save_op_line_to_labels(t_label *first_label)
@@ -87,7 +87,8 @@ void			parse_labels(t_file *file, t_line **cur_line, char **start_pos,
 	first_label_line = *cur_line;
 	op_pos = find_first_non_space_char(*start_pos);
 	if ((!op_pos || is_comment(op_pos)) && (*cur_line)->next != file->last_line)
-		op_pos =find_next_op_str(file, cur_line, first_label, (*cur_line)->pos);
+		op_pos = find_next_op_str(file, cur_line, first_label,
+									(*cur_line)->pos);
 	*start_pos = op_pos;
 	if (op_pos)
 		first_label->op_line = *cur_line;
@@ -96,5 +97,5 @@ void			parse_labels(t_file *file, t_line **cur_line, char **start_pos,
 	if (first_label->next)
 		save_op_line_to_labels(first_label);
 	save_label(first_label_line, first_label, first_label_line->pos);
-	save_labels_to_file(first_label, file);	
+	save_labels_to_file(first_label, file);
 }

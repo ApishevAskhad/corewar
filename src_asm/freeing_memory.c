@@ -6,12 +6,11 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 01:44:01 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/12 04:12:43 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/15 13:47:02 by dtimeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
 
 void			delete_lines(t_file *file)
 {
@@ -53,9 +52,11 @@ void			delete_warnings(t_file *file)
 	t_warning	*temp_warning;
 
 	temp_warning = file->first_warning;
-	while(temp_warning)
+	while (temp_warning)
 	{
 		file->first_warning = temp_warning->next;
+		if (temp_warning->is_needed_to_free_message)
+			ft_strdel(&temp_warning->message);
 		ft_memdel((void **)&temp_warning);
 		temp_warning = file->first_warning;
 	}

@@ -6,7 +6,7 @@
 /*   By: dtimeon <dtimeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/23 00:56:31 by dtimeon           #+#    #+#             */
-/*   Updated: 2020/06/10 17:29:51 by dtimeon          ###   ########.fr       */
+/*   Updated: 2020/06/16 12:48:39 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
 ** "'Argument #'arg_num' of operation 'name' cannot be of type 'type'"
 */
+
 char			*make_type_error_message(t_line *line, int i, char *filename)
 {
 	char					*message;
@@ -37,7 +38,7 @@ char			*make_type_error_message(t_line *line, int i, char *filename)
 	ft_strcpy(message + 29 + name_len, " cannot be of type ");
 	ft_strcpy(message + 48 + name_len, type);
 	ft_strdel(&arg_num);
-	return(message);
+	return (message);
 }
 
 void			fill_error(t_file *file, t_line *line,
