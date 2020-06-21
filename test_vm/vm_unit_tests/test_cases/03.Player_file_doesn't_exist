@@ -1,0 +1,51 @@
+.cor
+-dump 1 .cor
+-dump 1 -v 1 .cor
+-dump 1 -n 1 .cor
+-dump 1 -v 1 -n 1 .cor
+-v 1 .cor
+-v 1 -dump 1 .cor
+-v 1 -n 1 .cor
+-v 1 -dump 1 -n 1 .cor
+.cor -v 1 
+-dump 1 .cor -v 1 
+-n 1 .cor -v 1
+-dump 1 -n 1 .cor -v 1
+.cor -dump 1
+-dump 1 .cor -dump 1
+-n 1 .cor -dump 1
+-dump 1 -n 1 .cor -dump 1
+Player.cor
+-dump 1 Player.cor
+-dump 1 -v 1 Player.cor
+-dump 1 -n 1 Player.cor
+-dump 1 -v 1 -n 1 Player.cor
+-v 1 Player.cor
+-v 1 -dump 1 Player.cor
+-v 1 -n 1 Player.cor
+-v 1 -dump 1 -n 1 Player.cor
+Player.cor -v 1 
+-dump 1 Player.cor -v 1 
+-n 1 Player.cor -v 1
+-dump 1 -n 1 Player.cor -v 1
+Player.cor -dump 1
+-dump 1 Player.cor -dump 1
+-n 1 Player.cor -dump 1
+-dump 1 -n 1 Player.cor -dump 1
+test_players/Player_valid.cor Player.cor
+test_players/Player_valid.cor -dump 1 Player.cor
+test_players/Player_valid.cor -dump 1 -v 1 Player.cor
+test_players/Player_valid.cor -dump 1 -n 2 Player.cor
+test_players/Player_valid.cor -dump 1 -v 1 -n 2 Player.cor
+test_players/Player_valid.cor -v 1 Player.cor
+test_players/Player_valid.cor -v 1 -dump 1 Player.cor
+test_players/Player_valid.cor -v 1 -n 2 Player.cor
+test_players/Player_valid.cor -v 1 -dump 1 -n 2 Player.cor
+test_players/Player_valid.cor Player.cor -v 1 
+test_players/Player_valid.cor -dump 1 Player.cor -v 1 
+test_players/Player_valid.cor -n 2 Player.cor -v 1
+test_players/Player_valid.cor -dump 1 -n 2 Player.cor -v 1
+test_players/Player_valid.cor Player.cor -dump 1
+test_players/Player_valid.cor -dump 1 Player.cor -dump 1
+test_players/Player_valid.cor -n 2 Player.cor -dump 1
+test_players/Player_valid.cor -dump 1 -n 2 Player.cor -dump 1

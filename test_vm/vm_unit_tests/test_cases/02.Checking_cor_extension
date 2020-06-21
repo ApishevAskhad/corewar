@@ -1,0 +1,147 @@
+champ
+champcor
+cor
+champ.corcor
+champ.co
+champ.c
+champ.
+.corcor
+.co
+.c
+.
+cor
+champ -dump 1
+champcor -dump 1 
+cor -dump 1
+champ.corcor -dump 1
+champ.co -dump 1 
+champ.c -dump 1 
+champ. -dump 1 
+.corcor -dump 1
+.co -dump 1
+.c -dump 1
+. -dump 1
+-dump 1 champ
+-dump 1 -n 1 champ
+-dump 1 -n 1 champcor
+-dump 1 -n 1 cor
+-dump 1 -n 1 champ.corcor
+-dump 1 -n 1 champ.co
+-dump 1 -n 1 champ.c
+-dump 1 -n 1 champ.
+-dump 1 -n 1 .corcor
+-dump 1 -n 1 .co
+-dump 1 -n 1 .c
+-dump 1 -n 1 .
+champ -v 1
+champcor -v 1
+cor -v 1
+champ.corcor -v 1
+champ.co -v 1
+champ.c -v 1
+champ. -v 1
+.corcor -v 1
+.co -v 1
+.c -v 1
+. -v 1
+-v 1 champ
+-v 1 -n 1 champcor
+-v 1 -n 1 cor
+-v 1 -n 1 champ
+-v 1 -n 1 champ.corcor
+-v 1 -n 1 champ.co
+-v 1 -n 1 champ.c
+-v 1 -n 1 champ.
+-v 1 -n 1 .corcor
+-v 1 -n 1 .co
+-v 1 -n 1 .c
+-v 1 -n 1 .
+-n 1 champ -dump 1
+-n 1 champcor -dump 1 
+-n 1 cor -dump 1
+-n 1 champ.corcor -dump 1
+-n 1 champ.co -dump 1 
+-n 1 champ.c -dump 1 
+-n 1 champ. -dump 1 
+-n 1 corcor -dump 1
+-n 1 .co -dump 1 
+-n 1 .c -dump 1 
+-n 1 . -dump 1 
+-n 1 champ -v 1
+-n 1 champcor -v 1
+-n 1 cor -v 1
+-n 1 champ.corcor -v 1
+-n 1 champ.co -v 1
+-n 1 champ.c -v 1
+-n 1 champ. -v 1
+-n 1 .corcor -v 1
+-n 1 .co -v 1
+-n 1 .c -v 1
+-n 1 . -v 1
+test_players/Player_valid.cor champ
+test_players/Player_valid.cor champcor
+test_players/Player_valid.cor cor
+test_players/Player_valid.cor champ.corcor
+test_players/Player_valid.cor champ.co
+test_players/Player_valid.cor champ.c
+test_players/Player_valid.cor champ.
+test_players/Player_valid.cor .corcor
+test_players/Player_valid.cor .co
+test_players/Player_valid.cor .c
+test_players/Player_valid.cor .
+-v 1 -dump 1 -n 1 champ
+-v 1 -dump 1 -n 1 champcor
+-v 1 -dump 1 -n 1 cor
+-v 1 -dump 1 -n 1 champ.corcor
+-v 1 -dump 1 -n 1 champ.co
+-v 1 -dump 1 -n 1 champ.c
+-v 1 -dump 1 -n 1 champ.
+-v 1 -dump 1 -n 1 .corcor
+-v 1 -dump 1 -n 1 .co
+-v 1 -dump 1 -n 1 .c
+-v 1 -dump 1 -n 1 .
+-v 1 -dump 1 -n 1 -dump 1 champ
+-v 1 -dump 1 -n 1 -dump 1 champcor
+-v 1 -dump 1 -n 1 -dump 1 cor
+-v 1 -dump 1 -n 1 -dump 1 champ.corcor
+-v 1 -dump 1 -n 1 -dump 1 champ.co
+-v 1 -dump 1 -n 1 -dump 1 champ.c
+-v 1 -dump 1 -n 1 -dump 1 champ.
+-v 1 -dump 1 -n 1 -dump 1 .corcor
+-v 1 -dump 1 -n 1 -dump 1 .co
+-v 1 -dump 1 -n 1 -dump 1 .c
+-v 1 -n 1 .
+-v 1 -n 1 champ -dump 1
+-v 1 -n 1 champcor -dump 1
+-v 1 -n 1 cor -dump 1
+-v 1 -n 1 champ.corcor -dump 1
+-v 1 -n 1 champ.co -dump 1
+-v 1 -n 1 champ.c -dump 1
+-v 1 -n 1 champ. -dump 1
+-v 1 -n 1 .corcor -dump 1
+-v 1 -n 1 .co -dump 1
+-v 1 -n 1 .c -dump 1
+-v 1 -n 1 . -dump
+-v 1 -n 1 -dump 1 .
+-n 1 champ -dump 1 -v 1
+-n 1 champcor -dump 1 -v 1
+-n 1 cor -dump 1 -v 1
+-n 1 champ.corcor -dump 1 -v 1
+-n 1 champ.co -dump 1 -v 1
+-n 1 champ.c -dump 1 -v 1
+-n 1 champ. -dump 1 -v 1
+-n 1 .corcor -dump 1 -v 1
+-n 1 .co -dump 1 -v 1
+-n 1 .c -dump 1 -v 1
+-n 1 . -dump 1 -v 1
+-n
+--n
+-dump
+--dump
+--v 1
+-n 1 -dump
+-dump -n 1
+-n 1 -v 1
+-v 1 -n 1
+-n 1 -v 1 -dump 1
+-v 1 -n 1 -dump
