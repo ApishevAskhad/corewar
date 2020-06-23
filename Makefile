@@ -6,7 +6,7 @@
 #    By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 20:31:24 by gloras-t          #+#    #+#              #
-#    Updated: 2020/06/06 19:45:16 by slindgre         ###   ########.fr        #
+#    Updated: 2020/05/29 14:48:19 by dtimeon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,8 +44,19 @@ OBJ_ASM		=	$(addprefix $(OBJ_ASM_DIR)/, printer.o \
 				file_translation.o \
 				freeing_memory.o \
 				file_parsing.o \
-				error_handling.o\
-				reading_binary_utils.o)
+				error_handling.o \
+				reading_binary_utils.o \
+				parsing_asm_header.o \
+				parsing_asm_header_saving_string.o \
+				parsing_asm_code.o \
+				parsing_asm_utils.o \
+				dealing_with_parsing_errors.o \
+				parsing_asm_labels.o \
+				parsing_asm_op.o \
+				parsing_asm_op_finding_op.o \
+				parsing_asm_arg.o \
+				replacing_labels_with_values.o \
+				op_data.o)
 
 INCLUDES	=	includes
 LIBFT 		=	$(INCLUDES)/ft_printf
