@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_str.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/31 23:32:09 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/14 21:43:40 by gloras-t         ###   ########.fr       */
+/*   Updated: 2020/05/21 00:02:22 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		ft_wide_char_to_utf(wchar_t wchar, unsigned char *s, size_t len)
 		i++;
 	}
 	if (len)
-		s[0] = (wchar >> 6 * len) + ((~(UI)1) << (6 - i));
+		s[0] = (wchar >> 6 * len) + ((~((unsigned int)1)) << (6 - i));
 	else
 		s[0] = wchar;
 	s += len + 1;

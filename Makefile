@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gloras-t <gloras-t@student.42.fr>          +#+  +:+       +#+         #
+#    By: gloras-t <gloras-t@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 20:31:24 by gloras-t          #+#    #+#              #
-#    Updated: 2019/11/14 21:43:26 by gloras-t         ###   ########.fr        #
+#    Updated: 2020/07/01 21:01:51 by gloras-t         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 COREWAR 	=	corewar
 ASM 		=	asm
@@ -17,16 +18,57 @@ TEST_ASM 	=	tt
 OBJ_ASM_DIR	=	obj_asm
 OBJ_VM_DIR	=	obj_vm
 
-OBJ_VM 		=	$(addprefix $(OBJ_VM_DIR)/, print_utils.o \
-				check_utils_01.o \
-				create_player.o \
+OBJ_VM 		=	$(addprefix $(OBJ_VM_DIR)/, \
+				carry_args.o \
+				carry_check.o \
 				clean_utils.o \
-				utils_01.o \
-				introduce_players.o \
-				place_players.o \
+				create_player.o \
+				init_game.o \
+				list_utils.o \
+				main_cycle.o \
+				operations_1.o \
+				operations_2.o \
+				operations_3.o \
+				operations_4.o \
+				operations_utils.o \
 				parse_args.o \
-				list_utils.o)
-OBJ_ASM		=	$(addprefix $(OBJ_ASM_DIR)/, foo.o)
+				print_utils_1.o \
+				print_utils_2.o \
+				verbose_printing.o)
+
+OBJ_ASM		=	$(addprefix $(OBJ_ASM_DIR)/, printer.o \
+				file_validation.o \
+				options_handling.o\
+				initializing_structs.o \
+				str_utils.o \
+				file_reading.o \
+				file_translation.o \
+				freeing_memory.o \
+				file_parsing.o \
+				error_handling.o \
+				reading_binary_utils.o \
+				parsing_asm_header.o \
+				parsing_asm_header_saving_string.o \
+				parsing_asm_code.o \
+				parsing_asm_utils.o \
+				dealing_with_parsing_errors.o \
+				parsing_asm_labels.o \
+				parsing_asm_op.o \
+				parsing_asm_op_finding_op.o \
+				parsing_asm_arg.o \
+				replacing_labels_with_values.o \
+				op_data.o \
+				parsing_binary_header.o \
+				translating_utils.o \
+				parsing_binary_code.o \
+				parsing_binary_args.o \
+				printing_annotated_file.o \
+				translating_asm.o \
+				translating_bin.o \
+				printing_warnings.o \
+				ft_strtol.o \
+				ft_strnchr.o \
+				ft_chrtoint.o)
 
 INCLUDES	=	includes
 LIBFT 		=	$(INCLUDES)/ft_printf
@@ -48,11 +90,11 @@ $(OBJ_VM_DIR):
 	@mkdir $(OBJ_VM_DIR)
 
 $(ASM): $(OBJ_ASM_DIR) $(LIBFTP) $(OBJ_ASM_DIR)/asm.o $(OBJ_ASM)
-	@gcc -o $(ASM) $(OBJ_ASM_DIR)/asm.o $(OBJ_ASM) -I $(INCLUDES) -I $(LIBFTH) -L $(LIBFT)/ -lftp -g
+	@gcc $(FLAGS) -o $(ASM) $(OBJ_ASM_DIR)/asm.o $(OBJ_ASM) -I $(INCLUDES) -I $(LIBFTH) -L $(LIBFT)/ -lftp -g
 	@echo "$(GREEN)complete:$(EOC) $(ITALIC)ASM$(EOC)"
 
 $(COREWAR): $(OBJ_VM_DIR) $(LIBFTP) $(OBJ_VM_DIR)/corewar.o $(OBJ_VM)
-	@gcc -o $(COREWAR) $(OBJ_VM_DIR)/corewar.o $(OBJ_VM) -I $(INCLUDES) -I $(LIBFTH) -L $(LIBFT)/ -lftp -g
+	@gcc $(FLAGS) -o $(COREWAR) $(OBJ_VM_DIR)/corewar.o $(OBJ_VM) -I $(INCLUDES) -I $(LIBFTH) -L $(LIBFT)/ -lftp -g
 	@echo "$(GREEN)complete:$(EOC) $(ITALIC)COREWAR$(EOC)"
 
 $(TEST_VM): $(OBJ_VM_DIR) $(OBJ_VM) $(LIBFTP) $(T)

@@ -6,7 +6,7 @@
 /*   By: slindgre <slindgre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 19:48:24 by slindgre          #+#    #+#             */
-/*   Updated: 2019/11/04 19:58:42 by slindgre         ###   ########.fr       */
+/*   Updated: 2019/11/16 22:51:10 by slindgre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main()
 	t_game  game;
 	
 	ft_printf("players_nbr == 0:\n");
-	ft_bzero(&game, sizeof(game));
+	ft_bzero(&game, sizeof(t_game));
 	check_players_nbrs(game);
 	
 	ft_printf("\nplayers_nbr == 3, players with number 1-3 are blank:\n");
